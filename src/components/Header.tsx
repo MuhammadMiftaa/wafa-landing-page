@@ -1,78 +1,351 @@
 import { Link } from '@tanstack/react-router'
-import ThemeToggle from './ThemeToggle'
+import { useState, useRef, useEffect } from 'react'
+import {
+  Menu,
+  X,
+  ChevronDown,
+  Download,
+  BookOpen,
+  Users,
+  Calendar,
+  Layers,
+  GraduationCap,
+  Smartphone,
+  Book,
+  Newspaper,
+  MessageCircle,
+  Globe,
+} from 'lucide-react'
+
+type NavItem = {
+  label: string
+  href: string
+  icon?: React.ReactNode
+  desc?: string
+}
+
+type NavGroup = {
+  label: string
+  items: NavItem[]
+}
+
+const NAV_GROUPS: NavGroup[] = [
+  {
+    label: 'Metode',
+    items: [
+      { label: '5T Pendidikan', href: '/metode#5t', icon: <BookOpen className="h-4 w-4" />, desc: 'Tilawah, Tahfidz, Tarjamah, Tafhim, Tafsir' },
+      { label: '7M Sistem Mutu', href: '/metode#7m', icon: <Layers className="h-4 w-4" />, desc: 'Standar manajemen mutu pembelajaran' },
+      { label: 'Otak Kanan', href: '/metode#otak-kanan', icon: <Users className="h-4 w-4" />, desc: 'Metode pembelajaran menyenangkan' },
+      { label: 'Irama Hijaz', href: '/metode#hijaz', icon: <Newspaper className="h-4 w-4" />, desc: 'Lagu khas Wafa yang syahdu' },
+    ],
+  },
+  {
+    label: 'Layanan',
+    items: [
+      { label: 'Untuk Individu', href: '/layanan#individu', icon: <Users className="h-4 w-4" />, desc: 'Aplikasi & kursus online' },
+      { label: 'Untuk Lembaga', href: '/layanan#lembaga', icon: <GraduationCap className="h-4 w-4" />, desc: 'Kemitraan & pendampingan 7M' },
+      { label: 'Event & Workshop', href: '/layanan#event', icon: <Calendar className="h-4 w-4" />, desc: 'PSGA, ODT, SIMAAN, Upgrading' },
+      { label: 'Sertifikasi', href: '/layanan#sertifikasi', icon: <Layers className="h-4 w-4" />, desc: 'SAGAQU & syahadah resmi' },
+    ],
+  },
+  {
+    label: 'Produk',
+    items: [
+      { label: 'Buku Tilawah', href: '/produk#tilawah', icon: <Book className="h-4 w-4" />, desc: 'Seri Jilid 1–5 & KB/TK' },
+      { label: 'Buku Menulis', href: '/produk#menulis', icon: <BookOpen className="h-4 w-4" />, desc: 'Hijaiyah seri 1–6' },
+      { label: 'Aplikasi Wafa', href: '/produk#aplikasi', icon: <Smartphone className="h-4 w-4" />, desc: 'Gratis di Google Play' },
+      { label: 'Media Pembelajaran', href: '/produk#media', icon: <Layers className="h-4 w-4" />, desc: 'Kartu peraga, flashdisk, audio' },
+    ],
+  },
+  {
+    label: 'Blog',
+    items: [
+      { label: 'Risalah Dakwah', href: '/blog?cat=risalah', icon: <BookOpen className="h-4 w-4" />, desc: 'Parenting Qur\'ani & edukas' },
+      { label: 'Ikhtisar Wafa', href: '/blog?cat=ikhtisar', icon: <Newspaper className="h-4 w-4" />, desc: 'SAGAQU, ATO & cerita sukses' },
+      { label: 'Info Terkini', href: '/blog?cat=info', icon: <Globe className="h-4 w-4" />, desc: 'Berita & kegiatan terbaru' },
+    ],
+  },
+]
+
+type DropdownProps = {
+  group: NavGroup
+  isOpen: boolean
+  onToggle: () => void
+  onClose: () => void
+}
+
+function DropdownMenu({ group, isOpen, onToggle, onClose }: DropdownProps) {
+  const ref = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    function handleClickOutside(e: MouseEvent) {
+      if (ref.current && !ref.current.contains(e.target as Node)) {
+        onClose()
+      }
+    }
+    if (isOpen) {
+      document.addEventListener('mousedown', handleClickOutside)
+    }
+    return () => document.removeEventListener('mousedown', handleClickOutside)
+  }, [isOpen, onClose])
+
+  return (
+    <div ref={ref} className="relative">
+      <button
+        onClick={onToggle}
+        className="nav-link flex items-center gap-1 rounded-lg px-2 py-1.5 hover:bg-[rgba(209,0,113,0.05)]"
+        aria-expanded={isOpen}
+      >
+        {group.label}
+        <ChevronDown
+          className={`h-3.5 w-3.5 transition-transform duration-200 ${isOpen ? 'rotate-180' : ''}`}
+        />
+      </button>
+
+      {isOpen && (
+        <div
+          className="absolute left-0 top-full z-50 mt-2 w-72 overflow-hidden rounded-2xl border border-[var(--line)] bg-white shadow-[0_20px_60px_rgba(157,22,124,0.12),0_8px_24px_rgba(0,0,0,0.08)]"
+          style={{ animation: 'rise-in 200ms cubic-bezier(0.16,1,0.3,1) both' }}
+        >
+          <div className="p-2">
+            {group.items.map((item) => (
+              <Link
+                key={item.href}
+                to={item.href as '/'}
+                onClick={onClose}
+                className="flex items-start gap-3 rounded-xl p-3 transition-colors hover:bg-[rgba(209,0,113,0.05)] no-underline group"
+              >
+                <span className="mt-0.5 flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-lg bg-[rgba(209,0,113,0.08)] text-[var(--magenta-bold)] transition-colors group-hover:bg-[rgba(209,0,113,0.14)]">
+                  {item.icon}
+                </span>
+                <div>
+                  <p className="m-0 text-sm font-semibold text-[var(--text-primary)] font-[var(--font-heading)]">
+                    {item.label}
+                  </p>
+                  {item.desc && (
+                    <p className="m-0 text-xs text-[var(--text-secondary)] mt-0.5">
+                      {item.desc}
+                    </p>
+                  )}
+                </div>
+              </Link>
+            ))}
+          </div>
+        </div>
+      )}
+    </div>
+  )
+}
 
 export default function Header() {
+  const [openMenu, setOpenMenu] = useState<string | null>(null)
+  const [mobileOpen, setMobileOpen] = useState(false)
+  const [mobileExpanded, setMobileExpanded] = useState<string | null>(null)
+
+  function toggleMenu(label: string) {
+    setOpenMenu((prev) => (prev === label ? null : label))
+  }
+
+  function closeAll() {
+    setOpenMenu(null)
+  }
+
+  // Close mobile drawer on resize
+  useEffect(() => {
+    function onResize() {
+      if (window.innerWidth >= 1024) {
+        setMobileOpen(false)
+      }
+    }
+    window.addEventListener('resize', onResize)
+    return () => window.removeEventListener('resize', onResize)
+  }, [])
+
+  // Prevent body scroll when mobile menu is open
+  useEffect(() => {
+    if (mobileOpen) {
+      document.body.style.overflow = 'hidden'
+    } else {
+      document.body.style.overflow = ''
+    }
+    return () => { document.body.style.overflow = '' }
+  }, [mobileOpen])
+
   return (
-    <header className="sticky top-0 z-50 border-b border-[var(--line)] bg-[var(--header-bg)] px-4 backdrop-blur-lg">
-      <nav className="page-wrap flex flex-wrap items-center gap-x-3 gap-y-2 py-3 sm:py-4">
-        <h2 className="m-0 flex-shrink-0 text-base font-semibold tracking-tight">
+    <>
+      <header
+        className="sticky top-0 z-50 border-b border-[var(--line)]"
+        style={{ background: 'var(--header-bg)', backdropFilter: 'blur(16px)' }}
+      >
+        <nav className="page-wrap flex items-center gap-4 py-3 lg:py-3.5">
+          {/* Logo */}
           <Link
             to="/"
-            className="inline-flex items-center gap-2 rounded-full border border-[var(--chip-line)] bg-[var(--chip-bg)] px-3 py-1.5 text-sm text-[var(--sea-ink)] no-underline shadow-[0_8px_24px_rgba(30,90,72,0.08)] sm:px-4 sm:py-2"
+            className="flex-shrink-0 flex items-center gap-2 no-underline"
+            onClick={closeAll}
           >
-            <span className="h-2 w-2 rounded-full bg-[linear-gradient(90deg,#56c6be,#7ed3bf)]" />
-            TanStack Start
+            <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-to-br from-[var(--magenta-bold)] to-[var(--magenta-deep)] shadow-[0_4px_14px_rgba(209,0,113,0.35)]">
+              <span className="font-[var(--font-heading)] text-base font-bold text-white leading-none">W</span>
+            </div>
+            <div className="flex flex-col leading-none">
+              <span className="font-[var(--font-heading)] text-lg font-bold text-[var(--text-primary)] tracking-tight">
+                WAFA
+              </span>
+              <span className="text-[10px] font-medium text-[var(--magenta-bold)] tracking-wide">
+                Indonesia
+              </span>
+            </div>
           </Link>
-        </h2>
 
-        <div className="ml-auto flex items-center gap-1.5 sm:ml-0 sm:gap-2">
-          <a
-            href="https://x.com/tan_stack"
-            target="_blank"
-            rel="noreferrer"
-            className="hidden rounded-xl p-2 text-[var(--sea-ink-soft)] transition hover:bg-[var(--link-bg-hover)] hover:text-[var(--sea-ink)] sm:block"
-          >
-            <span className="sr-only">Follow TanStack on X</span>
-            <svg viewBox="0 0 16 16" aria-hidden="true" width="24" height="24">
-              <path
-                fill="currentColor"
-                d="M12.6 1h2.2L10 6.48 15.64 15h-4.41L7.78 9.82 3.23 15H1l5.14-5.84L.72 1h4.52l3.12 4.73L12.6 1zm-.77 12.67h1.22L4.57 2.26H3.26l8.57 11.41z"
+          {/* Desktop Nav */}
+          <div className="hidden lg:flex items-center gap-1 ml-6">
+            {NAV_GROUPS.map((group) => (
+              <DropdownMenu
+                key={group.label}
+                group={group}
+                isOpen={openMenu === group.label}
+                onToggle={() => toggleMenu(group.label)}
+                onClose={closeAll}
               />
-            </svg>
-          </a>
-          <a
-            href="https://github.com/TanStack"
-            target="_blank"
-            rel="noreferrer"
-            className="hidden rounded-xl p-2 text-[var(--sea-ink-soft)] transition hover:bg-[var(--link-bg-hover)] hover:text-[var(--sea-ink)] sm:block"
-          >
-            <span className="sr-only">Go to TanStack GitHub</span>
-            <svg viewBox="0 0 16 16" aria-hidden="true" width="24" height="24">
-              <path
-                fill="currentColor"
-                d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z"
-              />
-            </svg>
-          </a>
+            ))}
+            <Link
+              to="/kontak"
+              className="nav-link rounded-lg px-2 py-1.5 hover:bg-[rgba(209,0,113,0.05)] no-underline"
+              onClick={closeAll}
+            >
+              Kontak
+            </Link>
+          </div>
 
-          <ThemeToggle />
-        </div>
+          {/* CTA & Hamburger */}
+          <div className="ml-auto flex items-center gap-2">
+            <a
+              href="https://play.google.com/store/apps/details?id=com.wafaindonesia"
+              target="_blank"
+              rel="noreferrer"
+              className="btn-primary hidden sm:inline-flex text-sm py-2 px-4 no-underline"
+            >
+              <Download className="h-4 w-4" />
+              Download App
+            </a>
 
-        <div className="order-3 flex w-full flex-wrap items-center gap-x-4 gap-y-1 pb-1 text-sm font-semibold sm:order-2 sm:w-auto sm:flex-nowrap sm:pb-0">
+            {/* Hamburger — mobile only */}
+            <button
+              type="button"
+              onClick={() => setMobileOpen((v) => !v)}
+              className="lg:hidden flex h-9 w-9 items-center justify-center rounded-xl border border-[var(--line)] bg-white text-[var(--text-secondary)] transition hover:border-[rgba(209,0,113,0.3)] hover:text-[var(--magenta-bold)]"
+              aria-label={mobileOpen ? 'Tutup menu' : 'Buka menu'}
+            >
+              {mobileOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+            </button>
+          </div>
+        </nav>
+      </header>
+
+      {/* Mobile Overlay */}
+      {mobileOpen && (
+        <div
+          className="fixed inset-0 z-40 bg-black/40 backdrop-blur-sm lg:hidden"
+          onClick={() => setMobileOpen(false)}
+          aria-hidden="true"
+        />
+      )}
+
+      {/* Mobile Drawer */}
+      <div
+        className={`fixed inset-y-0 right-0 z-50 w-80 max-w-[90vw] bg-white shadow-[−20px_0_60px_rgba(0,0,0,0.12)] transition-transform duration-300 ease-out lg:hidden flex flex-col`}
+        style={{ transform: mobileOpen ? 'translateX(0)' : 'translateX(100%)' }}
+      >
+        {/* Drawer header */}
+        <div className="flex items-center justify-between border-b border-[var(--line)] px-5 py-4">
           <Link
             to="/"
-            className="nav-link"
-            activeProps={{ className: 'nav-link is-active' }}
+            className="flex items-center gap-2 no-underline"
+            onClick={() => setMobileOpen(false)}
           >
-            Home
+            <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-to-br from-[var(--magenta-bold)] to-[var(--magenta-deep)]">
+              <span className="font-[var(--font-heading)] text-sm font-bold text-white">W</span>
+            </div>
+            <span className="font-[var(--font-heading)] font-bold text-[var(--text-primary)]">WAFA</span>
           </Link>
+          <button
+            type="button"
+            onClick={() => setMobileOpen(false)}
+            className="flex h-8 w-8 items-center justify-center rounded-lg text-[var(--text-secondary)] hover:bg-[rgba(209,0,113,0.06)] hover:text-[var(--magenta-bold)]"
+            aria-label="Tutup menu"
+          >
+            <X className="h-5 w-5" />
+          </button>
+        </div>
+
+        {/* Drawer content */}
+        <div className="flex-1 overflow-y-auto py-4">
+          {NAV_GROUPS.map((group) => (
+            <div key={group.label} className="mb-1">
+              <button
+                type="button"
+                onClick={() =>
+                  setMobileExpanded((v) => (v === group.label ? null : group.label))
+                }
+                className="flex w-full items-center justify-between px-5 py-3 text-left font-[var(--font-heading)] font-semibold text-sm text-[var(--text-primary)] hover:bg-[rgba(209,0,113,0.04)]"
+              >
+                {group.label}
+                <ChevronDown
+                  className={`h-4 w-4 text-[var(--text-secondary)] transition-transform duration-200 ${mobileExpanded === group.label ? 'rotate-180' : ''}`}
+                />
+              </button>
+              {mobileExpanded === group.label && (
+                <div className="bg-[rgba(209,0,113,0.02)] pb-2">
+                  {group.items.map((item) => (
+                    <Link
+                      key={item.href}
+                      to={item.href as '/'}
+                      onClick={() => setMobileOpen(false)}
+                      className="flex items-center gap-3 px-8 py-2.5 no-underline hover:bg-[rgba(209,0,113,0.06)]"
+                    >
+                      <span className="text-[var(--magenta-bold)]">{item.icon}</span>
+                      <span className="text-sm font-medium text-[var(--text-primary)]">{item.label}</span>
+                    </Link>
+                  ))}
+                </div>
+              )}
+            </div>
+          ))}
+
           <Link
-            to="/about"
-            className="nav-link"
-            activeProps={{ className: 'nav-link is-active' }}
+            to="/kontak"
+            onClick={() => setMobileOpen(false)}
+            className="flex items-center gap-2 px-5 py-3 font-[var(--font-heading)] font-semibold text-sm text-[var(--text-primary)] hover:bg-[rgba(209,0,113,0.04)] no-underline"
           >
-            About
+            <MessageCircle className="h-4 w-4 text-[var(--magenta-bold)]" />
+            Kontak
           </Link>
+        </div>
+
+        {/* Drawer footer CTA */}
+        <div className="border-t border-[var(--line)] p-5 space-y-3">
           <a
-            href="https://tanstack.com/start/latest/docs/framework/react/overview"
-            className="nav-link"
+            href="https://play.google.com/store/apps/details?id=com.wafaindonesia"
             target="_blank"
             rel="noreferrer"
+            className="btn-primary w-full justify-center no-underline"
+            onClick={() => setMobileOpen(false)}
           >
-            Docs
+            <Download className="h-4 w-4" />
+            Download Aplikasi Gratis
+          </a>
+          <a
+            href="https://wa.me/6281130589310"
+            target="_blank"
+            rel="noreferrer"
+            className="btn-secondary w-full justify-center no-underline"
+            onClick={() => setMobileOpen(false)}
+          >
+            <MessageCircle className="h-4 w-4" />
+            Hubungi Kami
           </a>
         </div>
-      </nav>
-    </header>
+      </div>
+    </>
   )
 }
