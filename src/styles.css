@@ -79,18 +79,6 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-a {
-  color: var(--magenta-bold);
-  text-decoration-color: rgba(209, 0, 113, 0.35);
-  text-decoration-thickness: 1px;
-  text-underline-offset: 2px;
-  transition: color 180ms ease;
-}
-
-a:hover {
-  color: var(--magenta-deep);
-}
-
 code {
   font-size: 0.9em;
   border: 1px solid var(--line);
@@ -191,7 +179,7 @@ code {
   border-color: rgba(209, 0, 113, 0.2) !important;
   box-shadow:
     0 1px 0 var(--inset-glint) inset,
-    0 28px 56px rgba(157, 22, 124, 0.14),
+    0 14px 28px rgba(157, 22, 124, 0.14),
     0 8px 24px rgba(75, 42, 103, 0.08) !important;
 }
 

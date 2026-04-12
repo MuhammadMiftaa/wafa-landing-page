@@ -184,17 +184,7 @@ export default function Header() {
             className="flex-shrink-0 flex items-center gap-2 no-underline"
             onClick={closeAll}
           >
-            <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-to-br from-[var(--magenta-bold)] to-[var(--magenta-deep)] shadow-[0_4px_14px_rgba(209,0,113,0.35)]">
-              <span className="font-[var(--font-heading)] text-base font-bold text-white leading-none">W</span>
-            </div>
-            <div className="flex flex-col leading-none">
-              <span className="font-[var(--font-heading)] text-lg font-bold text-[var(--text-primary)] tracking-tight">
-                WAFA
-              </span>
-              <span className="text-[10px] font-medium text-[var(--magenta-bold)] tracking-wide">
-                Indonesia
-              </span>
-            </div>
+            <img src="/logo.png" alt="Logo Wafa Indonesia" className='h-12 w-12 object-contain' />
           </Link>
 
           {/* Desktop Nav */}
