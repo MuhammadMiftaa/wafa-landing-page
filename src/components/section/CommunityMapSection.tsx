@@ -185,7 +185,7 @@ export function CommunityMapSection() {
         {/* Search + List */}
         <div className="max-w-2xl mx-auto">
           <div className="relative mb-6">
-            <Search className="absolute left-4 top-1/2 -translate-y-1/2 h-4 w-4 text-text-secondary" />
+            <Search className="absolute right-4 top-1/2 -translate-y-1/2 h-4 w-4 text-text-secondary" />
             <input
               type="search"
               value={search}
