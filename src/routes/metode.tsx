@@ -3,12 +3,11 @@ import { createFileRoute } from "@tanstack/react-router";
 import {
   Brain,
   Music,
-  Award,
   BookOpen,
   Shield,
   ArrowRight,
 } from "lucide-react";
-import { SectionHeading, Badge, TabGroup } from "../components/ui/index.ts";
+import { SectionHeading, Badge } from "../components/ui/index.ts";
 import { FIVE_T, SEVEN_M } from "../data/content.ts";
 
 export const Route = createFileRoute("/metode")({ component: MetodePage });
@@ -19,55 +18,16 @@ function MetodePage() {
   return (
     <main>
       {/* Hero */}
-      <section
-        className="section-padding relative overflow-hidden"
-        style={{
-          background:
-            "linear-gradient(135deg,rgba(209,0,113,0.04),rgba(31,129,36,0.03))",
-        }}
-      >
-        <div
-          className="pointer-events-none absolute -left-40 -top-20 h-96 w-96 rounded-full opacity-30"
-          style={{
-            background:
-              "radial-gradient(circle,rgba(209,0,113,0.14),transparent 70%)",
-            filter: "blur(60px)",
-          }}
-        />
-        <div
-          className="pointer-events-none absolute right-0 bottom-0 h-72 w-72 rounded-full opacity-20"
-          style={{
-            background:
-              "radial-gradient(circle,rgba(31,129,36,0.12),transparent 70%)",
-            filter: "blur(50px)",
-          }}
-        />
+      <section className="section-padding relative overflow-hidden bg-section-magenta-emerald">
+        <div className="blob-magenta absolute -left-40 -top-20 h-96 w-96 opacity-30" />
+        <div className="blob-emerald absolute right-0 bottom-0 h-72 w-72 opacity-20" />
         <div className="page-wrap relative z-10 text-center">
           <Badge color="magenta">Metode Pembelajaran</Badge>
-          <h1
-            className="mt-4 text-4xl md:text-5xl lg:text-6xl font-bold mb-4 leading-tight"
-            style={{
-              fontFamily: "var(--font-heading)",
-              color: "var(--text-primary)",
-            }}
-          >
+          <h1 className="mt-4 font-heading text-4xl md:text-5xl lg:text-6xl font-bold text-text-primary mb-4 leading-tight">
             Sistem Pembelajaran{" "}
-            <span
-              style={{
-                background:
-                  "linear-gradient(135deg,var(--magenta-bold),var(--emerald))",
-                WebkitBackgroundClip: "text",
-                WebkitTextFillColor: "transparent",
-                backgroundClip: "text",
-              }}
-            >
-              Al-Qur'an Terintegrasi
-            </span>
+            <span className="gradient-text">Al-Qur'an Terintegrasi</span>
           </h1>
-          <p
-            className="max-w-2xl mx-auto text-base md:text-lg leading-relaxed mb-8"
-            style={{ color: "var(--text-secondary)" }}
-          >
+          <p className="max-w-2xl mx-auto text-base md:text-lg leading-relaxed text-text-secondary mb-8">
             Dari membaca pertama hingga menjadi ahli Qur'ani — sistem 5T dan 7M
             Wafa dirancang untuk memastikan setiap peserta didik mencapai
             potensi terbaiknya.
@@ -99,12 +59,7 @@ function MetodePage() {
               <a
                 key={item.href}
                 href={item.href}
-                className="flex items-center gap-2 rounded-full border px-5 py-2.5 text-sm font-semibold no-underline transition-all hover:border-[rgba(209,0,113,0.3)] hover:text-[var(--magenta-bold)]"
-                style={{
-                  borderColor: "var(--line)",
-                  color: "var(--text-secondary)",
-                  fontFamily: "var(--font-heading)",
-                }}
+                className="flex items-center gap-2 font-heading rounded-full border border-line px-5 py-2.5 text-sm font-semibold text-text-secondary no-underline transition-all hover:border-[rgba(209,0,113,0.3)] hover:text-magenta-bold"
               >
                 {item.icon}
                 {item.label}
@@ -136,7 +91,7 @@ function MetodePage() {
                   className="w-full flex items-center gap-4 rounded-2xl p-5 text-left transition-all"
                   style={{
                     background: activeT === i ? t.bg : "white",
-                    border: `1.5px solid ${activeT === i ? t.color + "40" : "var(--line)"}`,
+                    border: `1.5px solid ${activeT === i ? t.color + "40" : "var(--color-line)"}`,
                     boxShadow:
                       activeT === i ? `0 8px 24px ${t.color}15` : "none",
                   }}
@@ -149,18 +104,14 @@ function MetodePage() {
                   </span>
                   <div>
                     <p
-                      className="font-bold text-sm"
+                      className="font-heading text-sm font-bold"
                       style={{
-                        fontFamily: "var(--font-heading)",
-                        color: activeT === i ? t.color : "var(--text-primary)",
+                        color: activeT === i ? t.color : "var(--color-text-primary)",
                       }}
                     >
                       {t.key}
                     </p>
-                    <p
-                      className="text-xs mt-0.5"
-                      style={{ color: "var(--text-secondary)" }}
-                    >
+                    <p className="text-xs mt-0.5 text-text-secondary">
                       {t.title}
                     </p>
                   </div>
@@ -183,45 +134,29 @@ function MetodePage() {
               {FIVE_T[activeT] && (
                 <div
                   key={activeT}
-                  className="rounded-3xl p-8"
+                  className="rounded-3xl p-8 tab-content-enter"
                   style={{
                     background: FIVE_T[activeT].bg,
                     border: `1.5px solid ${FIVE_T[activeT].color}30`,
-                    animation: "fade-in 300ms ease both",
                   }}
                 >
                   <div className="flex items-center gap-4 mb-6">
-                    <span
-                      className="flex h-16 w-16 items-center justify-center rounded-2xl text-4xl"
-                      style={{ background: "white" }}
-                    >
+                    <span className="flex h-16 w-16 items-center justify-center rounded-2xl bg-white text-4xl">
                       {FIVE_T[activeT].icon}
                     </span>
                     <div>
                       <p
-                        className="text-xs font-bold uppercase tracking-widest"
-                        style={{
-                          color: FIVE_T[activeT].color,
-                          fontFamily: "var(--font-heading)",
-                        }}
+                        className="font-heading text-xs font-bold uppercase tracking-widest"
+                        style={{ color: FIVE_T[activeT].color }}
                       >
                         {FIVE_T[activeT].key}
                       </p>
-                      <h3
-                        className="text-xl font-bold"
-                        style={{
-                          fontFamily: "var(--font-heading)",
-                          color: "var(--text-primary)",
-                        }}
-                      >
+                      <h3 className="font-heading text-xl font-bold text-text-primary">
                         {FIVE_T[activeT].title}
                       </h3>
                     </div>
                   </div>
-                  <p
-                    className="text-base leading-relaxed"
-                    style={{ color: "var(--text-secondary)" }}
-                  >
+                  <p className="text-base leading-relaxed text-text-secondary">
                     {FIVE_T[activeT].desc}
                   </p>
                   <div className="mt-6 flex flex-wrap gap-3">
@@ -246,14 +181,7 @@ function MetodePage() {
       </section>
 
       {/* 7M Section */}
-      <section
-        id="7m"
-        className="section-padding"
-        style={{
-          background:
-            "linear-gradient(180deg,rgba(31,129,36,0.03) 0%,transparent 100%)",
-        }}
-      >
+      <section id="7m" className="section-padding bg-section-emerald-fade">
         <div className="page-wrap">
           <SectionHeading
             kicker="7M Sistem Manajemen Mutu"
@@ -264,13 +192,7 @@ function MetodePage() {
           />
 
           <div className="relative">
-            <div
-              className="hidden lg:block absolute left-[calc(50%-1px)] top-8 bottom-8 w-0.5"
-              style={{
-                background:
-                  "linear-gradient(to bottom, var(--magenta-bold), var(--emerald))",
-              }}
-            />
+            <div className="hidden lg:block absolute left-[calc(50%-1px)] top-8 bottom-8 w-0.5 bg-gradient-to-b from-magenta-bold to-emerald" />
             <div className="space-y-6">
               {SEVEN_M.map((m, i) => (
                 <div
@@ -278,48 +200,29 @@ function MetodePage() {
                   className={`flex flex-col lg:flex-row items-center gap-6 ${i % 2 === 1 ? "lg:flex-row-reverse" : ""}`}
                 >
                   <div className="flex-1 w-full">
-                    <div
-                      className="rounded-3xl p-7 transition-all card-hover"
-                      style={{
-                        background: "white",
-                        border: "1px solid var(--line)",
-                      }}
-                    >
+                    <div className="surface-card rounded-3xl p-7 card-hover">
                       <div className="flex items-center gap-3 mb-3">
                         <span className="text-2xl">{m.icon}</span>
                         <span
-                          className="text-xs font-bold uppercase tracking-widest"
-                          style={{
-                            color: m.color,
-                            fontFamily: "var(--font-heading)",
-                          }}
+                          className="font-heading text-xs font-bold uppercase tracking-widest"
+                          style={{ color: m.color }}
                         >
                           {m.step}
                         </span>
                       </div>
-                      <h3
-                        className="font-bold text-lg mb-2"
-                        style={{
-                          fontFamily: "var(--font-heading)",
-                          color: "var(--text-primary)",
-                        }}
-                      >
+                      <h3 className="font-heading text-lg font-bold text-text-primary mb-2">
                         {m.title}
                       </h3>
-                      <p
-                        className="text-sm leading-relaxed"
-                        style={{ color: "var(--text-secondary)" }}
-                      >
+                      <p className="text-sm leading-relaxed text-text-secondary">
                         {m.desc}
                       </p>
                     </div>
                   </div>
                   {/* Center dot */}
                   <div
-                    className="hidden lg:flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full text-white text-sm font-bold z-10"
+                    className="hidden lg:flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full font-heading text-white text-sm font-bold z-10"
                     style={{
                       background: m.color,
-                      fontFamily: "var(--font-heading)",
                       boxShadow: `0 4px 16px ${m.color}40`,
                     }}
                   >
@@ -375,27 +278,14 @@ function MetodePage() {
                 ].map((item) => (
                   <div
                     key={item.title}
-                    className="flex items-start gap-4 rounded-2xl p-4"
-                    style={{
-                      background: "white",
-                      border: "1px solid var(--line)",
-                    }}
+                    className="surface-card flex items-start gap-4 rounded-2xl p-4"
                   >
                     <span className="text-2xl flex-shrink-0">{item.icon}</span>
                     <div>
-                      <p
-                        className="font-bold text-sm"
-                        style={{
-                          fontFamily: "var(--font-heading)",
-                          color: "var(--text-primary)",
-                        }}
-                      >
+                      <p className="font-heading text-sm font-bold text-text-primary">
                         {item.title}
                       </p>
-                      <p
-                        className="text-xs mt-0.5"
-                        style={{ color: "var(--text-secondary)" }}
-                      >
+                      <p className="text-xs mt-0.5 text-text-secondary">
                         {item.desc}
                       </p>
                     </div>
@@ -410,63 +300,44 @@ function MetodePage() {
                   value: "85%",
                   label: "Retensi Materi",
                   desc: "vs metode konvensional",
-                  color: "var(--magenta-bold)",
+                  color: "var(--color-magenta-bold)",
                 },
                 {
                   value: "3x",
                   label: "Lebih Cepat",
                   desc: "dalam menguasai tilawah",
-                  color: "var(--emerald)",
+                  color: "var(--color-emerald)",
                 },
                 {
                   value: "40%",
                   label: "Lebih Sedikit",
                   desc: "tingkat stres belajar",
-                  color: "var(--golden)",
+                  color: "var(--color-golden)",
                 },
                 {
                   value: "90%",
                   label: "Tingkat Kepuasan",
                   desc: "guru dan orang tua",
-                  color: "var(--deep)",
+                  color: "var(--color-deep)",
                 },
               ].map((stat) => (
                 <div
                   key={stat.label}
-                  className="rounded-3xl p-7 text-center transition-all card-hover"
-                  style={{
-                    background: "white",
-                    border: "1px solid var(--line)",
-                  }}
+                  className="surface-card rounded-3xl p-7 text-center card-hover"
                 >
                   <p
-                    className="text-4xl font-bold mb-1"
-                    style={{
-                      fontFamily: "var(--font-heading)",
-                      color: stat.color,
-                    }}
+                    className="font-heading text-4xl font-bold mb-1"
+                    style={{ color: stat.color }}
                   >
                     {stat.value}
                   </p>
-                  <p
-                    className="font-bold text-sm"
-                    style={{
-                      fontFamily: "var(--font-heading)",
-                      color: "var(--text-primary)",
-                    }}
-                  >
+                  <p className="font-heading text-sm font-bold text-text-primary">
                     {stat.label}
                   </p>
-                  <p
-                    className="text-xs mt-1"
-                    style={{ color: "var(--text-secondary)" }}
-                  >
+                  <p className="text-xs mt-1 text-text-secondary">
                     {stat.desc}
                   </p>
-                  <p
-                    className="text-[10px] mt-2"
-                    style={{ color: "var(--text-secondary)" }}
-                  >
+                  <p className="text-[10px] mt-2 text-text-secondary">
                     *Riset internal Wafa 2012–2026
                   </p>
                 </div>
@@ -477,14 +348,7 @@ function MetodePage() {
       </section>
 
       {/* Irama Hijaz */}
-      <section
-        id="hijaz"
-        className="section-padding"
-        style={{
-          background:
-            "linear-gradient(180deg,rgba(75,42,103,0.03) 0%,transparent 100%)",
-        }}
-      >
+      <section id="hijaz" className="section-padding bg-section-deep-fade">
         <div className="page-wrap">
           <SectionHeading
             kicker="Irama Hijaz Wafa"
@@ -495,56 +359,23 @@ function MetodePage() {
           />
 
           {/* Audio placeholder */}
-          <div
-            className="max-w-2xl mx-auto rounded-3xl p-8 mb-10"
-            style={{
-              background: "white",
-              border: "1.5px solid rgba(75,42,103,0.2)",
-              boxShadow: "0 20px 60px rgba(75,42,103,0.08)",
-            }}
-          >
-            <p
-              className="font-bold text-sm mb-6 text-center"
-              style={{
-                fontFamily: "var(--font-heading)",
-                color: "var(--text-primary)",
-              }}
-            >
+          <div className="max-w-2xl mx-auto rounded-3xl border-[1.5px] border-[rgba(75,42,103,0.2)] bg-white shadow-[0_20px_60px_rgba(75,42,103,0.08)] p-8 mb-10">
+            <p className="font-heading text-sm font-bold text-text-primary mb-6 text-center">
               🎵 Preview Irama Hijaz Wafa
             </p>
-            <div
-              className="rounded-2xl p-6 text-center"
-              style={{
-                background:
-                  "linear-gradient(135deg,rgba(75,42,103,0.06),rgba(209,0,113,0.04))",
-              }}
-            >
+            <div className="rounded-2xl p-6 text-center bg-gradient-to-br from-[rgba(75,42,103,0.06)] to-[rgba(209,0,113,0.04)]">
               <div className="flex items-center justify-center gap-4 mb-4">
                 <button
                   type="button"
-                  className="flex h-14 w-14 items-center justify-center rounded-full text-white transition-all hover:scale-105"
-                  style={{
-                    background:
-                      "linear-gradient(135deg,var(--magenta-bold),var(--deep))",
-                    boxShadow: "0 8px 24px rgba(209,0,113,0.35)",
-                  }}
+                  className="flex h-14 w-14 items-center justify-center rounded-full text-white bg-gradient-to-br from-magenta-bold to-deep shadow-[0_8px_24px_rgba(209,0,113,0.35)] transition-all hover:scale-105"
                 >
                   <Music className="h-6 w-6" />
                 </button>
                 <div className="flex-1">
-                  <p
-                    className="font-semibold text-sm"
-                    style={{
-                      fontFamily: "var(--font-heading)",
-                      color: "var(--text-primary)",
-                    }}
-                  >
+                  <p className="font-heading text-sm font-semibold text-text-primary">
                     Lagu Pengantar Iqro
                   </p>
-                  <p
-                    className="text-xs"
-                    style={{ color: "var(--text-secondary)" }}
-                  >
+                  <p className="text-xs text-text-secondary">
                     Nada Hijaz 3 Nada · Wafa Indonesia
                   </p>
                 </div>
@@ -563,10 +394,7 @@ function MetodePage() {
                   />
                 ))}
               </div>
-              <p
-                className="text-xs mt-4"
-                style={{ color: "var(--text-secondary)" }}
-              >
+              <p className="text-xs mt-4 text-text-secondary">
                 Audio preview tersedia di Aplikasi Wafa
               </p>
             </div>
@@ -593,44 +421,25 @@ function MetodePage() {
             ].map((item) => (
               <div
                 key={item.nama}
-                className="rounded-3xl p-6 text-center transition-all card-hover"
-                style={{
-                  background: item.suitable
-                    ? "linear-gradient(135deg,rgba(209,0,113,0.06),rgba(75,42,103,0.04))"
-                    : "white",
-                  border: `1.5px solid ${item.suitable ? "rgba(209,0,113,0.2)" : "var(--line)"}`,
-                  boxShadow: item.suitable
-                    ? "0 12px 40px rgba(209,0,113,0.1)"
-                    : "none",
-                }}
+                className={`rounded-3xl border-[1.5px] p-6 text-center card-hover ${
+                  item.suitable
+                    ? "border-[rgba(209,0,113,0.2)] bg-gradient-to-br from-[rgba(209,0,113,0.06)] to-[rgba(75,42,103,0.04)] shadow-[0_12px_40px_rgba(209,0,113,0.1)]"
+                    : "border-line bg-white"
+                }`}
               >
                 <p
-                  className="font-bold text-base mb-2"
-                  style={{
-                    fontFamily: "var(--font-heading)",
-                    color: item.suitable
-                      ? "var(--magenta-bold)"
-                      : "var(--text-primary)",
-                  }}
+                  className={`font-heading text-base font-bold mb-2 ${
+                    item.suitable ? "text-magenta-bold" : "text-text-primary"
+                  }`}
                 >
                   {item.suitable && "⭐ "}
                   {item.nama}
                 </p>
-                <p
-                  className="text-xs leading-relaxed"
-                  style={{ color: "var(--text-secondary)" }}
-                >
+                <p className="text-xs leading-relaxed text-text-secondary">
                   {item.desc}
                 </p>
                 {item.suitable && (
-                  <span
-                    className="mt-3 inline-block text-xs font-bold rounded-full px-3 py-1"
-                    style={{
-                      background: "rgba(209,0,113,0.1)",
-                      color: "var(--magenta-bold)",
-                      fontFamily: "var(--font-heading)",
-                    }}
-                  >
+                  <span className="mt-3 inline-block font-heading text-xs font-bold rounded-full px-3 py-1 bg-[rgba(209,0,113,0.1)] text-magenta-bold">
                     Digunakan Wafa
                   </span>
                 )}
@@ -656,43 +465,39 @@ function MetodePage() {
                 icon: "🏛️",
                 label: "YAQIN",
                 no: "AHU-0000170.AH.01.12.2022",
-                color: "var(--magenta-bold)",
+                color: "var(--color-magenta-bold)",
               },
               {
                 icon: "⚖️",
                 label: "Kemenkumham RI",
                 no: "Badan Hukum 2022",
-                color: "var(--deep)",
+                color: "var(--color-deep)",
               },
               {
                 icon: "☪️",
                 label: "Kemenag RI",
                 no: "Majelis Ta'lim 2022",
-                color: "var(--emerald)",
+                color: "var(--color-emerald)",
               },
               {
                 icon: "✅",
                 label: "Tashih LPMQ",
                 no: "28 Oktober 2023",
-                color: "var(--golden)",
+                color: "var(--color-golden)",
               },
             ].map((l) => (
               <div
                 key={l.label}
-                className="rounded-3xl p-5 text-center transition-all card-hover"
-                style={{ background: "white", border: "1px solid var(--line)" }}
+                className="surface-card rounded-3xl p-5 text-center card-hover"
               >
                 <div className="text-3xl mb-3">{l.icon}</div>
                 <p
-                  className="m-0 font-bold text-xs"
-                  style={{ fontFamily: "var(--font-heading)", color: l.color }}
+                  className="m-0 font-heading text-xs font-bold"
+                  style={{ color: l.color }}
                 >
                   {l.label}
                 </p>
-                <p
-                  className="m-0 text-[10px] mt-1 leading-snug"
-                  style={{ color: "var(--text-secondary)" }}
-                >
+                <p className="m-0 text-[10px] mt-1 leading-snug text-text-secondary">
                   {l.no}
                 </p>
               </div>

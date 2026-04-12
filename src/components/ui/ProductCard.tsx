@@ -19,10 +19,10 @@ interface ProductCardProps {
   onViewDetail?: (product: Product) => void
 }
 
-const BADGE_STYLES: Record<string, { bg: string; text: string; label: string }> = {
-  Bestseller: { bg: 'rgba(255,145,0,0.12)', text: 'var(--tangerine)', label: '🔥 Bestseller' },
-  New: { bg: 'rgba(31,129,36,0.12)', text: 'var(--emerald)', label: '✨ Baru' },
-  Sale: { bg: 'rgba(209,0,113,0.12)', text: 'var(--magenta-bold)', label: '💸 Diskon' },
+const BADGE_CLASSES: Record<string, { bg: string; text: string; label: string }> = {
+  Bestseller: { bg: 'bg-[rgba(255,145,0,0.12)]', text: 'text-tangerine', label: '🔥 Bestseller' },
+  New: { bg: 'bg-[rgba(31,129,36,0.12)]', text: 'text-emerald', label: '✨ Baru' },
+  Sale: { bg: 'bg-[rgba(209,0,113,0.12)]', text: 'text-magenta-bold', label: '💸 Diskon' },
 }
 
 function formatRupiah(amount: number): string {
@@ -30,21 +30,15 @@ function formatRupiah(amount: number): string {
 }
 
 export function ProductCard({ product, onAddToCart, onViewDetail }: ProductCardProps) {
-  const badge = product.badge ? BADGE_STYLES[product.badge] : null
+  const badge = product.badge ? BADGE_CLASSES[product.badge] : null
   const discount = product.originalPrice
     ? Math.round((1 - product.price / product.originalPrice) * 100)
     : 0
 
   return (
-    <div
-      className="group rounded-3xl overflow-hidden transition-all card-hover flex flex-col"
-      style={{ background: 'white', border: '1px solid var(--line)' }}
-    >
+    <div className="group surface-card overflow-hidden rounded-3xl card-hover flex flex-col">
       {/* Image area */}
-      <div
-        className="relative flex items-center justify-center"
-        style={{ height: '200px', background: 'linear-gradient(135deg, rgba(209,0,113,0.04), rgba(31,129,36,0.03))' }}
-      >
+      <div className="relative flex h-[200px] items-center justify-center bg-product-area">
         {product.image ? (
           <img
             src={product.image}
@@ -59,8 +53,7 @@ export function ProductCard({ product, onAddToCart, onViewDetail }: ProductCardP
         {/* Badge */}
         {badge && (
           <div
-            className="absolute top-3 left-3 text-xs font-bold rounded-full px-3 py-1"
-            style={{ background: badge.bg, color: badge.text, fontFamily: 'var(--font-heading)' }}
+            className={`absolute top-3 left-3 font-heading text-xs font-bold rounded-full px-3 py-1 ${badge.bg} ${badge.text}`}
           >
             {badge.label}
           </div>
@@ -68,10 +61,7 @@ export function ProductCard({ product, onAddToCart, onViewDetail }: ProductCardP
 
         {/* Discount */}
         {discount > 0 && (
-          <div
-            className="absolute top-3 right-3 text-xs font-bold rounded-full px-2 py-1 text-white"
-            style={{ background: 'var(--magenta-bold)', fontFamily: 'var(--font-heading)' }}
-          >
+          <div className="absolute top-3 right-3 font-heading text-xs font-bold rounded-full px-2 py-1 text-white bg-magenta-bold">
             -{discount}%
           </div>
         )}
@@ -81,8 +71,7 @@ export function ProductCard({ product, onAddToCart, onViewDetail }: ProductCardP
           <button
             type="button"
             onClick={() => onViewDetail?.(product)}
-            className="flex h-10 w-10 items-center justify-center rounded-xl text-white transition-transform hover:scale-105"
-            style={{ background: 'var(--deep)' }}
+            className="flex h-10 w-10 items-center justify-center rounded-xl bg-deep text-white transition-transform hover:scale-105"
             aria-label="Lihat detail"
           >
             <Eye className="h-4 w-4" />
@@ -90,8 +79,7 @@ export function ProductCard({ product, onAddToCart, onViewDetail }: ProductCardP
           <button
             type="button"
             onClick={() => onAddToCart?.(product)}
-            className="flex h-10 w-10 items-center justify-center rounded-xl text-white transition-transform hover:scale-105"
-            style={{ background: 'var(--magenta-bold)' }}
+            className="flex h-10 w-10 items-center justify-center rounded-xl bg-magenta-bold text-white transition-transform hover:scale-105"
             aria-label="Tambah ke keranjang"
           >
             <ShoppingCart className="h-4 w-4" />
@@ -101,16 +89,10 @@ export function ProductCard({ product, onAddToCart, onViewDetail }: ProductCardP
 
       {/* Content */}
       <div className="flex flex-col flex-1 p-5">
-        <span
-          className="text-xs font-semibold mb-1"
-          style={{ color: 'var(--magenta-bold)', fontFamily: 'var(--font-heading)' }}
-        >
+        <span className="font-heading text-xs font-semibold text-magenta-bold mb-1">
           {product.category}
         </span>
-        <p
-          className="font-semibold text-sm leading-snug mb-2 flex-1"
-          style={{ fontFamily: 'var(--font-heading)', color: 'var(--text-primary)' }}
-        >
+        <p className="font-heading text-sm font-semibold leading-snug text-text-primary mb-2 flex-1">
           {product.name}
         </p>
 
@@ -120,24 +102,25 @@ export function ProductCard({ product, onAddToCart, onViewDetail }: ProductCardP
             {Array.from({ length: 5 }).map((_, i) => (
               <Star
                 key={i}
-                className="h-3 w-3"
-                fill={i < Math.round(product.rating) ? 'var(--sun)' : 'transparent'}
-                style={{ color: i < Math.round(product.rating) ? 'var(--sun)' : 'var(--line)' }}
+                className={`h-3 w-3 ${
+                  i < Math.round(product.rating) ? 'text-sun' : 'text-line'
+                }`}
+                fill={i < Math.round(product.rating) ? 'var(--color-sun)' : 'transparent'}
               />
             ))}
           </div>
-          <span className="text-xs" style={{ color: 'var(--text-secondary)' }}>
+          <span className="text-xs text-text-secondary">
             {product.rating.toFixed(1)} ({product.reviewCount.toLocaleString('id-ID')})
           </span>
         </div>
 
         {/* Price */}
         <div className="flex items-baseline gap-2 mb-4">
-          <span className="font-bold text-base" style={{ fontFamily: 'var(--font-heading)', color: 'var(--magenta-bold)' }}>
+          <span className="font-heading text-base font-bold text-magenta-bold">
             {formatRupiah(product.price)}
           </span>
           {product.originalPrice && (
-            <span className="text-xs line-through" style={{ color: 'var(--text-secondary)' }}>
+            <span className="text-xs text-text-secondary line-through">
               {formatRupiah(product.originalPrice)}
             </span>
           )}
@@ -147,8 +130,7 @@ export function ProductCard({ product, onAddToCart, onViewDetail }: ProductCardP
         <button
           type="button"
           onClick={() => onAddToCart?.(product)}
-          className="flex w-full items-center justify-center gap-2 rounded-full py-2.5 text-sm font-semibold text-white transition-all hover:-translate-y-0.5 hover:shadow-[0_4px_16px_rgba(209,0,113,0.3)]"
-          style={{ background: 'linear-gradient(135deg,var(--magenta-bold),var(--magenta-deep))', fontFamily: 'var(--font-heading)' }}
+          className="btn-primary w-full justify-center text-sm py-2.5"
         >
           <ShoppingCart className="h-3.5 w-3.5" />
           Tambah ke Keranjang

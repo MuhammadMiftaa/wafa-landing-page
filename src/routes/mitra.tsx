@@ -20,7 +20,7 @@ const ALUR = [
     desc: "Hubungi tim Wafa via WhatsApp atau isi formulir. Konsultasi gratis & tanpa komitmen.",
     duration: "1 hari",
     icon: "📝",
-    color: "var(--magenta-bold)",
+    color: "var(--color-magenta-bold)",
   },
   {
     step: "02",
@@ -28,7 +28,7 @@ const ALUR = [
     desc: "Pelatihan Guru Al-Qur'an (PSGA) selama 3 hari. Pemetaan kemampuan, standarisasi irama & metodologi.",
     duration: "3 hari",
     icon: "🎓",
-    color: "var(--emerald)",
+    color: "var(--color-emerald)",
   },
   {
     step: "03",
@@ -36,7 +36,7 @@ const ALUR = [
     desc: "Coaching kepala sekolah, koordinator, dan guru. Supervisi berkala untuk menjaga mutu.",
     duration: "6–12 bulan",
     icon: "🤝",
-    color: "var(--golden)",
+    color: "var(--color-golden)",
   },
   {
     step: "04",
@@ -44,7 +44,7 @@ const ALUR = [
     desc: "Siswa dan guru mendapatkan Syahadah (sertifikat). Lembaga siap menyelenggarakan pengukuhan publik.",
     duration: "Berkelanjutan",
     icon: "🏆",
-    color: "var(--deep)",
+    color: "var(--color-deep)",
   },
 ];
 
@@ -135,6 +135,36 @@ const JENIS_LEMBAGA = [
   "Lainnya",
 ];
 
+const PAS = [
+  {
+    type: "PROBLEM",
+    colorClass: "text-magenta-bold",
+    bg: "bg-[rgba(209,0,113,0.04)]",
+    border: "border-[rgba(209,0,113,0.15)]",
+    icon: "😟",
+    title: "Tantangan Lembaga",
+    desc: "Mengantarkan lulusan dengan bacaan & hafalan Al-Qur'an yang bagus dan merata tidak mudah. Banyak lembaga bingung bagaimana membangun standar mutu dan sistem manajemennya.",
+  },
+  {
+    type: "AGITATION",
+    colorClass: "text-tangerine",
+    bg: "bg-[rgba(255,123,0,0.04)]",
+    border: "border-[rgba(255,123,0,0.15)]",
+    icon: "⚠️",
+    title: "Akibatnya...",
+    desc: "Orang tua semakin selektif. Tanpa bukti nyata kualitas lulusan, mereka beralih ke lembaga lain. Persaingan semakin ketat, sementara ekspektasi terus meningkat.",
+  },
+  {
+    type: "SOLUTION",
+    colorClass: "text-emerald",
+    bg: "bg-[rgba(31,129,36,0.04)]",
+    border: "border-[rgba(31,129,36,0.15)]",
+    icon: "✅",
+    title: "Solusi Wafa",
+    desc: "Sistem 7M Wafa hadir sebagai solusi lengkap: standarisasi guru, pemetaan siswa, coaching koordinator, supervisi berkala — semua terukur dan berdampak nyata.",
+  },
+];
+
 function MitraPage() {
   const [formData, setFormData] = useState({
     namaLembaga: "",
@@ -166,55 +196,16 @@ function MitraPage() {
   return (
     <main>
       {/* Hero */}
-      <section
-        className="section-padding relative overflow-hidden"
-        style={{
-          background:
-            "linear-gradient(135deg, rgba(209,0,113,0.04) 0%, rgba(31,129,36,0.03) 100%)",
-        }}
-      >
-        <div
-          className="pointer-events-none absolute -left-40 -top-32 h-[500px] w-[500px] rounded-full opacity-30"
-          style={{
-            background:
-              "radial-gradient(circle, rgba(209,0,113,0.15), transparent 70%)",
-            filter: "blur(80px)",
-          }}
-        />
-        <div
-          className="pointer-events-none absolute right-0 bottom-0 h-96 w-96 rounded-full opacity-20"
-          style={{
-            background:
-              "radial-gradient(circle, rgba(31,129,36,0.12), transparent 70%)",
-            filter: "blur(60px)",
-          }}
-        />
+      <section className="section-padding relative overflow-hidden bg-section-magenta-emerald">
+        <div className="blob-magenta absolute -left-40 -top-32 h-[500px] w-[500px] opacity-30" />
+        <div className="blob-emerald absolute right-0 bottom-0 h-96 w-96 opacity-20" />
         <div className="page-wrap relative z-10 text-center">
           <Badge color="magenta">Program Kemitraan</Badge>
-          <h1
-            className="mt-4 text-4xl md:text-5xl lg:text-6xl font-bold mb-5 leading-tight"
-            style={{
-              fontFamily: "var(--font-heading)",
-              color: "var(--text-primary)",
-            }}
-          >
+          <h1 className="mt-4 font-heading text-4xl md:text-5xl lg:text-6xl font-bold text-text-primary mb-5 leading-tight">
             Jadikan Lembaga Anda{" "}
-            <span
-              style={{
-                background:
-                  "linear-gradient(135deg, var(--magenta-bold), var(--emerald))",
-                WebkitBackgroundClip: "text",
-                WebkitTextFillColor: "transparent",
-                backgroundClip: "text",
-              }}
-            >
-              Pilihan Utama
-            </span>
+            <span className="gradient-text">Pilihan Utama</span>
           </h1>
-          <p
-            className="max-w-2xl mx-auto text-base md:text-lg leading-relaxed mb-8"
-            style={{ color: "var(--text-secondary)" }}
-          >
+          <p className="max-w-2xl mx-auto text-base md:text-lg leading-relaxed text-text-secondary mb-8">
             Sistem 7M Wafa telah terbukti meningkatkan daya tarik dan kualitas
             lulusan Al-Qur'an di 1200+ lembaga di 35 provinsi Indonesia.
           </p>
@@ -236,19 +227,10 @@ function MitraPage() {
               { label: "14 Tahun", sub: "Pengalaman" },
             ].map((s) => (
               <div key={s.label} className="text-center">
-                <p
-                  className="m-0 text-2xl font-bold"
-                  style={{
-                    fontFamily: "var(--font-heading)",
-                    color: "var(--magenta-bold)",
-                  }}
-                >
+                <p className="m-0 font-heading text-2xl font-bold text-magenta-bold">
                   {s.label}
                 </p>
-                <p
-                  className="m-0 text-xs"
-                  style={{ color: "var(--text-secondary)" }}
-                >
+                <p className="m-0 text-xs text-text-secondary">
                   {s.sub}
                 </p>
               </div>
@@ -261,66 +243,19 @@ function MitraPage() {
       <section className="section-padding">
         <div className="page-wrap">
           <div className="grid lg:grid-cols-3 gap-6">
-            {[
-              {
-                type: "PROBLEM",
-                color: "var(--magenta-bold)",
-                bg: "rgba(209,0,113,0.04)",
-                border: "rgba(209,0,113,0.15)",
-                icon: "😟",
-                title: "Tantangan Lembaga",
-                desc: "Mengantarkan lulusan dengan bacaan & hafalan Al-Qur'an yang bagus dan merata tidak mudah. Banyak lembaga bingung bagaimana membangun standar mutu dan sistem manajemennya.",
-              },
-              {
-                type: "AGITATION",
-                color: "var(--tangerine)",
-                bg: "rgba(255,123,0,0.04)",
-                border: "rgba(255,123,0,0.15)",
-                icon: "⚠️",
-                title: "Akibatnya...",
-                desc: "Orang tua semakin selektif. Tanpa bukti nyata kualitas lulusan, mereka beralih ke lembaga lain. Persaingan semakin ketat, sementara ekspektasi terus meningkat.",
-              },
-              {
-                type: "SOLUTION",
-                color: "var(--emerald)",
-                bg: "rgba(31,129,36,0.04)",
-                border: "rgba(31,129,36,0.15)",
-                icon: "✅",
-                title: "Solusi Wafa",
-                desc: "Sistem 7M Wafa hadir sebagai solusi lengkap: standarisasi guru, pemetaan siswa, coaching koordinator, supervisi berkala — semua terukur dan berdampak nyata.",
-              },
-            ].map((item) => (
+            {PAS.map((item) => (
               <div
                 key={item.type}
-                className="rounded-3xl p-7"
-                style={{
-                  background: item.bg,
-                  border: `1.5px solid ${item.border}`,
-                }}
+                className={`rounded-3xl border-[1.5px] ${item.border} ${item.bg} p-7`}
               >
                 <div className="text-3xl mb-4">{item.icon}</div>
-                <p
-                  className="m-0 text-xs font-bold uppercase tracking-widest mb-2"
-                  style={{
-                    fontFamily: "var(--font-heading)",
-                    color: item.color,
-                  }}
-                >
+                <p className={`m-0 font-heading text-xs font-bold uppercase tracking-widest mb-2 ${item.colorClass}`}>
                   {item.type}
                 </p>
-                <h3
-                  className="font-bold text-base mb-3"
-                  style={{
-                    fontFamily: "var(--font-heading)",
-                    color: "var(--text-primary)",
-                  }}
-                >
+                <h3 className="font-heading text-base font-bold text-text-primary mb-3">
                   {item.title}
                 </h3>
-                <p
-                  className="m-0 text-sm leading-relaxed"
-                  style={{ color: "var(--text-secondary)" }}
-                >
+                <p className="m-0 text-sm leading-relaxed text-text-secondary">
                   {item.desc}
                 </p>
               </div>
@@ -330,13 +265,7 @@ function MitraPage() {
       </section>
 
       {/* Alur Bermitra */}
-      <section
-        className="section-padding"
-        style={{
-          background:
-            "linear-gradient(180deg, rgba(31,129,36,0.02) 0%, transparent 100%)",
-        }}
-      >
+      <section className="section-padding bg-section-emerald-fade">
         <div className="page-wrap">
           <SectionHeading
             kicker="Alur Bermitra"
@@ -348,61 +277,35 @@ function MitraPage() {
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {ALUR.map((a, i) => (
               <div key={a.step} className="relative">
-                <div
-                  className="rounded-3xl p-7 h-full transition-all card-hover"
-                  style={{
-                    background: "white",
-                    border: "1px solid var(--line)",
-                    boxShadow: "0 8px 24px rgba(157,22,124,0.05)",
-                  }}
-                >
+                <div className="surface-card rounded-3xl p-7 h-full card-hover">
                   <div className="flex items-center gap-3 mb-4">
                     <span className="text-2xl">{a.icon}</span>
                     <span
-                      className="text-xs font-bold"
-                      style={{
-                        fontFamily: "var(--font-heading)",
-                        color: a.color,
-                      }}
+                      className="font-heading text-xs font-bold"
+                      style={{ color: a.color }}
                     >
                       {a.step}
                     </span>
                   </div>
-                  <h3
-                    className="font-bold text-base mb-2"
-                    style={{
-                      fontFamily: "var(--font-heading)",
-                      color: "var(--text-primary)",
-                    }}
-                  >
+                  <h3 className="font-heading text-base font-bold text-text-primary mb-2">
                     {a.label}
                   </h3>
-                  <p
-                    className="text-sm leading-relaxed mb-4"
-                    style={{ color: "var(--text-secondary)" }}
-                  >
+                  <p className="text-sm leading-relaxed text-text-secondary mb-4">
                     {a.desc}
                   </p>
                   <span
-                    className="inline-flex items-center text-xs font-semibold rounded-full px-3 py-1"
+                    className="inline-flex items-center font-heading text-xs font-semibold rounded-full px-3 py-1"
                     style={{
                       background: `${a.color}12`,
                       color: a.color,
-                      fontFamily: "var(--font-heading)",
                     }}
                   >
                     ⏱ {a.duration}
                   </span>
                 </div>
                 {i < ALUR.length - 1 && (
-                  <div
-                    className="hidden lg:flex absolute -right-3 top-1/2 -translate-y-1/2 z-10 h-6 w-6 items-center justify-center rounded-full bg-white border"
-                    style={{ borderColor: "var(--line)" }}
-                  >
-                    <ChevronRight
-                      className="h-3 w-3"
-                      style={{ color: "var(--text-secondary)" }}
-                    />
+                  <div className="hidden lg:flex absolute -right-3 top-1/2 -translate-y-1/2 z-10 h-6 w-6 items-center justify-center rounded-full bg-white border border-line">
+                    <ChevronRight className="h-3 w-3 text-text-secondary" />
                   </div>
                 )}
               </div>
@@ -424,56 +327,21 @@ function MitraPage() {
             {CASE_STUDIES.map((c) => (
               <div
                 key={c.lembaga}
-                className="rounded-3xl p-7 transition-all card-hover"
-                style={{
-                  background: "white",
-                  border: "1px solid var(--line)",
-                  boxShadow: "0 8px 32px rgba(157,22,124,0.05)",
-                }}
+                className="surface-card rounded-3xl p-7 card-hover"
               >
                 <div className="text-4xl mb-4">{c.icon}</div>
-                <h3
-                  className="font-bold text-base mb-1"
-                  style={{
-                    fontFamily: "var(--font-heading)",
-                    color: "var(--text-primary)",
-                  }}
-                >
+                <h3 className="font-heading text-base font-bold text-text-primary mb-1">
                   {c.lembaga}
                 </h3>
-                <p
-                  className="text-xs font-semibold mb-3"
-                  style={{
-                    color: "var(--magenta-bold)",
-                    fontFamily: "var(--font-heading)",
-                  }}
-                >
+                <p className="font-heading text-xs font-semibold text-magenta-bold mb-3">
                   {c.tahun}
                 </p>
-                <p
-                  className="text-sm leading-relaxed mb-5"
-                  style={{ color: "var(--text-secondary)" }}
-                >
+                <p className="text-sm leading-relaxed text-text-secondary mb-5">
                   {c.desc}
                 </p>
-                <div
-                  className="flex items-center gap-2 rounded-2xl p-3"
-                  style={{
-                    background: "rgba(31,129,36,0.06)",
-                    border: "1px solid rgba(31,129,36,0.15)",
-                  }}
-                >
-                  <TrendingUp
-                    className="h-4 w-4 flex-shrink-0"
-                    style={{ color: "var(--emerald)" }}
-                  />
-                  <p
-                    className="m-0 text-xs font-bold"
-                    style={{
-                      fontFamily: "var(--font-heading)",
-                      color: "var(--emerald)",
-                    }}
-                  >
+                <div className="flex items-center gap-2 rounded-2xl p-3 bg-[rgba(31,129,36,0.06)] border border-[rgba(31,129,36,0.15)]">
+                  <TrendingUp className="h-4 w-4 flex-shrink-0 text-emerald" />
+                  <p className="m-0 font-heading text-xs font-bold text-emerald">
                     {c.metric}
                   </p>
                 </div>
@@ -484,14 +352,7 @@ function MitraPage() {
       </section>
 
       {/* Investment Packages */}
-      <section
-        id="paket"
-        className="section-padding"
-        style={{
-          background:
-            "linear-gradient(180deg, rgba(75,42,103,0.03) 0%, transparent 100%)",
-        }}
-      >
+      <section id="paket" className="section-padding bg-section-deep-fade">
         <div className="page-wrap">
           <SectionHeading
             kicker="Paket Investasi"
@@ -504,80 +365,36 @@ function MitraPage() {
             {PACKAGES.map((pkg) => (
               <div
                 key={pkg.id}
-                className={`rounded-3xl p-7 flex flex-col transition-all ${pkg.highlight ? "" : "card-hover"}`}
-                style={{
-                  background: pkg.highlight
-                    ? "linear-gradient(135deg, var(--magenta-bold), var(--magenta-deep))"
-                    : "white",
-                  border: pkg.highlight ? "none" : "1px solid var(--line)",
-                  boxShadow: pkg.highlight
-                    ? "0 20px 60px rgba(209,0,113,0.3)"
-                    : "0 8px 24px rgba(157,22,124,0.05)",
-                  transform: pkg.highlight ? "scale(1.03)" : undefined,
-                }}
+                className={`rounded-3xl p-7 flex flex-col transition-all ${
+                  pkg.highlight
+                    ? "surface-pricing-highlight scale-[1.03] text-white"
+                    : "surface-card card-hover"
+                }`}
               >
                 {pkg.badge && (
                   <div className="mb-3">
-                    <span
-                      className="inline-flex items-center gap-1 text-xs font-bold rounded-full px-3 py-1"
-                      style={{
-                        background: "rgba(255,255,255,0.2)",
-                        color: "white",
-                        fontFamily: "var(--font-heading)",
-                      }}
-                    >
+                    <span className="inline-flex items-center gap-1 font-heading text-xs font-bold rounded-full px-3 py-1 bg-white/20 text-white">
                       <Star className="h-3 w-3" fill="currentColor" />
                       {pkg.badge}
                     </span>
                   </div>
                 )}
-                <h3
-                  className="font-bold text-xl mb-1"
-                  style={{
-                    fontFamily: "var(--font-heading)",
-                    color: pkg.highlight ? "white" : "var(--text-primary)",
-                  }}
-                >
+                <h3 className={`font-heading text-xl font-bold mb-1 ${pkg.highlight ? "text-white" : "text-text-primary"}`}>
                   {pkg.name}
                 </h3>
-                <p
-                  className="text-3xl font-bold mb-1"
-                  style={{
-                    fontFamily: "var(--font-heading)",
-                    color: pkg.highlight ? "white" : "var(--magenta-bold)",
-                  }}
-                >
+                <p className={`font-heading text-3xl font-bold mb-1 ${pkg.highlight ? "text-white" : "text-magenta-bold"}`}>
                   Rp{(pkg.price / 1_000_000).toFixed(0)} jt
                 </p>
-                <p
-                  className="text-xs mb-6"
-                  style={{
-                    color: pkg.highlight
-                      ? "rgba(255,255,255,0.7)"
-                      : "var(--text-secondary)",
-                  }}
-                >
+                <p className={`text-xs mb-6 ${pkg.highlight ? "text-white/70" : "text-text-secondary"}`}>
                   Bisa dicicil 3–6 kali
                 </p>
                 <div className="flex-1 space-y-2.5 mb-6">
                   {pkg.features.map((f) => (
                     <div key={f} className="flex items-start gap-2.5">
                       <CheckCircle
-                        className="h-4 w-4 flex-shrink-0 mt-0.5"
-                        style={{
-                          color: pkg.highlight
-                            ? "rgba(255,255,255,0.9)"
-                            : "var(--emerald)",
-                        }}
+                        className={`h-4 w-4 flex-shrink-0 mt-0.5 ${pkg.highlight ? "text-white/90" : "text-emerald"}`}
                       />
-                      <span
-                        className="text-sm"
-                        style={{
-                          color: pkg.highlight
-                            ? "rgba(255,255,255,0.9)"
-                            : "var(--text-secondary)",
-                        }}
-                      >
+                      <span className={`text-sm ${pkg.highlight ? "text-white/90" : "text-text-secondary"}`}>
                         {f}
                       </span>
                     </div>
@@ -585,17 +402,11 @@ function MitraPage() {
                 </div>
                 <a
                   href="#konsultasi"
-                  className="w-full flex items-center justify-center gap-2 text-sm font-semibold rounded-full py-3 no-underline transition-all"
-                  style={{
-                    fontFamily: "var(--font-heading)",
-                    background: pkg.highlight
-                      ? "white"
-                      : "linear-gradient(135deg, var(--magenta-bold), var(--magenta-deep))",
-                    color: pkg.highlight ? "var(--magenta-bold)" : "white",
-                    boxShadow: pkg.highlight
-                      ? "0 4px 16px rgba(255,255,255,0.3)"
-                      : "0 4px 16px rgba(209,0,113,0.3)",
-                  }}
+                  className={`w-full flex items-center justify-center gap-2 font-heading text-sm font-semibold rounded-full py-3 no-underline transition-all ${
+                    pkg.highlight
+                      ? "bg-white text-magenta-bold shadow-[0_4px_16px_rgba(255,255,255,0.3)]"
+                      : "bg-gradient-primary text-white shadow-[0_4px_16px_rgba(209,0,113,0.3)]"
+                  }`}
                 >
                   {pkg.cta}
                   <ArrowRight className="h-4 w-4" />
@@ -603,18 +414,14 @@ function MitraPage() {
               </div>
             ))}
           </div>
-          <p
-            className="mt-6 text-center text-sm"
-            style={{ color: "var(--text-secondary)" }}
-          >
+          <p className="mt-6 text-center text-sm text-text-secondary">
             Semua paket sudah termasuk PPn. Harga dapat berbeda berdasarkan
             lokasi dan kebutuhan khusus.{" "}
             <a
               href="https://wa.me/6281130589310"
               target="_blank"
               rel="noreferrer"
-              className="font-semibold"
-              style={{ color: "var(--magenta-bold)" }}
+              className="font-semibold text-magenta-bold"
             >
               Hubungi kami untuk penawaran custom.
             </a>
@@ -634,68 +441,33 @@ function MitraPage() {
           />
 
           {sent ? (
-            <div
-              className="rounded-3xl p-12 text-center"
-              style={{
-                background: "white",
-                border: "1px solid var(--line)",
-                boxShadow: "0 16px 48px rgba(157,22,124,0.06)",
-              }}
-            >
+            <div className="surface-card-elevated rounded-3xl p-12 text-center">
               <div className="text-6xl mb-4">🎉</div>
-              <h3
-                className="text-2xl font-bold mb-2"
-                style={{
-                  fontFamily: "var(--font-heading)",
-                  color: "var(--text-primary)",
-                }}
-              >
+              <h3 className="font-heading text-2xl font-bold text-text-primary mb-2">
                 Jazakallah Khair!
               </h3>
-              <p
-                className="text-sm mb-6"
-                style={{ color: "var(--text-secondary)" }}
-              >
+              <p className="text-sm text-text-secondary mb-6">
                 Formulir konsultasi Anda berhasil dikirim. Tim Wafa akan
                 menghubungi Anda dalam 1×24 jam kerja.
               </p>
-              <p
-                className="text-sm font-semibold"
-                style={{ color: "var(--text-secondary)" }}
-              >
+              <p className="text-sm font-semibold text-text-secondary">
                 Atau hubungi langsung:{" "}
                 <a
                   href="https://wa.me/6281130589310"
                   target="_blank"
                   rel="noreferrer"
-                  className="no-underline"
-                  style={{ color: "var(--magenta-bold)" }}
+                  className="text-magenta-bold no-underline"
                 >
                   0811 3058 9310
                 </a>
               </p>
             </div>
           ) : (
-            <div
-              className="rounded-3xl p-8"
-              style={{
-                background: "white",
-                border: "1px solid var(--line)",
-                boxShadow: "0 16px 48px rgba(157,22,124,0.06)",
-              }}
-            >
+            <div className="surface-card-elevated rounded-3xl p-8">
               <form onSubmit={handleSubmit} className="space-y-5">
                 <div className="grid sm:grid-cols-2 gap-5">
                   <div>
-                    <label
-                      className="block text-xs font-semibold mb-1.5"
-                      style={{
-                        fontFamily: "var(--font-heading)",
-                        color: "var(--text-secondary)",
-                      }}
-                    >
-                      Nama Lembaga *
-                    </label>
+                    <label className="form-label">Nama Lembaga *</label>
                     <input
                       type="text"
                       name="namaLembaga"
@@ -703,38 +475,17 @@ function MitraPage() {
                       onChange={handleChange}
                       required
                       placeholder="SDI / MI / SMP / Pesantren..."
-                      className="w-full rounded-xl border px-4 py-3 text-sm outline-none"
-                      style={{
-                        borderColor: "var(--line)",
-                        color: "var(--text-primary)",
-                        fontFamily: "var(--font-sans)",
-                      }}
+                      className="form-input"
                     />
                   </div>
                   <div>
-                    <label
-                      className="block text-xs font-semibold mb-1.5"
-                      style={{
-                        fontFamily: "var(--font-heading)",
-                        color: "var(--text-secondary)",
-                      }}
-                    >
-                      Jenis Lembaga *
-                    </label>
+                    <label className="form-label">Jenis Lembaga *</label>
                     <select
                       name="jenis"
                       value={formData.jenis}
                       onChange={handleChange}
                       required
-                      className="w-full rounded-xl border px-4 py-3 text-sm outline-none appearance-none"
-                      style={{
-                        borderColor: "var(--line)",
-                        color: formData.jenis
-                          ? "var(--text-primary)"
-                          : "var(--text-secondary)",
-                        fontFamily: "var(--font-sans)",
-                        background: "white",
-                      }}
+                      className={`form-select ${formData.jenis ? "text-text-primary" : "text-text-secondary"}`}
                     >
                       <option value="">Pilih jenis...</option>
                       {JENIS_LEMBAGA.map((j) => (
@@ -748,15 +499,7 @@ function MitraPage() {
 
                 <div className="grid sm:grid-cols-2 gap-5">
                   <div>
-                    <label
-                      className="block text-xs font-semibold mb-1.5"
-                      style={{
-                        fontFamily: "var(--font-heading)",
-                        color: "var(--text-secondary)",
-                      }}
-                    >
-                      Kota / Kabupaten *
-                    </label>
+                    <label className="form-label">Kota / Kabupaten *</label>
                     <input
                       type="text"
                       name="kota"
@@ -764,51 +507,25 @@ function MitraPage() {
                       onChange={handleChange}
                       required
                       placeholder="Surabaya, Bandung, ..."
-                      className="w-full rounded-xl border px-4 py-3 text-sm outline-none"
-                      style={{
-                        borderColor: "var(--line)",
-                        color: "var(--text-primary)",
-                        fontFamily: "var(--font-sans)",
-                      }}
+                      className="form-input"
                     />
                   </div>
                   <div>
-                    <label
-                      className="block text-xs font-semibold mb-1.5"
-                      style={{
-                        fontFamily: "var(--font-heading)",
-                        color: "var(--text-secondary)",
-                      }}
-                    >
-                      Jumlah Siswa
-                    </label>
+                    <label className="form-label">Jumlah Siswa</label>
                     <input
                       type="number"
                       name="jumlahSiswa"
                       value={formData.jumlahSiswa}
                       onChange={handleChange}
                       placeholder="Perkiraan jumlah siswa"
-                      className="w-full rounded-xl border px-4 py-3 text-sm outline-none"
-                      style={{
-                        borderColor: "var(--line)",
-                        color: "var(--text-primary)",
-                        fontFamily: "var(--font-sans)",
-                      }}
+                      className="form-input"
                     />
                   </div>
                 </div>
 
                 <div className="grid sm:grid-cols-2 gap-5">
                   <div>
-                    <label
-                      className="block text-xs font-semibold mb-1.5"
-                      style={{
-                        fontFamily: "var(--font-heading)",
-                        color: "var(--text-secondary)",
-                      }}
-                    >
-                      Nama PIC / Kontak *
-                    </label>
+                    <label className="form-label">Nama PIC / Kontak *</label>
                     <input
                       type="text"
                       name="namaKontak"
@@ -816,24 +533,11 @@ function MitraPage() {
                       onChange={handleChange}
                       required
                       placeholder="Nama Anda"
-                      className="w-full rounded-xl border px-4 py-3 text-sm outline-none"
-                      style={{
-                        borderColor: "var(--line)",
-                        color: "var(--text-primary)",
-                        fontFamily: "var(--font-sans)",
-                      }}
+                      className="form-input"
                     />
                   </div>
                   <div>
-                    <label
-                      className="block text-xs font-semibold mb-1.5"
-                      style={{
-                        fontFamily: "var(--font-heading)",
-                        color: "var(--text-secondary)",
-                      }}
-                    >
-                      No. WhatsApp *
-                    </label>
+                    <label className="form-label">No. WhatsApp *</label>
                     <input
                       type="tel"
                       name="telpon"
@@ -841,24 +545,13 @@ function MitraPage() {
                       onChange={handleChange}
                       required
                       placeholder="08xx-xxxx-xxxx"
-                      className="w-full rounded-xl border px-4 py-3 text-sm outline-none"
-                      style={{
-                        borderColor: "var(--line)",
-                        color: "var(--text-primary)",
-                        fontFamily: "var(--font-sans)",
-                      }}
+                      className="form-input"
                     />
                   </div>
                 </div>
 
                 <div>
-                  <label
-                    className="block text-xs font-semibold mb-1.5"
-                    style={{
-                      fontFamily: "var(--font-heading)",
-                      color: "var(--text-secondary)",
-                    }}
-                  >
+                  <label className="form-label">
                     Kendala yang Dihadapi Saat Ini
                   </label>
                   <textarea
@@ -867,41 +560,26 @@ function MitraPage() {
                     onChange={handleChange}
                     rows={3}
                     placeholder="Ceritakan tantangan atau kebutuhan lembaga Anda terkait pembelajaran Al-Qur'an..."
-                    className="w-full rounded-xl border px-4 py-3 text-sm outline-none resize-none"
-                    style={{
-                      borderColor: "var(--line)",
-                      color: "var(--text-primary)",
-                      fontFamily: "var(--font-sans)",
-                    }}
+                    className="form-textarea"
                   />
                 </div>
 
                 <button
                   type="submit"
-                  className="w-full flex items-center justify-center gap-2 text-white text-sm font-semibold rounded-full py-4 transition-all"
-                  style={{
-                    fontFamily: "var(--font-heading)",
-                    background:
-                      "linear-gradient(135deg, var(--magenta-bold), var(--magenta-deep))",
-                    boxShadow: "0 6px 24px rgba(209,0,113,0.35)",
-                  }}
+                  className="btn-primary w-full justify-center py-4"
                 >
                   <Building className="h-4 w-4" />
                   Kirim Formulir Konsultasi
                 </button>
 
                 <div className="text-center">
-                  <p
-                    className="text-xs"
-                    style={{ color: "var(--text-secondary)" }}
-                  >
+                  <p className="text-xs text-text-secondary">
                     Atau langsung hubungi via WhatsApp:{" "}
                     <a
                       href="https://wa.me/6281130589310"
                       target="_blank"
                       rel="noreferrer"
-                      className="font-semibold no-underline"
-                      style={{ color: "var(--magenta-bold)" }}
+                      className="font-semibold text-magenta-bold no-underline"
                     >
                       0811 3058 9310
                     </a>{" "}

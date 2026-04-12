@@ -8,20 +8,19 @@ import {
   Smartphone,
 } from "lucide-react";
 import { ARTICLES } from "../data/content.ts";
-import { Badge } from "../components/ui/index.ts";
 
 export const Route = createFileRoute("/blog/$slug")({
   component: BlogDetailPage,
 });
 
-const CATEGORY_COLORS: Record<string, { color: string; bg: string }> = {
+const CATEGORY_COLORS: Record<string, { colorClass: string; bg: string }> = {
   "Risalah Dakwah": {
-    color: "var(--magenta-bold)",
-    bg: "rgba(209,0,113,0.08)",
+    colorClass: "text-magenta-bold",
+    bg: "bg-[rgba(209,0,113,0.08)]",
   },
-  "Ikhtisar Wafa": { color: "var(--emerald)", bg: "rgba(31,129,36,0.08)" },
-  "Info Terkini": { color: "var(--golden)", bg: "rgba(255,145,0,0.08)" },
-  "Parenting Qur'ani": { color: "var(--deep)", bg: "rgba(75,42,103,0.08)" },
+  "Ikhtisar Wafa": { colorClass: "text-emerald", bg: "bg-[rgba(31,129,36,0.08)]" },
+  "Info Terkini": { colorClass: "text-golden", bg: "bg-[rgba(255,145,0,0.08)]" },
+  "Parenting Qur'ani": { colorClass: "text-deep", bg: "bg-[rgba(75,42,103,0.08)]" },
 };
 
 function BlogDetailPage() {
@@ -32,13 +31,7 @@ function BlogDetailPage() {
     return (
       <main className="section-padding">
         <div className="page-wrap text-center">
-          <h1
-            className="text-3xl font-bold mb-4"
-            style={{
-              fontFamily: "var(--font-heading)",
-              color: "var(--text-primary)",
-            }}
-          >
+          <h1 className="font-heading text-3xl font-bold text-text-primary mb-4">
             Artikel Tidak Ditemukan
           </h1>
           <Link to="/blog" className="btn-primary no-underline inline-flex">
@@ -50,8 +43,8 @@ function BlogDetailPage() {
   }
 
   const catStyle = CATEGORY_COLORS[article.category] ?? {
-    color: "var(--magenta-bold)",
-    bg: "rgba(209,0,113,0.08)",
+    colorClass: "text-magenta-bold",
+    bg: "bg-[rgba(209,0,113,0.08)]",
   };
   const related = ARTICLES.filter(
     (a) => a.id !== article.id && a.category === article.category,
@@ -59,7 +52,7 @@ function BlogDetailPage() {
 
   function handleShare() {
     if (navigator.share) {
-      navigator.share({ title: article.title, url: window.location.href });
+      navigator.share({ title: article?.title, url: window.location.href });
     } else {
       navigator.clipboard.writeText(window.location.href);
     }
@@ -68,17 +61,13 @@ function BlogDetailPage() {
   return (
     <main>
       {/* Breadcrumb */}
-      <nav className="py-4" style={{ borderBottom: "1px solid var(--line)" }}>
+      <nav className="py-4 border-b border-line">
         <div className="page-wrap">
-          <ol
-            className="flex items-center gap-2 text-xs"
-            style={{ color: "var(--text-secondary)" }}
-          >
+          <ol className="flex items-center gap-2 text-xs text-text-secondary">
             <li>
               <Link
                 to="/"
-                className="no-underline hover:text-[var(--magenta-bold)]"
-                style={{ color: "var(--text-secondary)" }}
+                className="text-text-secondary no-underline hover:text-magenta-bold"
               >
                 Beranda
               </Link>
@@ -89,8 +78,7 @@ function BlogDetailPage() {
             <li>
               <Link
                 to="/blog"
-                className="no-underline hover:text-[var(--magenta-bold)]"
-                style={{ color: "var(--text-secondary)" }}
+                className="text-text-secondary no-underline hover:text-magenta-bold"
               >
                 Blog
               </Link>
@@ -98,10 +86,7 @@ function BlogDetailPage() {
             <li>
               <ChevronRight className="h-3 w-3" />
             </li>
-            <li
-              style={{ color: "var(--magenta-bold)" }}
-              className="font-medium truncate max-w-[200px]"
-            >
+            <li className="font-medium truncate max-w-[200px] text-magenta-bold">
               {article.title}
             </li>
           </ol>
@@ -115,28 +100,14 @@ function BlogDetailPage() {
             {/* Category & meta */}
             <div className="mb-6">
               <span
-                className="inline-flex items-center text-xs font-bold rounded-full px-3 py-1 mb-4 mr-3"
-                style={{
-                  background: catStyle.bg,
-                  color: catStyle.color,
-                  fontFamily: "var(--font-heading)",
-                }}
+                className={`inline-flex items-center font-heading text-xs font-bold rounded-full px-3 py-1 mb-4 mr-3 ${catStyle.bg} ${catStyle.colorClass}`}
               >
                 {article.category}
               </span>
-              <h1
-                className="text-3xl md:text-4xl font-bold leading-snug mb-4"
-                style={{
-                  fontFamily: "var(--font-heading)",
-                  color: "var(--text-primary)",
-                }}
-              >
+              <h1 className="font-heading text-3xl md:text-4xl font-bold leading-snug text-text-primary mb-4">
                 {article.title}
               </h1>
-              <div
-                className="flex flex-wrap items-center gap-4 text-sm"
-                style={{ color: "var(--text-secondary)" }}
-              >
+              <div className="flex flex-wrap items-center gap-4 text-sm text-text-secondary">
                 <span className="flex items-center gap-1.5">
                   <User className="h-4 w-4" />
                   {article.author}
@@ -149,15 +120,7 @@ function BlogDetailPage() {
                 <button
                   type="button"
                   onClick={handleShare}
-                  className="flex items-center gap-1.5 text-sm font-semibold transition-colors hover:text-[var(--magenta-bold)]"
-                  style={{
-                    fontFamily: "var(--font-heading)",
-                    background: "none",
-                    border: "none",
-                    cursor: "pointer",
-                    color: "var(--text-secondary)",
-                    padding: 0,
-                  }}
+                  className="flex items-center gap-1.5 font-heading text-sm font-semibold text-text-secondary bg-transparent border-none cursor-pointer p-0 hover:text-magenta-bold transition-colors"
                 >
                   <Share2 className="h-4 w-4" /> Bagikan
                 </button>
@@ -165,110 +128,53 @@ function BlogDetailPage() {
             </div>
 
             {/* Hero image placeholder */}
-            <div
-              className="mb-8 rounded-3xl flex items-center justify-center text-7xl"
-              style={{
-                height: "280px",
-                background:
-                  "linear-gradient(135deg, rgba(209,0,113,0.06), rgba(75,42,103,0.04))",
-                border: "1px solid var(--line)",
-              }}
-            >
+            <div className="mb-8 h-[280px] rounded-3xl flex items-center justify-center text-7xl surface-visual">
               📖
             </div>
 
             {/* Article excerpt as intro */}
-            <div
-              className="prose max-w-none"
-              style={{ fontFamily: "var(--font-sans)" }}
-            >
-              <p
-                className="text-base md:text-lg leading-relaxed font-medium mb-6"
-                style={{ color: "var(--text-primary)" }}
-              >
+            <div className="prose max-w-none font-sans">
+              <p className="text-base md:text-lg leading-relaxed font-medium text-text-primary mb-6">
                 {article.excerpt}
               </p>
-              <p
-                className="text-base leading-relaxed mb-6"
-                style={{ color: "var(--text-secondary)" }}
-              >
+              <p className="text-base leading-relaxed text-text-secondary mb-6">
                 Wafa Indonesia terus berkomitmen untuk menghadirkan konten yang
-                bermakna bagi seluruh sahabat Al-Qur\'an di Indonesia. Artikel
+                bermakna bagi seluruh sahabat Al-Qur'an di Indonesia. Artikel
                 ini merupakan bagian dari upaya kami dalam berbagi pengetahuan
-                dan inspirasi seputar pembelajaran Al-Qur\'an yang mudah,
+                dan inspirasi seputar pembelajaran Al-Qur'an yang mudah,
                 menyenangkan, dan terstandar.
               </p>
 
               {/* Quote block */}
-              <blockquote
-                className="rounded-2xl p-6 my-6"
-                style={{
-                  background: "rgba(209,0,113,0.04)",
-                  borderLeft: "4px solid var(--magenta-bold)",
-                }}
-              >
-                <p
-                  className="text-base italic font-medium m-0"
-                  style={{
-                    color: "var(--text-primary)",
-                    fontFamily: "var(--font-sans)",
-                  }}
-                >
+              <blockquote className="rounded-2xl p-6 my-6 bg-[rgba(209,0,113,0.04)] border-l-4 border-magenta-bold">
+                <p className="text-base italic font-medium text-text-primary m-0">
                   "Saya sangat bersyukur karena lembaga Wafa sesuai dengan
-                  artinya 'setia', setia dengan Al-Qur\'an."
+                  artinya 'setia', setia dengan Al-Qur'an."
                 </p>
-                <footer
-                  className="mt-3 text-sm font-semibold"
-                  style={{
-                    color: "var(--magenta-bold)",
-                    fontFamily: "var(--font-heading)",
-                  }}
-                >
+                <footer className="mt-3 font-heading text-sm font-semibold text-magenta-bold">
                   — Prof. Dr. H. M. Roem Rowi, M.A.
                 </footer>
               </blockquote>
 
-              <p
-                className="text-base leading-relaxed mb-6"
-                style={{ color: "var(--text-secondary)" }}
-              >
+              <p className="text-base leading-relaxed text-text-secondary mb-6">
                 Bersama Wafa, kita terus berikhtiar untuk melahirkan generasi
-                Al-Qur\'an yang tidak hanya pandai membaca, tetapi juga
-                memahami, menghafal, dan mengamalkan nilai-nilai Al-Qur\'an
+                Al-Qur'an yang tidak hanya pandai membaca, tetapi juga
+                memahami, menghafal, dan mengamalkan nilai-nilai Al-Qur'an
                 dalam kehidupan sehari-hari.
               </p>
             </div>
 
             {/* CTA Box */}
-            <div
-              className="rounded-3xl p-7 my-8"
-              style={{
-                background:
-                  "linear-gradient(135deg, rgba(209,0,113,0.05), rgba(31,129,36,0.04))",
-                border: "1.5px solid rgba(209,0,113,0.15)",
-              }}
-            >
+            <div className="rounded-3xl border-[1.5px] border-[rgba(209,0,113,0.15)] bg-gradient-to-br from-[rgba(209,0,113,0.05)] to-[rgba(31,129,36,0.04)] p-7 my-8">
               <div className="flex items-start gap-4">
-                <div
-                  className="flex h-11 w-11 flex-shrink-0 items-center justify-center rounded-xl text-white"
-                  style={{ background: "var(--magenta-bold)" }}
-                >
+                <div className="flex h-11 w-11 flex-shrink-0 items-center justify-center rounded-xl text-white bg-magenta-bold">
                   <Smartphone className="h-5 w-5" />
                 </div>
                 <div>
-                  <p
-                    className="font-bold text-sm mb-1"
-                    style={{
-                      fontFamily: "var(--font-heading)",
-                      color: "var(--text-primary)",
-                    }}
-                  >
-                    Ingin belajar Al-Qur\'an dengan metode ini?
+                  <p className="font-heading text-sm font-bold text-text-primary mb-1">
+                    Ingin belajar Al-Qur'an dengan metode ini?
                   </p>
-                  <p
-                    className="text-xs mb-3"
-                    style={{ color: "var(--text-secondary)" }}
-                  >
+                  <p className="text-xs text-text-secondary mb-3">
                     Download Aplikasi Wafa gratis — 6 halaman pertama tanpa
                     biaya.
                   </p>
@@ -294,12 +200,7 @@ function BlogDetailPage() {
               ].map((tag) => (
                 <span
                   key={tag}
-                  className="text-xs font-semibold rounded-full px-3 py-1"
-                  style={{
-                    background: "rgba(209,0,113,0.06)",
-                    color: "var(--magenta-bold)",
-                    fontFamily: "var(--font-heading)",
-                  }}
+                  className="font-heading text-xs font-semibold rounded-full px-3 py-1 bg-[rgba(209,0,113,0.06)] text-magenta-bold"
                 >
                   {tag}
                 </span>
@@ -307,45 +208,20 @@ function BlogDetailPage() {
             </div>
 
             {/* Author box */}
-            <div
-              className="mt-8 rounded-3xl p-6 flex items-start gap-4"
-              style={{ background: "white", border: "1px solid var(--line)" }}
-            >
-              <div
-                className="flex h-14 w-14 flex-shrink-0 items-center justify-center rounded-2xl text-white text-lg font-bold"
-                style={{
-                  background:
-                    "linear-gradient(135deg,var(--magenta-bold),var(--magenta-deep))",
-                  fontFamily: "var(--font-heading)",
-                }}
-              >
+            <div className="mt-8 surface-card rounded-3xl p-6 flex items-start gap-4">
+              <div className="flex h-14 w-14 flex-shrink-0 items-center justify-center rounded-2xl font-heading text-white text-lg font-bold bg-gradient-to-br from-magenta-bold to-magenta-deep">
                 WI
               </div>
               <div>
-                <p
-                  className="font-bold text-sm"
-                  style={{
-                    fontFamily: "var(--font-heading)",
-                    color: "var(--text-primary)",
-                  }}
-                >
+                <p className="font-heading text-sm font-bold text-text-primary">
                   Wafa Indonesia
                 </p>
-                <p
-                  className="text-xs mt-0.5 mb-2"
-                  style={{
-                    color: "var(--magenta-bold)",
-                    fontFamily: "var(--font-heading)",
-                  }}
-                >
+                <p className="font-heading text-xs mt-0.5 mb-2 text-magenta-bold">
                   Tim Riset & Pengembangan
                 </p>
-                <p
-                  className="text-xs leading-relaxed"
-                  style={{ color: "var(--text-secondary)" }}
-                >
+                <p className="text-xs leading-relaxed text-text-secondary">
                   Tim redaksi Wafa Indonesia — menulis tentang metode
-                  pembelajaran Al-Qur\'an, parenting Islami, dan inspirasi
+                  pembelajaran Al-Qur'an, parenting Islami, dan inspirasi
                   pendidikan.
                 </p>
               </div>
@@ -364,17 +240,8 @@ function BlogDetailPage() {
 
             {/* Related */}
             {related.length > 0 && (
-              <div
-                className="rounded-3xl p-6"
-                style={{ background: "white", border: "1px solid var(--line)" }}
-              >
-                <p
-                  className="font-bold text-sm mb-5"
-                  style={{
-                    fontFamily: "var(--font-heading)",
-                    color: "var(--text-primary)",
-                  }}
-                >
+              <div className="surface-card rounded-3xl p-6">
+                <p className="font-heading text-sm font-bold text-text-primary mb-5">
                   Baca Juga
                 </p>
                 <div className="space-y-4">
@@ -384,19 +251,10 @@ function BlogDetailPage() {
                       to={`/blog/${rel.slug}` as "/"}
                       className="block no-underline group"
                     >
-                      <p
-                        className="text-xs font-semibold mb-1 group-hover:text-[var(--magenta-bold)] transition-colors"
-                        style={{
-                          fontFamily: "var(--font-heading)",
-                          color: "var(--text-primary)",
-                        }}
-                      >
+                      <p className="font-heading text-xs font-semibold text-text-primary mb-1 group-hover:text-magenta-bold transition-colors">
                         {rel.title}
                       </p>
-                      <p
-                        className="text-xs"
-                        style={{ color: "var(--text-secondary)" }}
-                      >
+                      <p className="text-xs text-text-secondary">
                         {rel.date} · {rel.readTime} mnt
                       </p>
                     </Link>
@@ -406,17 +264,8 @@ function BlogDetailPage() {
             )}
 
             {/* Categories */}
-            <div
-              className="rounded-3xl p-6"
-              style={{ background: "white", border: "1px solid var(--line)" }}
-            >
-              <p
-                className="font-bold text-sm mb-4"
-                style={{
-                  fontFamily: "var(--font-heading)",
-                  color: "var(--text-primary)",
-                }}
-              >
+            <div className="surface-card rounded-3xl p-6">
+              <p className="font-heading text-sm font-bold text-text-primary mb-4">
                 Kategori
               </p>
               <div className="space-y-2">
@@ -426,19 +275,11 @@ function BlogDetailPage() {
                     to="/blog"
                     className="flex items-center justify-between py-1.5 no-underline group"
                   >
-                    <span
-                      className="text-sm group-hover:text-[var(--magenta-bold)] transition-colors"
-                      style={{ color: "var(--text-secondary)" }}
-                    >
+                    <span className="text-sm text-text-secondary group-hover:text-magenta-bold transition-colors">
                       {cat}
                     </span>
                     <span
-                      className="text-xs font-bold rounded-full px-2 py-0.5"
-                      style={{
-                        background: style.bg,
-                        color: style.color,
-                        fontFamily: "var(--font-heading)",
-                      }}
+                      className={`font-heading text-xs font-bold rounded-full px-2 py-0.5 ${style.bg} ${style.colorClass}`}
                     >
                       {ARTICLES.filter((a) => a.category === cat).length}
                     </span>
@@ -448,37 +289,17 @@ function BlogDetailPage() {
             </div>
 
             {/* Newsletter */}
-            <div
-              className="rounded-3xl p-6"
-              style={{
-                background:
-                  "linear-gradient(135deg,rgba(209,0,113,0.05),rgba(75,42,103,0.03))",
-                border: "1.5px solid rgba(209,0,113,0.15)",
-              }}
-            >
-              <p
-                className="font-bold text-sm mb-2"
-                style={{
-                  fontFamily: "var(--font-heading)",
-                  color: "var(--text-primary)",
-                }}
-              >
+            <div className="rounded-3xl border-[1.5px] border-[rgba(209,0,113,0.15)] bg-gradient-to-br from-[rgba(209,0,113,0.05)] to-[rgba(75,42,103,0.03)] p-6">
+              <p className="font-heading text-sm font-bold text-text-primary mb-2">
                 Newsletter Mingguan
               </p>
-              <p
-                className="text-xs mb-4"
-                style={{ color: "var(--text-secondary)" }}
-              >
-                Dapatkan artikel terbaru dan tips parenting Qur\'ani.
+              <p className="text-xs text-text-secondary mb-4">
+                Dapatkan artikel terbaru dan tips parenting Qur'ani.
               </p>
               <input
                 type="email"
                 placeholder="Email Anda..."
-                className="w-full rounded-xl border px-4 py-2.5 text-sm outline-none mb-3"
-                style={{
-                  borderColor: "var(--line)",
-                  fontFamily: "var(--font-sans)",
-                }}
+                className="form-input mb-3"
               />
               <button
                 type="button"

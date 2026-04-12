@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { MapPin, Search, Phone } from "lucide-react";
-import { SectionHeading, Badge } from "../ui/index.ts";
+import { Badge } from "../ui/index.ts";
 import { WAFA_DAERAH } from "../../data/content.ts";
 
 const PROVINSI_COORDS: Record<string, { x: number; y: number; count: number }> =
@@ -66,61 +66,30 @@ export function CommunityMapSection() {
   }, {});
 
   return (
-    <section
-      className="section-padding"
-      style={{
-        background:
-          "linear-gradient(180deg, rgba(31,129,36,0.03) 0%, transparent 100%)",
-      }}
-    >
+    <section className="section-padding bg-section-emerald-fade">
       <div className="page-wrap">
         <div className="text-center mb-12">
           <Badge color="emerald">Sebaran Nasional</Badge>
-          <h2
-            className="mt-4 text-3xl md:text-4xl font-bold mb-4"
-            style={{
-              fontFamily: "var(--font-heading)",
-              color: "var(--text-primary)",
-            }}
-          >
+          <h2 className="mt-4 font-heading text-3xl md:text-4xl font-bold text-text-primary mb-4">
             Wafa di{" "}
-            <span
-              style={{
-                background:
-                  "linear-gradient(135deg, var(--magenta-bold), var(--emerald))",
-                WebkitBackgroundClip: "text",
-                WebkitTextFillColor: "transparent",
-                backgroundClip: "text",
-              }}
-            >
+            <span className="gradient-text">
               35 Provinsi
             </span>{" "}
             Indonesia
           </h2>
-          <p
-            className="max-w-xl mx-auto text-base leading-relaxed"
-            style={{ color: "var(--text-secondary)" }}
-          >
+          <p className="max-w-xl mx-auto text-base leading-relaxed text-text-secondary">
             Dari Sabang sampai Merauke, Wafa hadir untuk memastikan setiap anak
             Indonesia bisa belajar Al-Qur'an dengan mudah dan menyenangkan.
           </p>
         </div>
 
         {/* Map visualization */}
-        <div
-          className="relative rounded-3xl overflow-hidden mb-10 p-6"
-          style={{
-            background: "white",
-            border: "1px solid var(--line)",
-            boxShadow: "0 20px 60px rgba(157,22,124,0.06)",
-          }}
-        >
-          <div className="relative" style={{ paddingBottom: "42%" }}>
+        <div className="relative surface-card-elevated rounded-3xl overflow-hidden mb-10 p-6">
+          <div className="relative pb-[42%]">
             {/* SVG Indonesia map (simplified dot map) */}
             <svg
               viewBox="0 0 100 80"
-              className="absolute inset-0 w-full h-full"
-              style={{ overflow: "visible" }}
+              className="absolute inset-0 w-full h-full overflow-visible"
             >
               {/* Ocean background */}
               <rect
@@ -145,12 +114,12 @@ export function CommunityMapSection() {
                       fill={
                         isActive
                           ? isHovered
-                            ? "var(--magenta-bold)"
-                            : "var(--emerald)"
+                            ? "var(--color-magenta-bold)"
+                            : "var(--color-emerald)"
                           : "rgba(157,22,124,0.15)"
                       }
+                      className="transition-all duration-200"
                       style={{
-                        transition: "all 200ms ease",
                         cursor: isActive ? "pointer" : "default",
                         filter: isHovered
                           ? "drop-shadow(0 0 6px rgba(209,0,113,0.5))"
@@ -165,7 +134,7 @@ export function CommunityMapSection() {
                         cy={`${coord.y}%`}
                         r="0.6%"
                         fill="white"
-                        style={{ pointerEvents: "none" }}
+                        className="pointer-events-none"
                       />
                     )}
                   </g>
@@ -179,23 +148,11 @@ export function CommunityMapSection() {
                   y={`${Math.max(PROVINSI_COORDS[hoveredProvinsi].y - 12, 2)}%`}
                   width="120"
                   height="50"
-                  style={{ overflow: "visible" }}
+                  className="overflow-visible"
                 >
-                  <div
-                    style={{
-                      background: "var(--deep)",
-                      color: "white",
-                      borderRadius: "8px",
-                      padding: "6px 10px",
-                      fontSize: "10px",
-                      fontFamily: "var(--font-heading)",
-                      whiteSpace: "nowrap",
-                      pointerEvents: "none",
-                      boxShadow: "0 4px 12px rgba(0,0,0,0.2)",
-                    }}
-                  >
-                    <div style={{ fontWeight: 700 }}>{hoveredProvinsi}</div>
-                    <div style={{ opacity: 0.8, fontSize: "9px" }}>
+                  <div className="bg-deep text-white w-fit flex flex-col justify-center items-center rounded-xs px-[2.5px] py-0.5 font-heading text-[2px] whitespace-nowrap pointer-events-none shadow-[0_4px_12px_rgba(0,0,0,0.2)]">
+                    <div className="font-bold mt-[0.5px]">{hoveredProvinsi}</div>
+                    <div className="opacity-80 text-[1.8px]">
                       {
                         WAFA_DAERAH.filter(
                           (d) => d.provinsi === hoveredProvinsi,
@@ -210,37 +167,16 @@ export function CommunityMapSection() {
           </div>
 
           {/* Legend */}
-          <div
-            className="flex flex-wrap items-center justify-center gap-6 mt-4 pt-4"
-            style={{ borderTop: "1px solid var(--line)" }}
-          >
-            <div
-              className="flex items-center gap-2 text-xs"
-              style={{ color: "var(--text-secondary)" }}
-            >
-              <div
-                className="h-3 w-3 rounded-full"
-                style={{ background: "var(--emerald)" }}
-              />
+          <div className="flex flex-wrap items-center justify-center gap-6 mt-4 pt-4 border-t border-line">
+            <div className="flex items-center gap-2 text-xs text-text-secondary">
+              <div className="h-3 w-3 rounded-full bg-emerald" />
               Provinsi dengan Wafa Daerah
             </div>
-            <div
-              className="flex items-center gap-2 text-xs"
-              style={{ color: "var(--text-secondary)" }}
-            >
-              <div
-                className="h-3 w-3 rounded-full"
-                style={{ background: "rgba(157,22,124,0.15)" }}
-              />
+            <div className="flex items-center gap-2 text-xs text-text-secondary">
+              <div className="h-3 w-3 rounded-full bg-[rgba(157,22,124,0.15)]" />
               Provinsi lainnya (mitra langsung)
             </div>
-            <div
-              className="text-xs font-semibold"
-              style={{
-                color: "var(--magenta-bold)",
-                fontFamily: "var(--font-heading)",
-              }}
-            >
+            <div className="font-heading text-xs font-semibold text-magenta-bold">
               Hover untuk detail wilayah
             </div>
           </div>
@@ -249,23 +185,13 @@ export function CommunityMapSection() {
         {/* Search + List */}
         <div className="max-w-2xl mx-auto">
           <div className="relative mb-6">
-            <Search
-              className="absolute left-4 top-1/2 -translate-y-1/2 h-4 w-4"
-              style={{ color: "var(--text-secondary)" }}
-            />
+            <Search className="absolute left-4 top-1/2 -translate-y-1/2 h-4 w-4 text-text-secondary" />
             <input
               type="search"
               value={search}
               onChange={(e) => setSearch(e.target.value)}
               placeholder="Cari provinsi, kota, atau koordinator..."
-              className="w-full rounded-full border pl-11 pr-5 py-3 text-sm outline-none transition-all"
-              style={{
-                borderColor: "var(--line)",
-                background: "white",
-                color: "var(--text-primary)",
-                fontFamily: "var(--font-sans)",
-                boxShadow: "0 4px 16px rgba(157,22,124,0.05)",
-              }}
+              className="form-input pl-11 !rounded-full shadow-[0_4px_16px_rgba(157,22,124,0.05)]"
             />
           </div>
 
@@ -273,14 +199,8 @@ export function CommunityMapSection() {
           <div className="space-y-3 max-h-96 overflow-y-auto pr-1">
             {Object.keys(groupedFiltered).length === 0 ? (
               <div className="text-center py-12">
-                <MapPin
-                  className="h-10 w-10 mx-auto mb-3"
-                  style={{ color: "var(--line)" }}
-                />
-                <p
-                  className="text-sm"
-                  style={{ color: "var(--text-secondary)" }}
-                >
+                <MapPin className="h-10 w-10 mx-auto mb-3 text-line" />
+                <p className="text-sm text-text-secondary">
                   Tidak ditemukan. Coba kata kunci lain.
                 </p>
               </div>
@@ -288,63 +208,27 @@ export function CommunityMapSection() {
               Object.entries(groupedFiltered).map(([provinsi, daerahList]) => (
                 <div
                   key={provinsi}
-                  className="rounded-2xl overflow-hidden"
-                  style={{
-                    background: "white",
-                    border: "1px solid var(--line)",
-                  }}
+                  className="rounded-2xl overflow-hidden bg-white border border-line"
                 >
-                  <div
-                    className="flex items-center gap-3 px-5 py-3"
-                    style={{
-                      borderBottom: "1px solid var(--line)",
-                      background: "rgba(209,0,113,0.02)",
-                    }}
-                  >
-                    <MapPin
-                      className="h-3.5 w-3.5"
-                      style={{ color: "var(--magenta-bold)" }}
-                    />
-                    <span
-                      className="font-semibold text-sm"
-                      style={{
-                        fontFamily: "var(--font-heading)",
-                        color: "var(--text-primary)",
-                      }}
-                    >
+                  <div className="flex items-center gap-3 px-5 py-3 border-b border-line bg-[rgba(209,0,113,0.02)]">
+                    <MapPin className="h-3.5 w-3.5 text-magenta-bold" />
+                    <span className="font-heading text-sm font-semibold text-text-primary">
                       {provinsi}
                     </span>
-                    <span
-                      className="ml-auto text-xs font-bold rounded-full px-2.5 py-0.5"
-                      style={{
-                        background: "rgba(209,0,113,0.08)",
-                        color: "var(--magenta-bold)",
-                        fontFamily: "var(--font-heading)",
-                      }}
-                    >
+                    <span className="ml-auto font-heading text-xs font-bold rounded-full px-2.5 py-0.5 bg-[rgba(209,0,113,0.08)] text-magenta-bold">
                       {daerahList.length} wilayah
                     </span>
                   </div>
                   {daerahList.map((d) => (
                     <div
                       key={`${d.provinsi}-${d.kota}`}
-                      className="flex items-center justify-between px-5 py-3 border-b last:border-b-0"
-                      style={{ borderColor: "var(--line)" }}
+                      className="flex items-center justify-between px-5 py-3 border-b border-line last:border-b-0"
                     >
                       <div>
-                        <p
-                          className="m-0 text-sm font-medium"
-                          style={{
-                            color: "var(--text-primary)",
-                            fontFamily: "var(--font-heading)",
-                          }}
-                        >
+                        <p className="m-0 font-heading text-sm font-medium text-text-primary">
                           {d.kota}
                         </p>
-                        <p
-                          className="m-0 text-xs mt-0.5"
-                          style={{ color: "var(--text-secondary)" }}
-                        >
+                        <p className="m-0 text-xs mt-0.5 text-text-secondary">
                           Koordinator: {d.ketua}
                         </p>
                       </div>
@@ -352,13 +236,7 @@ export function CommunityMapSection() {
                         href={`https://wa.me/${d.wa}`}
                         target="_blank"
                         rel="noreferrer"
-                        className="flex items-center gap-1.5 text-xs font-semibold rounded-full px-3 py-1.5 no-underline flex-shrink-0 transition-all hover:scale-105"
-                        style={{
-                          background: "rgba(37,211,102,0.1)",
-                          color: "#128C7E",
-                          border: "1px solid rgba(37,211,102,0.2)",
-                          fontFamily: "var(--font-heading)",
-                        }}
+                        className="flex items-center gap-1.5 font-heading text-xs font-semibold rounded-full px-3 py-1.5 no-underline flex-shrink-0 transition-all hover:scale-105 bg-[rgba(37,211,102,0.1)] text-[#128C7E] border border-[rgba(37,211,102,0.2)]"
                       >
                         <Phone className="h-3 w-3" />
                         Chat
@@ -370,17 +248,13 @@ export function CommunityMapSection() {
             )}
           </div>
 
-          <p
-            className="text-xs text-center mt-6"
-            style={{ color: "var(--text-secondary)" }}
-          >
+          <p className="text-xs text-center mt-6 text-text-secondary">
             Tidak ada di daftar?{" "}
             <a
               href="https://wa.me/6281130589310"
               target="_blank"
               rel="noreferrer"
-              className="font-semibold"
-              style={{ color: "var(--magenta-bold)" }}
+              className="font-semibold text-magenta-bold"
             >
               Hubungi Wafa Pusat →
             </a>

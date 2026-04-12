@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { ArrowRight } from "lucide-react";
 import { SectionHeading } from "../ui/SectionHeading";
-import { useScrollReveal, revealStyle } from "../ui/useScrollReveal.ts";
+import { useScrollReveal, revealProps } from "../ui/useScrollReveal.ts";
 import { FIVE_T } from "../../data/content.ts";
 
 export function MethodSection() {
@@ -11,7 +11,11 @@ export function MethodSection() {
   return (
     <section className="section-padding">
       <div className="page-wrap">
-        <div ref={ref} style={revealStyle(visible)}>
+        <div
+          ref={ref}
+          className={revealProps(visible).className}
+          style={revealProps(visible).style}
+        >
           <SectionHeading
             kicker="Kenapa Wafa Berbeda?"
             title="5 Dimensi Interaksi dengan Al-Qur'an"
@@ -29,12 +33,11 @@ export function MethodSection() {
                 key={t.id}
                 type="button"
                 onClick={() => setActiveT(i)}
-                className="w-full flex items-center gap-4 rounded-2xl p-5 text-left transition-all"
+                className="w-full flex items-center gap-4 rounded-2xl p-5 text-left transition-all cursor-pointer"
                 style={{
                   background: activeT === i ? t.bg : "white",
-                  border: `1.5px solid ${activeT === i ? t.color + "40" : "var(--line)"}`,
+                  border: `1.5px solid ${activeT === i ? t.color + "40" : "var(--color-line)"}`,
                   boxShadow: activeT === i ? `0 8px 24px ${t.color}15` : "none",
-                  cursor: "pointer",
                 }}
               >
                 <span
@@ -45,26 +48,22 @@ export function MethodSection() {
                 </span>
                 <div className="flex-1 text-left">
                   <p
-                    className="font-bold text-sm"
+                    className="font-heading text-sm font-bold"
                     style={{
-                      fontFamily: "var(--font-heading)",
-                      color: activeT === i ? t.color : "var(--text-primary)",
+                      color: activeT === i ? t.color : "var(--color-text-primary)",
                     }}
                   >
                     {t.key}
                   </p>
-                  <p
-                    className="text-xs mt-0.5"
-                    style={{ color: "var(--text-secondary)" }}
-                  >
+                  <p className="text-xs mt-0.5 text-text-secondary">
                     {t.title}
                   </p>
                 </div>
                 <div
+                  className="transition-opacity duration-200"
                   style={{
                     color: t.color,
                     opacity: activeT === i ? 1 : 0.2,
-                    transition: "opacity 200ms",
                   }}
                 >
                   <ArrowRight className="h-4 w-4" />
@@ -78,18 +77,16 @@ export function MethodSection() {
             {FIVE_T[activeT] && (
               <div
                 key={activeT}
-                className="rounded-3xl p-8"
+                className="rounded-3xl p-8 fade-in"
                 style={{
                   background: FIVE_T[activeT].bg,
                   border: `1.5px solid ${FIVE_T[activeT].color}30`,
-                  animation: "fade-in 300ms ease both",
                 }}
               >
                 <div className="flex items-center gap-4 mb-6">
                   <span
-                    className="flex h-16 w-16 items-center justify-center rounded-2xl text-4xl"
+                    className="flex h-16 w-16 items-center justify-center rounded-2xl text-4xl bg-white"
                     style={{
-                      background: "white",
                       boxShadow: `0 8px 20px ${FIVE_T[activeT].color}20`,
                     }}
                   >
@@ -97,29 +94,17 @@ export function MethodSection() {
                   </span>
                   <div>
                     <p
-                      className="text-xs font-bold uppercase tracking-widest mb-1"
-                      style={{
-                        color: FIVE_T[activeT].color,
-                        fontFamily: "var(--font-heading)",
-                      }}
+                      className="font-heading text-xs font-bold uppercase tracking-widest mb-1"
+                      style={{ color: FIVE_T[activeT].color }}
                     >
                       {FIVE_T[activeT].key}
                     </p>
-                    <h3
-                      className="text-xl font-bold"
-                      style={{
-                        fontFamily: "var(--font-heading)",
-                        color: "var(--text-primary)",
-                      }}
-                    >
+                    <h3 className="font-heading text-xl font-bold text-text-primary">
                       {FIVE_T[activeT].title}
                     </h3>
                   </div>
                 </div>
-                <p
-                  className="text-base leading-relaxed mb-6"
-                  style={{ color: "var(--text-secondary)" }}
-                >
+                <p className="text-base leading-relaxed text-text-secondary mb-6">
                   {FIVE_T[activeT].desc}
                 </p>
 
@@ -141,10 +126,7 @@ export function MethodSection() {
                       }}
                     />
                   ))}
-                  <span
-                    className="ml-2 text-xs"
-                    style={{ color: "var(--text-secondary)" }}
-                  >
+                  <span className="ml-2 text-xs text-text-secondary">
                     {activeT + 1} / {FIVE_T.length}
                   </span>
                 </div>

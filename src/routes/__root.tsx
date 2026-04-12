@@ -8,31 +8,19 @@ import appCss from '../styles.css?url'
 
 function NotFound() {
   return (
-    <main style={{ paddingBlock: '5rem' }}>
+    <main className="py-20">
       <div className="page-wrap">
         <div className="max-w-lg mx-auto text-center">
-          <div
-            className="mx-auto mb-6 flex h-28 w-28 items-center justify-center rounded-full"
-            style={{ background: 'linear-gradient(135deg, rgba(209,0,113,0.08), rgba(31,129,36,0.06))' }}
-          >
-            <span style={{ fontSize: '4rem' }}>🤔</span>
+          <div className="mx-auto mb-6 flex h-28 w-28 items-center justify-center rounded-full bg-section-magenta-emerald">
+            <span className="text-[4rem]">🤔</span>
           </div>
-          <p
-            className="text-7xl font-bold mb-2"
-            style={{
-              fontFamily: 'var(--font-heading)',
-              background: 'linear-gradient(135deg, var(--magenta-bold), var(--magenta-deep))',
-              WebkitBackgroundClip: 'text',
-              WebkitTextFillColor: 'transparent',
-              backgroundClip: 'text',
-            }}
-          >
+          <p className="font-heading text-7xl font-bold mb-2 gradient-text-magenta">
             404
           </p>
-          <h1 className="text-2xl font-bold mb-3" style={{ fontFamily: 'var(--font-heading)', color: 'var(--text-primary)' }}>
+          <h1 className="font-heading text-2xl font-bold text-text-primary mb-3">
             Halaman Tidak Ditemukan
           </h1>
-          <p className="mb-8 text-sm leading-relaxed" style={{ color: 'var(--text-secondary)' }}>
+          <p className="mb-8 text-sm leading-relaxed text-text-secondary">
             Halaman yang Anda cari tidak ada atau telah dipindahkan.
           </p>
           <div className="flex flex-wrap justify-center gap-3">
@@ -126,8 +114,7 @@ export function SkipLink() {
   return (
     <a
       href="#main-content"
-      className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[200] focus:rounded-lg focus:px-4 focus:py-2 focus:text-sm focus:font-semibold focus:text-white no-underline"
-      style={{ background: 'var(--magenta-bold)' }}
+      className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[200] focus:rounded-lg focus:px-4 focus:py-2 focus:text-sm focus:font-semibold focus:text-white focus:bg-magenta-bold no-underline"
     >
       Lewati ke konten utama
     </a>

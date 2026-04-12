@@ -10,15 +10,15 @@ Saat ini project masih berupa boilerplate TanStack Start dengan 2 route (`/`, `/
 
 ## Tech Stack Existing
 
-| Layer | Teknologi |
-|-------|-----------|
-| Framework | TanStack Start (React 19, SSR) |
-| Routing | TanStack Router (file-based) |
-| Styling | Tailwind CSS v4 + `@tailwindcss/vite` |
-| Build | Vite 7.x |
-| Language | TypeScript 5.7 |
-| Icons | `lucide-react` ^0.545.0 ✅ sudah installed |
-| Package Mgr | Bun |
+| Layer       | Teknologi                                  |
+| ----------- | ------------------------------------------ |
+| Framework   | TanStack Start (React 19, SSR)             |
+| Routing     | TanStack Router (file-based)               |
+| Styling     | Tailwind CSS v4 + `@tailwindcss/vite`      |
+| Build       | Vite 7.x                                   |
+| Language    | TypeScript 5.7                             |
+| Icons       | `lucide-react` ^0.545.0 ✅ sudah installed |
+| Package Mgr | Bun                                        |
 
 ---
 
@@ -29,6 +29,7 @@ Saat ini project masih berupa boilerplate TanStack Start dengan 2 route (`/`, `/
 Ganti seluruh CSS variable dari tema lagoon/sea-ink ke palette Wafa Glow.
 
 **Tasks:**
+
 - [ ] Ganti Google Fonts import ke `Poppins` (400, 500, 600, 700) + `Plus Jakarta Sans` (400, 500, 600, 700) + `Tajawal` (400, 700)
 - [ ] Hapus import `Fraunces` & `Manrope`
 - [ ] Update `@theme` block: set `--font-sans: 'Plus Jakarta Sans'` dan tambah `--font-heading: 'Poppins'` serta `--font-arabic: 'Tajawal'`
@@ -37,40 +38,40 @@ Ganti seluruh CSS variable dari tema lagoon/sea-ink ke palette Wafa Glow.
 ```css
 :root {
   /* Primary Brand (Magenta Family) */
-  --magenta-deep: #9d167c;
-  --magenta-bold: #d10071;
-  --magenta-bright: #dd0d89;
-  --magenta-neon: #ff0092;
+  --color-magenta-deep: #9d167c;
+  --color-magenta-bold: #d10071;
+  --color-magenta-bright: #dd0d89;
+  --color-magenta-neon: #ff0092;
 
   /* Growth & Keberkahan (Green Family) */
-  --emerald: #1f8124;
-  --fresh: #38b33e;
-  --mint: #49d850;
+  --color-emerald: #1f8124;
+  --color-fresh: #38b33e;
+  --color-mint: #49d850;
 
   /* Energy & Warmth (Orange-Yellow Family) */
-  --tangerine: #ff7b00;
-  --golden: #ff9100;
-  --sun: #ffb613;
-  --lemon: #ffd313;
+  --color-tangerine: #ff7b00;
+  --color-golden: #ff9100;
+  --color-sun: #ffb613;
+  --color-lemon: #ffd313;
 
   /* Neutral & Depth */
-  --white: #FFFFFF;
-  --deep: #4b2a67;
-  --soft-lavender: #d099ff;
+  --white: #ffffff;
+  --color-deep: #4b2a67;
+  --color-soft-lavender: #d099ff;
 
   /* Semantic tokens */
-  --bg-base: #FFFFFF;
-  --text-primary: #1a1a2e;
-  --text-secondary: #555570;
-  --surface: rgba(255, 255, 255, 0.9);
-  --line: rgba(157, 22, 124, 0.12);
-  --header-bg: rgba(255, 255, 255, 0.92);
+  --bg-base: #ffffff;
+  --color-text-primary: #1a1a2e;
+  --color-text-secondary: #555570;
+  --color-surface: rgba(255, 255, 255, 0.9);
+  --color-line: rgba(157, 22, 124, 0.12);
+  --color-header-bg: rgba(255, 255, 255, 0.92);
 }
 ```
 
 - [ ] Update dark mode variables (opsional, low-priority, brief fokus ke light theme)
 - [ ] Update `body` background — white bersih dengan subtle gradient Magenta-Emerald
-- [ ] Update global `a` link color ke `--magenta-bold`
+- [ ] Update global `a` link color ke `--color-magenta-bold`
 - [ ] Update `.island-shell`, `.feature-card` classes sesuai rounded corners besar (16-24px), subtle shadow, border Mint/Soft Lavender
 - [ ] Tambah utility classes:
   - `.section-padding` — padding vertikal konsisten antar section
@@ -83,6 +84,7 @@ Ganti seluruh CSS variable dari tema lagoon/sea-ink ke palette Wafa Glow.
 ### 1.2 Update `src/routes/__root.tsx` — Meta & Global Head
 
 **Tasks:**
+
 - [ ] Ganti `<title>` dari "TanStack Start Starter" ke "Wafa Indonesia — Belajar Al-Qur'an Metode Otak Kanan"
 - [ ] Tambah `<meta name="description">` dengan: "Metode Wafa — Cara mudah, cepat, dan menyenangkan belajar Al-Qur'an. 15.000+ guru tersertifikasi, 1200+ lembaga di 35 provinsi Indonesia."
 - [ ] Tambah `<meta property="og:*">` tags (title, description, image, url)
@@ -99,6 +101,7 @@ Ganti seluruh CSS variable dari tema lagoon/sea-ink ke palette Wafa Glow.
 Ganti navbar boilerplate berupa sticky header dengan logo Wafa, mega-menu navigasi, dan CTA button.
 
 **Tasks:**
+
 - [ ] Ganti logo/brand dari "TanStack Start" ke logo Wafa (teks "WAFA" dengan dot magenta, atau image logo)
 - [ ] Implementasi navigation links sesuai brief:
   - `Metode` (dropdown: 5T Pendidikan, 7M Sistem Mutu, Otak Kanan, Irama Hijaz)
@@ -107,7 +110,7 @@ Ganti navbar boilerplate berupa sticky header dengan logo Wafa, mega-menu naviga
   - `Blog` (dropdown: Risalah Dakwah, Ikhtisar Wafa, Info Terkini, Parenting Qur'ani)
   - `Kontak`
 - [ ] Implementasi dropdown/mega-menu component (hover-activated desktop, click-activated mobile)
-- [ ] Tambah CTA button "Download App" di kanan navbar — style `--magenta-bold` rounded-full
+- [ ] Tambah CTA button "Download App" di kanan navbar — style `--color-magenta-bold` rounded-full
 - [ ] Implementasi mobile hamburger menu menggunakan icon `Menu` dan `X` dari lucide-react
 - [ ] Tambah mobile drawer/overlay navigasi
 - [ ] Gunakan lucide-react icons: `ChevronDown` (dropdown indicator), `Menu`, `X`, `Download`
@@ -118,7 +121,8 @@ Ganti navbar boilerplate berupa sticky header dengan logo Wafa, mega-menu naviga
 ### 2.2 Redesign `src/components/Footer.tsx` — Footer Wafa
 
 **Tasks:**
-- [ ] Ganti background ke `--deep` (#4b2a67) dengan teks putih
+
+- [ ] Ganti background ke `--color-deep` (#4b2a67) dengan teks putih
 - [ ] Implementasi layout 4 kolom:
   - **Tentang Wafa**: Sejarah, Visi, Dewan Pakar
   - **Layanan**: 7M, SAGAQU, PSGA
@@ -136,6 +140,7 @@ Ganti navbar boilerplate berupa sticky header dengan logo Wafa, mega-menu naviga
 ### 2.3 Hapus `src/components/ThemeToggle.tsx`
 
 **Tasks:**
+
 - [ ] Hapus file `ThemeToggle.tsx` (brief Wafa hanya Light theme, dark mode opsional nanti)
 - [ ] Hapus referensi ThemeToggle dari `Header.tsx`
 - [ ] Hapus `THEME_INIT_SCRIPT` dari `__root.tsx` (atau simplify untuk light-only)
@@ -157,12 +162,13 @@ Buat komponen landing page per-section:
 **Layout:** Full viewport height, background putih + ilustrasi
 
 **Tasks:**
+
 - [ ] Buat komponen `HeroSection`
-- [ ] Headline: "Belajar Al-Qur'an Jadi Mudah, Cepat, & Menyenangkan" — font Poppins Bold, warna `--magenta-deep`
+- [ ] Headline: "Belajar Al-Qur'an Jadi Mudah, Cepat, & Menyenangkan" — font Poppins Bold, warna `--color-magenta-deep`
 - [ ] Implementasi typing animation pada kata "Menyenangkan" (highlight magenta-neon)
 - [ ] Subheadline: "Metode Otak Kanan + Irama Hijaz + Sistem 7M Terbukti Melahirkan 15.000+ Guru & 1200+ Lembaga di 35 Provinsi"
-- [ ] CTA Primary: "Mulai Perjalanan" — button `--magenta-bold`, rounded-full, hover → `--magenta-neon`
-- [ ] CTA Secondary: "Lihat Demo Aplikasi" — button outline `--emerald`
+- [ ] CTA Primary: "Mulai Perjalanan" — button `--color-magenta-bold`, rounded-full, hover → `--color-magenta-neon`
+- [ ] CTA Secondary: "Lihat Demo Aplikasi" — button outline `--color-emerald`
 - [ ] Visual area: placeholder untuk composite image (anak mengaji + ortu + guru)
 - [ ] Decorative gradient blobs (Magenta + Emerald) sebagai background accent
 - [ ] H1 untuk SEO: "Belajar Al-Qur'an Metode Otak Kanan Terbaik di Indonesia"
@@ -173,6 +179,7 @@ Buat komponen landing page per-section:
 ### 3.3 `ProofStrip.tsx` — Section 2: "Trust at First Scroll"
 
 **Tasks:**
+
 - [ ] Buat komponen `ProofStrip`
 - [ ] Baris 1: Infinite horizontal scroll (marquee) logo mitra — Muhammadiyah, NU, Al Azhar, dll (placeholder images)
 - [ ] Baris 2: Stats counter animasi (scroll-triggered):
@@ -191,6 +198,7 @@ Buat komponen landing page per-section:
 **Layout:** Sticky scroll — visual interaktif di kiri, cards scroll di kanan
 
 **Tasks:**
+
 - [ ] Buat komponen `MethodSection`
 - [ ] Left sticky: Visual pentagon 5T (bisa SVG interaktif atau ilustrasi) — berubah sesuai scroll
 - [ ] Right scrolling: 5 cards untuk masing-masing T:
@@ -211,6 +219,7 @@ Buat komponen landing page per-section:
 **Layout:** Tabbed interface dengan konten dinamis per tab
 
 **Tasks:**
+
 - [ ] Buat komponen `EcosystemSection`
 - [ ] Implementasi 4 tabs:
   1. **Aplikasi Wafa** — Phone mockup + features checklist + download buttons
@@ -238,6 +247,7 @@ Buat komponen landing page per-section:
 **Layout:** Vertical timeline dengan scroll trigger
 
 **Tasks:**
+
 - [ ] Buat komponen `QualitySystemSection`
 - [ ] Implementasi vertical timeline 7 steps:
   1. **M1 Memetakan** — Tashnif: Mengukur kemampuan awal guru & siswa
@@ -249,7 +259,7 @@ Buat komponen landing page per-section:
   7. **M7 Mengukuhkan** — Apresiasi capaian & syahadah
 - [ ] Setiap step: icon, judul, deskripsi, dan visual/mockup placeholder
 - [ ] Scroll-triggered reveal: setiap step muncul saat di-scroll
-- [ ] Timeline line: warna `--emerald` dengan progress fill (animated)
+- [ ] Timeline line: warna `--color-emerald` dengan progress fill (animated)
 - [ ] CTA di akhir: "Ingin Terapkan 7M di Lembaga Anda?" + WhatsApp link
 - [ ] Lucide icons per step: `Map` (M1), `Wrench` (M2), `Shield` (M3), `HandHeart` (M4), `ClipboardCheck` (M5), `FileCheck` (M6), `Trophy` (M7)
 - [ ] Lucide icon CTA: `MessageCircle` (WhatsApp)
@@ -261,6 +271,7 @@ Buat komponen landing page per-section:
 **Layout:** Masonry grid layout
 
 **Tasks:**
+
 - [ ] Buat komponen `SuccessStoriesSection`
 - [ ] Masonry grid (3 kolom desktop, 2 tablet, 1 mobile) dengan card beragam ukuran:
   - Video testimonial Prof. Roem Rowi (placeholder thumbnail + play icon)
@@ -281,6 +292,7 @@ Buat komponen landing page per-section:
 **Layout:** Content preview grid
 
 **Tasks:**
+
 - [ ] Buat komponen `KnowledgeHubSection`
 - [ ] Section "Latest from Risalah Dakwah": 3 article cards horizontal
 - [ ] Section "Latest from Info Terkini": 3 article cards horizontal
@@ -298,6 +310,7 @@ Buat komponen landing page per-section:
 **Layout:** Interactive map section
 
 **Tasks:**
+
 - [ ] Buat komponen `CommunityMapSection`
 - [ ] Headline: "Temukan Wafa di 35 Provinsi Indonesia"
 - [ ] SVG peta Indonesia — clickable per provinsi (simplified)
@@ -315,6 +328,7 @@ Buat komponen landing page per-section:
 **Layout:** Two-column CTA cards + FAQ accordion
 
 **Tasks:**
+
 - [ ] Buat komponen `FinalCTASection`
 - [ ] Headline: "Siap Memulai Perjalanan Al-Qur'an?"
 - [ ] Card kiri — Download Aplikasi Wafa:
@@ -342,6 +356,7 @@ Buat komponen landing page per-section:
 ### 4.1 Buat `src/routes/metode.tsx` — Halaman Metode
 
 **Tasks:**
+
 - [ ] Buat route `/metode`
 - [ ] Hero: "Sistem Pembelajaran Al-Qur'an Terintegrasi"
 - [ ] Sticky anchor navigation: [5T Pendidikan] [7M Sistem Mutu] [Otak Kanan] [Irama Hijaz]
@@ -357,6 +372,7 @@ Buat komponen landing page per-section:
 ### 4.2 Buat `src/routes/layanan.tsx` — Halaman Layanan
 
 **Tasks:**
+
 - [ ] Buat route `/layanan`
 - [ ] Hero: "Solusi Pembelajaran Al-Qur'an untuk Semua"
 - [ ] Filter tabs: [Saya Pemula] [Saya Sudah Bisa] [Saya Pengelola]
@@ -376,6 +392,7 @@ Buat komponen landing page per-section:
 ### 4.3 Buat `src/routes/produk.tsx` — Halaman Produk
 
 **Tasks:**
+
 - [ ] Buat route `/produk`
 - [ ] Hero: "Media Pembelajaran Berkualitas"
 - [ ] Category filter horizontal: Semua, Buku Tilawah, Buku Menulis, Kartu & Peraga, Aplikasi, Audio/Video, Paket Lengkap
@@ -391,6 +408,7 @@ Buat komponen landing page per-section:
 ### 4.4 Buat `src/routes/blog/index.tsx` & `src/routes/blog/$slug.tsx` — Halaman Blog
 
 **Tasks:**
+
 - [ ] Buat route `/blog` (index)
 - [ ] Buat route `/blog/$slug` (article detail) — dynamic route
 - [ ] Index: Featured article hero + article grid (3 kolom)
@@ -414,6 +432,7 @@ Buat komponen landing page per-section:
 ### 4.5 Buat `src/routes/kontak.tsx` — Halaman Kontak
 
 **Tasks:**
+
 - [ ] Buat route `/kontak`
 - [ ] Two-column layout:
   - Kiri: Form kontak (Nama, Email, Telepon, Kategori dropdown, Pesan, Button Kirim)
@@ -428,6 +447,7 @@ Buat komponen landing page per-section:
 ### 4.6 Buat `src/routes/tentang-kami.tsx` — Halaman Tentang Kami
 
 **Tasks:**
+
 - [ ] Buat route `/tentang-kami`
 - [ ] Hero: Video message placeholder Direktur H. Mohamad Yamin, M.Pd.
 - [ ] Sections:
@@ -445,6 +465,7 @@ Buat komponen landing page per-section:
 ### 4.7 Buat `src/routes/mitra.tsx` — Halaman Kemitraan
 
 **Tasks:**
+
 - [ ] Buat route `/mitra`
 - [ ] Hero: "Jadikan Lembaga Anda Pilihan Utama"
 - [ ] PAS Framework section (Problem → Agitation → Solution)
@@ -460,6 +481,7 @@ Buat komponen landing page per-section:
 ### 4.8 Buat `src/routes/404.tsx` atau Not Found Component
 
 **Tasks:**
+
 - [ ] Buat 404 error page
 - [ ] Ilustrasi placeholder karakter Wafa bingung
 - [ ] Teks: "Halaman yang Anda cari tidak ditemukan"
@@ -476,6 +498,7 @@ Buat komponen reusable di `src/components/ui/`:
 ### 5.1 UI Components
 
 **Tasks:**
+
 - [ ] `Button.tsx` — Primary (magenta-bold), Secondary (emerald), Outline, Ghost variants + size props
 - [ ] `Card.tsx` — Glassmorphism card dengan border, shadow, rounded, hover-effect
 - [ ] `Badge.tsx` — Untuk category labels, "New", "Bestseller" tags
@@ -494,6 +517,7 @@ Buat komponen reusable di `src/components/ui/`:
 ### 6.1 Micro-Animations
 
 **Tasks:**
+
 - [ ] Scale pada hover untuk semua cards & buttons
 - [ ] Gentle bounce pada CTA buttons
 - [ ] Fade-in / rise-in pada scroll (IntersectionObserver)
@@ -504,6 +528,7 @@ Buat komponen reusable di `src/components/ui/`:
 ### 6.2 Responsivitas
 
 **Tasks:**
+
 - [ ] Mobile-first approach: semua elemen dioptimalkan layar kecil terlebih dahulu
 - [ ] Breakpoints: `sm` (640px), `md` (768px), `lg` (1024px), `xl` (1280px)
 - [ ] Test di viewport 320px, 375px, 768px, 1024px, 1440px
@@ -514,6 +539,7 @@ Buat komponen reusable di `src/components/ui/`:
 ### 6.3 SEO & Performance
 
 **Tasks:**
+
 - [ ] H1 unik per halaman
 - [ ] Schema markup: `EducationalOrganization`, `Course` (JSON-LD)
 - [ ] Sitemap generation (TanStack Start SSR built-in)
@@ -540,22 +566,22 @@ import { Menu, X, ChevronDown, ArrowRight, Play } from 'lucide-react'
 
 **Icon mapping ringkas:**
 
-| Komponen | Icons yang digunakan |
-|----------|---------------------|
-| Header | `Menu`, `X`, `ChevronDown`, `Download` |
-| Footer | `Instagram`, `Facebook`, `Youtube`, `Mail`, `Phone` |
-| Hero | `ArrowRight`, `Play` |
-| Proof Strip | `MapPin`, `GraduationCap`, `Users`, `Calendar` |
-| 5T Method | `BookOpen`, `Brain`, `Languages`, `Lightbulb`, `ScrollText` |
-| Ecosystem | `Smartphone`, `Book`, `Award`, `Globe`, `Check` |
-| 7M System | `Map`, `Wrench`, `Shield`, `HandHeart`, `ClipboardCheck`, `FileCheck`, `Trophy` |
-| Success Stories | `Play`, `Quote`, `TrendingUp`, `ArrowRight` |
-| Knowledge Hub | `Newspaper`, `Clock`, `Youtube`, `ArrowRight` |
-| Community Map | `Search`, `MapPin` |
-| Final CTA | `Smartphone`, `School`, `ChevronDown`, `ChevronUp` |
-| Blog | `Search`, `Clock`, `User`, `Share2`, `ArrowLeft`, `ChevronRight` |
-| Kontak | `Send`, `MapPin`, `Phone`, `Mail`, `Clock`, `ChevronDown` |
-| Produk | `Star`, `ShoppingCart`, `Filter`, `Grid3x3`, `List`, `Tag` |
+| Komponen        | Icons yang digunakan                                                            |
+| --------------- | ------------------------------------------------------------------------------- |
+| Header          | `Menu`, `X`, `ChevronDown`, `Download`                                          |
+| Footer          | `Instagram`, `Facebook`, `Youtube`, `Mail`, `Phone`                             |
+| Hero            | `ArrowRight`, `Play`                                                            |
+| Proof Strip     | `MapPin`, `GraduationCap`, `Users`, `Calendar`                                  |
+| 5T Method       | `BookOpen`, `Brain`, `Languages`, `Lightbulb`, `ScrollText`                     |
+| Ecosystem       | `Smartphone`, `Book`, `Award`, `Globe`, `Check`                                 |
+| 7M System       | `Map`, `Wrench`, `Shield`, `HandHeart`, `ClipboardCheck`, `FileCheck`, `Trophy` |
+| Success Stories | `Play`, `Quote`, `TrendingUp`, `ArrowRight`                                     |
+| Knowledge Hub   | `Newspaper`, `Clock`, `Youtube`, `ArrowRight`                                   |
+| Community Map   | `Search`, `MapPin`                                                              |
+| Final CTA       | `Smartphone`, `School`, `ChevronDown`, `ChevronUp`                              |
+| Blog            | `Search`, `Clock`, `User`, `Share2`, `ArrowLeft`, `ChevronRight`                |
+| Kontak          | `Send`, `MapPin`, `Phone`, `Mail`, `Clock`, `ChevronDown`                       |
+| Produk          | `Star`, `ShoppingCart`, `Filter`, `Grid3x3`, `List`, `Tag`                      |
 
 ### File Structure Target
 
@@ -613,15 +639,15 @@ src/
 
 ## Prioritas Implementasi
 
-| Prioritas | Fase | Scope |
-|-----------|------|-------|
-| 🔴 P0 | Fase 1 | Design System (tokens, fonts, global styles) |
-| 🔴 P0 | Fase 2 | Header + Footer (navigasi utama) |
-| 🔴 P0 | Fase 3.2–3.3 | Hero Section + Proof Strip |
-| 🟠 P1 | Fase 3.4–3.6 | 5T Method + Ecosystem + 7M System |
-| 🟠 P1 | Fase 5 | Shared UI Components |
-| 🟡 P2 | Fase 3.7–3.10 | Success Stories + Knowledge Hub + Map + CTA |
-| 🟡 P2 | Fase 4.7 | Halaman Kemitraan (conversion page) |
-| 🟢 P3 | Fase 4.1–4.6 | Sub-pages (Metode, Layanan, Produk, Blog, Kontak, Tentang) |
-| 🟢 P3 | Fase 6 | Polish, animations, SEO, performance |
-| ⚪ P4 | Fase 4.8 | 404 page |
+| Prioritas | Fase          | Scope                                                      |
+| --------- | ------------- | ---------------------------------------------------------- |
+| 🔴 P0     | Fase 1        | Design System (tokens, fonts, global styles)               |
+| 🔴 P0     | Fase 2        | Header + Footer (navigasi utama)                           |
+| 🔴 P0     | Fase 3.2–3.3  | Hero Section + Proof Strip                                 |
+| 🟠 P1     | Fase 3.4–3.6  | 5T Method + Ecosystem + 7M System                          |
+| 🟠 P1     | Fase 5        | Shared UI Components                                       |
+| 🟡 P2     | Fase 3.7–3.10 | Success Stories + Knowledge Hub + Map + CTA                |
+| 🟡 P2     | Fase 4.7      | Halaman Kemitraan (conversion page)                        |
+| 🟢 P3     | Fase 4.1–4.6  | Sub-pages (Metode, Layanan, Produk, Blog, Kontak, Tentang) |
+| 🟢 P3     | Fase 6        | Polish, animations, SEO, performance                       |
+| ⚪ P4     | Fase 4.8      | 404 page                                                   |

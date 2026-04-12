@@ -11,7 +11,6 @@ interface AccordionProps {
   items: AccordionItem[]
   /** Allow multiple open at once */
   multi?: boolean
-  accentColor?: string
 }
 
 interface SingleAccordionProps {
@@ -19,17 +18,16 @@ interface SingleAccordionProps {
   answer: string
   isOpen: boolean
   onToggle: () => void
-  accentColor?: string
 }
 
-function AccordionRow({ question, answer, isOpen, onToggle, accentColor = 'var(--magenta-bold)' }: SingleAccordionProps) {
+function AccordionRow({ question, answer, isOpen, onToggle }: SingleAccordionProps) {
   return (
     <div
-      className="overflow-hidden rounded-2xl transition-all duration-200"
-      style={{
-        border: `1.5px solid ${isOpen ? 'rgba(209,0,113,0.2)' : 'var(--line)'}`,
-        background: isOpen ? 'rgba(209,0,113,0.02)' : 'white',
-      }}
+      className={`overflow-hidden rounded-2xl border-[1.5px] transition-all duration-200 ${
+        isOpen
+          ? 'border-[rgba(209,0,113,0.2)] bg-[rgba(209,0,113,0.02)]'
+          : 'border-line bg-white'
+      }`}
     >
       <button
         type="button"
@@ -37,18 +35,15 @@ function AccordionRow({ question, answer, isOpen, onToggle, accentColor = 'var(-
         className="flex w-full items-center justify-between px-6 py-4 text-left"
         aria-expanded={isOpen}
       >
-        <span
-          className="font-semibold text-sm pr-4"
-          style={{ fontFamily: 'var(--font-heading)', color: 'var(--text-primary)' }}
-        >
+        <span className="pr-4 font-heading text-sm font-semibold text-text-primary">
           {question}
         </span>
         <span
-          className="flex h-7 w-7 flex-shrink-0 items-center justify-center rounded-full transition-all duration-300"
-          style={{
-            background: isOpen ? accentColor : 'rgba(209,0,113,0.08)',
-            color: isOpen ? 'white' : accentColor,
-          }}
+          className={`flex h-7 w-7 flex-shrink-0 items-center justify-center rounded-full transition-all duration-300 ${
+            isOpen
+              ? 'bg-magenta-bold text-white'
+              : 'bg-[rgba(209,0,113,0.08)] text-magenta-bold'
+          }`}
         >
           <ChevronDown
             className={`h-4 w-4 transition-transform duration-300 ${isOpen ? 'rotate-180' : ''}`}
@@ -57,18 +52,9 @@ function AccordionRow({ question, answer, isOpen, onToggle, accentColor = 'var(-
       </button>
 
       {/* Animated panel */}
-      <div
-        style={{
-          display: 'grid',
-          gridTemplateRows: isOpen ? '1fr' : '0fr',
-          transition: 'grid-template-rows 300ms cubic-bezier(0.16,1,0.3,1)',
-        }}
-      >
+      <div className={`accordion-panel ${isOpen ? 'is-open' : ''}`}>
         <div className="overflow-hidden">
-          <p
-            className="px-6 pb-5 text-sm leading-relaxed"
-            style={{ color: 'var(--text-secondary)' }}
-          >
+          <p className="px-6 pb-5 text-sm leading-relaxed text-text-secondary">
             {answer}
           </p>
         </div>
@@ -77,7 +63,7 @@ function AccordionRow({ question, answer, isOpen, onToggle, accentColor = 'var(-
   )
 }
 
-export function Accordion({ items, multi = false, accentColor }: AccordionProps) {
+export function Accordion({ items, multi = false }: AccordionProps) {
   const [openSet, setOpenSet] = useState<Set<string>>(new Set([items[0]?.id]))
 
   function toggle(id: string) {
@@ -102,7 +88,6 @@ export function Accordion({ items, multi = false, accentColor }: AccordionProps)
           answer={item.answer}
           isOpen={openSet.has(item.id)}
           onToggle={() => toggle(item.id)}
-          accentColor={accentColor}
         />
       ))}
     </div>

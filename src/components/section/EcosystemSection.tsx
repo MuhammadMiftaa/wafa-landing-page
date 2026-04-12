@@ -46,37 +46,16 @@ const TABS = [
         {/* Left: mockup */}
         <div className="relative flex items-center justify-center">
           {/* Main visual card */}
-          <div
-            className="relative rounded-3xl p-8 w-full max-w-md mx-auto"
-            style={{
-              background:
-                "linear-gradient(135deg, rgba(209,0,113,0.06), rgba(75,42,103,0.04))",
-              border: "1.5px solid rgba(209,0,113,0.15)",
-              boxShadow: "0 32px 80px rgba(157,22,124,0.12)",
-            }}
-          >
+          <div className="relative surface-visual rounded-3xl p-8 w-full max-w-md mx-auto">
             {/* App mockup */}
             <div className="text-center mb-6">
-              <div
-                className="inline-flex items-center justify-center h-24 w-24 rounded-3xl text-5xl mb-4"
-                style={{
-                  background:
-                    "linear-gradient(135deg, var(--magenta-bold), var(--magenta-deep))",
-                  boxShadow: "0 12px 32px rgba(209,0,113,0.4)",
-                }}
-              >
+              <div className="inline-flex items-center justify-center h-24 w-24 rounded-3xl text-5xl mb-4 bg-gradient-primary shadow-[0_12px_32px_rgba(209,0,113,0.4)]">
                 📱
               </div>
-              <h3
-                className="font-bold text-lg mb-1"
-                style={{
-                  fontFamily: "var(--font-heading)",
-                  color: "var(--text-primary)",
-                }}
-              >
+              <h3 className="font-heading text-lg font-bold text-text-primary mb-1">
                 Aplikasi Wafa
               </h3>
-              <p className="text-sm" style={{ color: "var(--text-secondary)" }}>
+              <p className="text-sm text-text-secondary">
                 Gratis 6 halaman pertama
               </p>
             </div>
@@ -91,20 +70,10 @@ const TABS = [
               ].map((f) => (
                 <div
                   key={f.label}
-                  className="flex items-center gap-2 rounded-xl p-2.5"
-                  style={{
-                    background: "white",
-                    border: "1px solid var(--line)",
-                  }}
+                  className="flex items-center gap-2 rounded-xl p-2.5 bg-white border border-line"
                 >
                   <span className="text-base flex-shrink-0">{f.icon}</span>
-                  <span
-                    className="text-xs font-medium"
-                    style={{
-                      fontFamily: "var(--font-heading)",
-                      color: "var(--text-primary)",
-                    }}
-                  >
+                  <span className="font-heading text-xs font-medium text-text-primary">
                     {f.label}
                   </span>
                 </div>
@@ -123,55 +92,27 @@ const TABS = [
           </div>
 
           {/* Floating testimonial card */}
-          <div
-            className="absolute -bottom-6 -left-4 rounded-2xl p-4 max-w-[200px] animate-float"
-            style={{
-              background: "white",
-              border: "1px solid var(--line)",
-              boxShadow: "0 12px 32px rgba(157,22,124,0.1)",
-            }}
-          >
+          <div className="absolute -bottom-6 -left-4 surface-floating rounded-2xl p-4 max-w-[200px] animate-float">
             <div className="flex items-center gap-2 mb-2">
               <div className="flex gap-0.5">
                 {[1, 2, 3, 4, 5].map((i) => (
-                  <span
-                    key={i}
-                    style={{ color: "var(--sun)", fontSize: "10px" }}
-                  >
+                  <span key={i} className="text-sun text-[10px]">
                     ★
                   </span>
                 ))}
               </div>
-              <span
-                className="text-xs font-bold"
-                style={{
-                  fontFamily: "var(--font-heading)",
-                  color: "var(--sun)",
-                }}
-              >
+              <span className="font-heading text-xs font-bold text-sun">
                 5.0
               </span>
             </div>
-            <p
-              className="text-xs leading-relaxed"
-              style={{ color: "var(--text-secondary)" }}
-            >
+            <p className="text-xs leading-relaxed text-text-secondary">
               "Ananda jadi lebih mudah mengaji, alhamdulillah!"
             </p>
           </div>
 
           {/* Floating badge */}
-          <div
-            className="absolute -top-4 -right-4 rounded-2xl px-4 py-2 animate-float-slow"
-            style={{
-              background: "var(--emerald)",
-              boxShadow: "0 8px 24px rgba(31,129,36,0.35)",
-            }}
-          >
-            <p
-              className="m-0 text-xs font-bold text-white"
-              style={{ fontFamily: "var(--font-heading)" }}
-            >
+          <div className="absolute -top-4 -right-4 rounded-2xl px-4 py-2 animate-float-slow bg-emerald shadow-[0_8px_24px_rgba(31,129,36,0.35)]">
+            <p className="m-0 font-heading text-xs font-bold text-white">
               Tashih LPMQ ✓
             </p>
           </div>
@@ -179,19 +120,10 @@ const TABS = [
 
         {/* Right: info */}
         <div>
-          <h3
-            className="text-2xl font-bold mb-3"
-            style={{
-              fontFamily: "var(--font-heading)",
-              color: "var(--text-primary)",
-            }}
-          >
+          <h3 className="font-heading text-2xl font-bold text-text-primary mb-3">
             Belajar Kapan Saja, Di Mana Saja
           </h3>
-          <p
-            className="text-sm leading-relaxed mb-5"
-            style={{ color: "var(--text-secondary)" }}
-          >
+          <p className="text-sm leading-relaxed text-text-secondary mb-5">
             Aplikasi Wafa menghadirkan pengalaman belajar Al-Qur'an yang
             interaktif dan menyenangkan langsung di genggaman tangan Anda.
           </p>
@@ -199,17 +131,10 @@ const TABS = [
             {APP_FEATURES.map((f) => (
               <div
                 key={f}
-                className="flex items-center gap-2 text-xs"
-                style={{ color: "var(--text-secondary)" }}
+                className="flex items-center gap-2 text-xs text-text-secondary"
               >
-                <div
-                  className="flex h-5 w-5 items-center justify-center rounded-full flex-shrink-0"
-                  style={{ background: "rgba(31,129,36,0.1)" }}
-                >
-                  <Check
-                    className="h-3 w-3"
-                    style={{ color: "var(--emerald)" }}
-                  />
+                <div className="flex h-5 w-5 items-center justify-center rounded-full flex-shrink-0 bg-[rgba(31,129,36,0.1)]">
+                  <Check className="h-3 w-3 text-emerald" />
                 </div>
                 {f}
               </div>
@@ -255,19 +180,10 @@ const TABS = [
     content: (
       <div className="grid md:grid-cols-2 gap-8 items-center">
         <div>
-          <h3
-            className="text-2xl font-bold mb-3"
-            style={{
-              fontFamily: "var(--font-heading)",
-              color: "var(--text-primary)",
-            }}
-          >
+          <h3 className="font-heading text-2xl font-bold text-text-primary mb-3">
             Media Pembelajaran Berkualitas
           </h3>
-          <p
-            className="text-sm leading-relaxed mb-6"
-            style={{ color: "var(--text-secondary)" }}
-          >
+          <p className="text-sm leading-relaxed text-text-secondary mb-6">
             30+ produk media pembelajaran — buku tilawah, buku menulis, kartu
             peraga, flashdisk audio, dan peraga kelas — dirancang dengan
             pendekatan otak kanan yang menyenangkan.
@@ -283,23 +199,13 @@ const TABS = [
             ].map((p) => (
               <div
                 key={p.label}
-                className="rounded-2xl p-3 text-center transition-all card-hover"
-                style={{ background: "white", border: "1px solid var(--line)" }}
+                className="surface-card rounded-2xl p-3 text-center card-hover"
               >
                 <div className="text-2xl mb-1">{p.emoji}</div>
-                <p
-                  className="m-0 font-semibold text-xs"
-                  style={{
-                    fontFamily: "var(--font-heading)",
-                    color: "var(--text-primary)",
-                  }}
-                >
+                <p className="m-0 font-heading text-xs font-semibold text-text-primary">
                   {p.label}
                 </p>
-                <p
-                  className="m-0 text-[10px]"
-                  style={{ color: "var(--text-secondary)" }}
-                >
+                <p className="m-0 text-[10px] text-text-secondary">
                   {p.count}
                 </p>
               </div>
@@ -312,31 +218,15 @@ const TABS = [
             Lihat Semua Produk
           </a>
         </div>
-        <div
-          className="rounded-3xl p-8 text-center"
-          style={{
-            background:
-              "linear-gradient(135deg, rgba(31,129,36,0.06), rgba(73,216,80,0.04))",
-            border: "1.5px solid rgba(31,129,36,0.15)",
-          }}
-        >
+        <div className="rounded-3xl border-[1.5px] border-[rgba(31,129,36,0.15)] bg-gradient-to-br from-[rgba(31,129,36,0.06)] to-[rgba(73,216,80,0.04)] p-8 text-center">
           <div className="text-8xl mb-4">📚</div>
-          <p
-            className="font-bold text-2xl"
-            style={{
-              fontFamily: "var(--font-heading)",
-              color: "var(--emerald)",
-            }}
-          >
+          <p className="font-heading text-2xl font-bold text-emerald">
             30+
           </p>
-          <p className="text-sm" style={{ color: "var(--text-secondary)" }}>
+          <p className="text-sm text-text-secondary">
             Produk Media Pembelajaran
           </p>
-          <p
-            className="text-xs mt-3 leading-relaxed"
-            style={{ color: "var(--text-secondary)" }}
-          >
+          <p className="text-xs mt-3 leading-relaxed text-text-secondary">
             Dikembangkan sejak 2013, terus berinovasi untuk menghadirkan media
             belajar yang menyenangkan dan kekinian.
           </p>
@@ -351,19 +241,10 @@ const TABS = [
     content: (
       <div>
         <div className="text-center mb-8">
-          <h3
-            className="text-2xl font-bold mb-3"
-            style={{
-              fontFamily: "var(--font-heading)",
-              color: "var(--text-primary)",
-            }}
-          >
+          <h3 className="font-heading text-2xl font-bold text-text-primary mb-3">
             SAGAQU — Sekolah Guru Ahli Al-Qur'an
           </h3>
-          <p
-            className="text-sm max-w-lg mx-auto"
-            style={{ color: "var(--text-secondary)" }}
-          >
+          <p className="text-sm text-text-secondary max-w-lg mx-auto">
             Tingkatkan kompetensi dan dapatkan sertifikasi resmi Wafa. Program
             tersedia online & offline.
           </p>
@@ -372,24 +253,14 @@ const TABS = [
           {SAGAQU_PROGRAMS.map((p) => (
             <div
               key={p.name}
-              className="flex items-start gap-4 rounded-2xl p-5 transition-all card-hover"
-              style={{ background: "white", border: "1px solid var(--line)" }}
+              className="flex items-start gap-4 surface-card rounded-2xl p-5 card-hover"
             >
               <span className="text-3xl flex-shrink-0">{p.icon}</span>
               <div>
-                <p
-                  className="font-bold text-sm"
-                  style={{
-                    fontFamily: "var(--font-heading)",
-                    color: "var(--text-primary)",
-                  }}
-                >
+                <p className="font-heading text-sm font-bold text-text-primary">
                   {p.name}
                 </p>
-                <p
-                  className="text-xs mt-0.5"
-                  style={{ color: "var(--text-secondary)" }}
-                >
+                <p className="text-xs mt-0.5 text-text-secondary">
                   {p.desc}
                 </p>
               </div>
@@ -416,19 +287,10 @@ const TABS = [
     content: (
       <div className="grid md:grid-cols-2 gap-8 items-center">
         <div>
-          <h3
-            className="text-2xl font-bold mb-3"
-            style={{
-              fontFamily: "var(--font-heading)",
-              color: "var(--text-primary)",
-            }}
-          >
+          <h3 className="font-heading text-2xl font-bold text-text-primary mb-3">
             Bergabung dengan 15.000+ Guru Wafa
           </h3>
-          <p
-            className="text-sm leading-relaxed mb-6"
-            style={{ color: "var(--text-secondary)" }}
-          >
+          <p className="text-sm leading-relaxed text-text-secondary mb-6">
             Komunitas guru Wafa yang aktif saling berbagi dan mendukung dalam
             perjalanan mendidik generasi Qur'ani Indonesia.
           </p>
@@ -457,19 +319,10 @@ const TABS = [
             <div key={item.label} className="flex items-center gap-3 mb-3">
               <span className="text-xl">{item.icon}</span>
               <div>
-                <span
-                  className="font-bold text-sm"
-                  style={{
-                    fontFamily: "var(--font-heading)",
-                    color: "var(--text-primary)",
-                  }}
-                >
+                <span className="font-heading text-sm font-bold text-text-primary">
                   {item.label}
                 </span>
-                <span
-                  className="text-xs ml-2"
-                  style={{ color: "var(--text-secondary)" }}
-                >
+                <span className="text-xs ml-2 text-text-secondary">
                   {item.desc}
                 </span>
               </div>
@@ -482,25 +335,12 @@ const TABS = [
             Temukan Wafa di Daerah Anda
           </a>
         </div>
-        <div
-          className="rounded-3xl p-8 text-center"
-          style={{
-            background:
-              "linear-gradient(135deg, rgba(75,42,103,0.06), rgba(157,22,124,0.04))",
-            border: "1.5px solid rgba(75,42,103,0.15)",
-          }}
-        >
+        <div className="rounded-3xl border-[1.5px] border-[rgba(75,42,103,0.15)] bg-gradient-to-br from-[rgba(75,42,103,0.06)] to-[rgba(157,22,124,0.04)] p-8 text-center">
           <div className="text-7xl mb-4">🕌</div>
-          <p
-            className="font-bold text-lg"
-            style={{ fontFamily: "var(--font-heading)", color: "var(--deep)" }}
-          >
+          <p className="font-heading text-lg font-bold text-deep">
             Bersama Melahirkan Ahli Al-Qur'an
           </p>
-          <p
-            className="text-sm mt-2"
-            style={{ color: "var(--text-secondary)" }}
-          >
+          <p className="text-sm mt-2 text-text-secondary">
             Pembangun Peradaban Masyarakat Qur'ani di Indonesia
           </p>
         </div>
@@ -511,13 +351,7 @@ const TABS = [
 
 export function EcosystemSection() {
   return (
-    <section
-      className="section-padding"
-      style={{
-        background:
-          "linear-gradient(180deg, rgba(75,42,103,0.03) 0%, transparent 100%)",
-      }}
-    >
+    <section className="section-padding bg-section-deep-fade">
       <div className="page-wrap">
         <SectionHeading
           kicker="Ekosistem Wafa"

@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { ArrowRight, Play, Download } from "lucide-react";
 import { CountUp } from "../ui/CountUp";
-import { useScrollReveal, revealStyle } from "../ui/useScrollReveal.ts";
+import { useScrollReveal, revealProps } from "../ui/useScrollReveal.ts";
 
 const TYPING_WORDS = ["Mudah", "Cepat", "Menyenangkan", "Berkah"];
 
@@ -34,41 +34,11 @@ export function HeroSection() {
   }, [displayed, isDeleting, wordIndex]);
 
   return (
-    <section
-      className="relative overflow-hidden"
-      style={{
-        paddingTop: "5rem",
-        paddingBottom: "5rem",
-        minHeight: "90vh",
-        display: "flex",
-        alignItems: "center",
-      }}
-    >
+    <section className="relative overflow-hidden py-20 min-h-[90vh] flex items-center">
       {/* Decorative blobs */}
-      <div
-        className="pointer-events-none absolute -left-40 -top-40 h-[600px] w-[600px] rounded-full opacity-40 animate-float-slow"
-        style={{
-          background:
-            "radial-gradient(circle, rgba(209,0,113,0.14), transparent 70%)",
-          filter: "blur(70px)",
-        }}
-      />
-      <div
-        className="pointer-events-none absolute -right-40 top-20 h-[500px] w-[500px] rounded-full opacity-30 animate-float"
-        style={{
-          background:
-            "radial-gradient(circle, rgba(31,129,36,0.12), transparent 70%)",
-          filter: "blur(60px)",
-        }}
-      />
-      <div
-        className="pointer-events-none absolute bottom-0 left-1/2 -translate-x-1/2 h-72 w-[800px] rounded-full opacity-20"
-        style={{
-          background:
-            "radial-gradient(ellipse, rgba(75,42,103,0.1), transparent 70%)",
-          filter: "blur(50px)",
-        }}
-      />
+      <div className="hero-blob-magenta absolute -left-40 -top-40 h-[600px] w-[600px] opacity-40 animate-float-slow" />
+      <div className="hero-blob-emerald absolute -right-40 top-20 h-[500px] w-[500px] opacity-30 animate-float" />
+      <div className="blob-deep absolute bottom-0 left-1/2 -translate-x-1/2 h-72 w-[800px] opacity-20" />
 
       <div className="page-wrap relative z-10 w-full">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
@@ -76,50 +46,21 @@ export function HeroSection() {
           <div ref={ref}>
             {/* Trust badge */}
             <div
-              className="inline-flex items-center gap-2 rounded-full px-4 py-2 mb-6 text-xs font-semibold"
-              style={{
-                background: "rgba(31,129,36,0.08)",
-                border: "1px solid rgba(31,129,36,0.2)",
-                color: "var(--emerald)",
-                fontFamily: "var(--font-heading)",
-                ...revealStyle(visible, 0),
-              }}
+              className={`inline-flex items-center gap-2 rounded-full px-4 py-2 mb-6 font-heading text-xs font-semibold bg-[rgba(31,129,36,0.08)] border border-[rgba(31,129,36,0.2)] text-emerald ${revealProps(visible, 0).className}`}
+              style={revealProps(visible, 0).style}
             >
-              <span
-                className="flex h-2 w-2 rounded-full"
-                style={{ background: "var(--emerald)" }}
-              />
+              <span className="flex h-2 w-2 rounded-full bg-emerald" />
               15.000+ Guru Tersertifikasi · 35 Provinsi
             </div>
 
             <h1
-              className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6"
-              style={{
-                fontFamily: "var(--font-heading)",
-                color: "var(--text-primary)",
-                ...revealStyle(visible, 100),
-              }}
+              className={`font-heading text-4xl md:text-5xl lg:text-6xl font-bold leading-tight text-text-primary mb-6 ${revealProps(visible, 100).className}`}
+              style={revealProps(visible, 100).style}
             >
               Belajar Al-Qur'an Jadi{" "}
-              <span
-                style={{
-                  background:
-                    "linear-gradient(135deg, var(--magenta-bold), var(--magenta-neon))",
-                  WebkitBackgroundClip: "text",
-                  WebkitTextFillColor: "transparent",
-                  backgroundClip: "text",
-                  display: "inline-block",
-                  minWidth: "200px",
-                }}
-              >
+              <span className="gradient-text-magenta inline-block min-w-[200px]">
                 {displayed}
-                <span
-                  className="cursor-blink"
-                  style={{
-                    WebkitTextFillColor: "var(--magenta-bold)",
-                    marginLeft: "2px",
-                  }}
-                >
+                <span className="cursor-blink ml-0.5 [-webkit-text-fill-color:var(--color-magenta-bold)]">
                   |
                 </span>
               </span>
@@ -131,19 +72,16 @@ export function HeroSection() {
             </h1>
 
             <p
-              className="text-base md:text-lg leading-relaxed mb-8 max-w-lg"
-              style={{
-                color: "var(--text-secondary)",
-                ...revealStyle(visible, 200),
-              }}
+              className={`text-base md:text-lg leading-relaxed text-text-secondary mb-8 max-w-lg ${revealProps(visible, 200).className}`}
+              style={revealProps(visible, 200).style}
             >
               Metode Otak Kanan + Irama Hijaz + Sistem 7M — terbukti melahirkan
-              <strong style={{ color: "var(--text-primary)" }}>
+              <strong className="text-text-primary">
                 {" "}
                 15.000+ guru
               </strong>{" "}
               &
-              <strong style={{ color: "var(--text-primary)" }}>
+              <strong className="text-text-primary">
                 {" "}
                 1200+ lembaga
               </strong>{" "}
@@ -152,8 +90,8 @@ export function HeroSection() {
 
             {/* CTA Buttons */}
             <div
-              className="flex flex-wrap gap-4 mb-10"
-              style={revealStyle(visible, 300)}
+              className={`flex flex-wrap gap-4 mb-10 ${revealProps(visible, 300).className}`}
+              style={revealProps(visible, 300).style}
             >
               <a href="/layanan" className="btn-primary btn-pulse no-underline">
                 Mulai Perjalanan
@@ -163,12 +101,7 @@ export function HeroSection() {
                 href="https://play.google.com/store/apps/details?id=com.wafaindonesia"
                 target="_blank"
                 rel="noreferrer"
-                className="flex items-center gap-2 rounded-full border-2 px-6 py-3 text-sm font-semibold no-underline transition-all hover:-translate-y-0.5"
-                style={{
-                  borderColor: "var(--emerald)",
-                  color: "var(--emerald)",
-                  fontFamily: "var(--font-heading)",
-                }}
+                className="btn-secondary no-underline"
               >
                 <Play className="h-4 w-4" fill="currentColor" />
                 Lihat Demo Aplikasi
@@ -177,8 +110,8 @@ export function HeroSection() {
 
             {/* Social proof row */}
             <div
-              className="flex flex-wrap gap-6"
-              style={revealStyle(visible, 400)}
+              className={`flex flex-wrap gap-6 ${revealProps(visible, 400).className}`}
+              style={revealProps(visible, 400).style}
             >
               {[
                 { end: 35, suffix: " Prov", label: "Provinsi", icon: "🗺️" },
@@ -194,13 +127,7 @@ export function HeroSection() {
                 <div key={stat.label} className="text-center">
                   <div className="flex items-center gap-1">
                     <span className="text-sm">{stat.icon}</span>
-                    <span
-                      className="text-xl font-bold"
-                      style={{
-                        fontFamily: "var(--font-heading)",
-                        color: "var(--magenta-bold)",
-                      }}
-                    >
+                    <span className="font-heading text-xl font-bold text-magenta-bold">
                       <CountUp
                         end={stat.end}
                         suffix={stat.suffix}
@@ -208,10 +135,7 @@ export function HeroSection() {
                       />
                     </span>
                   </div>
-                  <p
-                    className="m-0 text-xs"
-                    style={{ color: "var(--text-secondary)" }}
-                  >
+                  <p className="m-0 text-xs text-text-secondary">
                     {stat.label}
                   </p>
                 </div>
@@ -221,44 +145,20 @@ export function HeroSection() {
 
           {/* Right — Visual */}
           <div
-            className="relative flex items-center justify-center"
-            style={{ ...revealStyle(visible, 200) }}
+            className={`relative flex items-center justify-center ${revealProps(visible, 200).className}`}
+            style={revealProps(visible, 200).style}
           >
             {/* Main visual card */}
-            <div
-              className="relative rounded-3xl p-8 w-full max-w-md mx-auto"
-              style={{
-                background:
-                  "linear-gradient(135deg, rgba(209,0,113,0.06), rgba(75,42,103,0.04))",
-                border: "1.5px solid rgba(209,0,113,0.15)",
-                boxShadow: "0 32px 80px rgba(157,22,124,0.12)",
-              }}
-            >
+            <div className="relative surface-visual rounded-3xl p-8 w-full max-w-md mx-auto">
               {/* App mockup */}
               <div className="text-center mb-6">
-                <div
-                  className="inline-flex items-center justify-center h-24 w-24 rounded-3xl text-5xl mb-4"
-                  style={{
-                    background:
-                      "linear-gradient(135deg, var(--magenta-bold), var(--magenta-deep))",
-                    boxShadow: "0 12px 32px rgba(209,0,113,0.4)",
-                  }}
-                >
+                <div className="inline-flex items-center justify-center h-24 w-24 rounded-3xl text-5xl mb-4 bg-gradient-primary shadow-[0_12px_32px_rgba(209,0,113,0.4)]">
                   📱
                 </div>
-                <h3
-                  className="font-bold text-lg mb-1"
-                  style={{
-                    fontFamily: "var(--font-heading)",
-                    color: "var(--text-primary)",
-                  }}
-                >
+                <h3 className="font-heading text-lg font-bold text-text-primary mb-1">
                   Aplikasi Wafa
                 </h3>
-                <p
-                  className="text-sm"
-                  style={{ color: "var(--text-secondary)" }}
-                >
+                <p className="text-sm text-text-secondary">
                   Gratis 6 halaman pertama
                 </p>
               </div>
@@ -273,20 +173,10 @@ export function HeroSection() {
                 ].map((f) => (
                   <div
                     key={f.label}
-                    className="flex items-center gap-2 rounded-xl p-2.5"
-                    style={{
-                      background: "white",
-                      border: "1px solid var(--line)",
-                    }}
+                    className="flex items-center gap-2 rounded-xl p-2.5 bg-white border border-line"
                   >
                     <span className="text-base flex-shrink-0">{f.icon}</span>
-                    <span
-                      className="text-xs font-medium"
-                      style={{
-                        fontFamily: "var(--font-heading)",
-                        color: "var(--text-primary)",
-                      }}
-                    >
+                    <span className="font-heading text-xs font-medium text-text-primary">
                       {f.label}
                     </span>
                   </div>
@@ -305,55 +195,27 @@ export function HeroSection() {
             </div>
 
             {/* Floating testimonial card */}
-            <div
-              className="absolute -bottom-6 -left-4 rounded-2xl p-4 max-w-[200px] animate-float"
-              style={{
-                background: "white",
-                border: "1px solid var(--line)",
-                boxShadow: "0 12px 32px rgba(157,22,124,0.1)",
-              }}
-            >
+            <div className="absolute -bottom-6 -left-4 surface-floating rounded-2xl p-4 max-w-[200px] animate-float">
               <div className="flex items-center gap-2 mb-2">
                 <div className="flex gap-0.5">
                   {[1, 2, 3, 4, 5].map((i) => (
-                    <span
-                      key={i}
-                      style={{ color: "var(--sun)", fontSize: "10px" }}
-                    >
+                    <span key={i} className="text-sun text-[10px]">
                       ★
                     </span>
                   ))}
                 </div>
-                <span
-                  className="text-xs font-bold"
-                  style={{
-                    fontFamily: "var(--font-heading)",
-                    color: "var(--sun)",
-                  }}
-                >
+                <span className="font-heading text-xs font-bold text-sun">
                   5.0
                 </span>
               </div>
-              <p
-                className="text-xs leading-relaxed"
-                style={{ color: "var(--text-secondary)" }}
-              >
+              <p className="text-xs leading-relaxed text-text-secondary">
                 "Ananda jadi lebih mudah mengaji, alhamdulillah!"
               </p>
             </div>
 
             {/* Floating badge */}
-            <div
-              className="absolute -top-4 -right-4 rounded-2xl px-4 py-2 animate-float-slow"
-              style={{
-                background: "var(--emerald)",
-                boxShadow: "0 8px 24px rgba(31,129,36,0.35)",
-              }}
-            >
-              <p
-                className="m-0 text-xs font-bold text-white"
-                style={{ fontFamily: "var(--font-heading)" }}
-              >
+            <div className="absolute -top-4 -right-4 rounded-2xl px-4 py-2 animate-float-slow bg-emerald shadow-[0_8px_24px_rgba(31,129,36,0.35)]">
+              <p className="m-0 font-heading text-xs font-bold text-white">
                 Tashih LPMQ ✓
               </p>
             </div>

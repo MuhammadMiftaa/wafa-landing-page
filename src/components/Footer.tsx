@@ -1,5 +1,5 @@
-import { useState } from 'react'
-import { Link } from '@tanstack/react-router'
+import { useState } from "react";
+import { Link } from "@tanstack/react-router";
 import {
   Instagram,
   Facebook,
@@ -9,71 +9,71 @@ import {
   MapPin,
   Send,
   ArrowRight,
-} from 'lucide-react'
+} from "lucide-react";
 
 const FOOTER_LINKS = {
   tentang: {
-    label: 'Tentang Wafa',
+    label: "Tentang Wafa",
     items: [
-      { label: 'Selayang Pandang', href: '/tentang-kami#selayang' },
-      { label: 'Sejarah & Legalitas', href: '/tentang-kami#sejarah' },
-      { label: 'Visi & Misi', href: '/tentang-kami#visi' },
-      { label: 'Dewan Pakar', href: '/tentang-kami#dewan' },
-      { label: 'Tim Trainer', href: '/tentang-kami#trainer' },
-      { label: 'Budaya Kerja', href: '/tentang-kami#budaya' },
+      { label: "Selayang Pandang", href: "/tentang-kami#selayang" },
+      { label: "Sejarah & Legalitas", href: "/tentang-kami#sejarah" },
+      { label: "Visi & Misi", href: "/tentang-kami#visi" },
+      { label: "Dewan Pakar", href: "/tentang-kami#dewan" },
+      { label: "Tim Trainer", href: "/tentang-kami#trainer" },
+      { label: "Budaya Kerja", href: "/tentang-kami#budaya" },
     ],
   },
   layanan: {
-    label: 'Layanan',
+    label: "Layanan",
     items: [
-      { label: 'Metode 7M', href: '/metode#7m' },
-      { label: 'SAGAQU', href: '/layanan#sagaqu' },
-      { label: 'PSGA', href: '/layanan#psga' },
-      { label: 'Akademi Tahsin Online', href: '/layanan#ato' },
-      { label: 'Akademi Tahfidz', href: '/layanan#tahfidz' },
-      { label: 'Kemitraan Lembaga', href: '/mitra' },
+      { label: "Metode 7M", href: "/metode#7m" },
+      { label: "SAGAQU", href: "/layanan#sagaqu" },
+      { label: "PSGA", href: "/layanan#psga" },
+      { label: "Akademi Tahsin Online", href: "/layanan#ato" },
+      { label: "Akademi Tahfidz", href: "/layanan#tahfidz" },
+      { label: "Kemitraan Lembaga", href: "/mitra" },
     ],
   },
   produk: {
-    label: 'Produk',
+    label: "Produk",
     items: [
-      { label: 'Buku Tilawah', href: '/produk#tilawah' },
-      { label: 'Buku Menulis', href: '/produk#menulis' },
-      { label: 'Aplikasi Wafa', href: '/produk#aplikasi' },
-      { label: 'Kartu Peraga', href: '/produk#peraga' },
-      { label: 'Paket Lengkap', href: '/produk#paket' },
+      { label: "Buku Tilawah", href: "/produk#tilawah" },
+      { label: "Buku Menulis", href: "/produk#menulis" },
+      { label: "Aplikasi Wafa", href: "/produk#aplikasi" },
+      { label: "Kartu Peraga", href: "/produk#peraga" },
+      { label: "Paket Lengkap", href: "/produk#paket" },
     ],
   },
   kontak: {
-    label: 'Kontak',
+    label: "Kontak",
     items: [
-      { label: 'Wafa Pusat', href: '/kontak#pusat' },
-      { label: 'Wafa Daerah', href: '/kontak#daerah' },
-      { label: 'Kemitraan', href: '/mitra' },
-      { label: 'Blog', href: '/blog' },
+      { label: "Wafa Pusat", href: "/kontak#pusat" },
+      { label: "Wafa Daerah", href: "/kontak#daerah" },
+      { label: "Kemitraan", href: "/mitra" },
+      { label: "Blog", href: "/blog" },
     ],
   },
-}
+};
 
 const SOCIAL_LINKS = [
   {
-    label: 'Instagram',
-    href: 'https://instagram.com/wafaindonesia',
+    label: "Instagram",
+    href: "https://instagram.com/wafaindonesia",
     icon: <Instagram className="h-5 w-5" />,
   },
   {
-    label: 'Facebook',
-    href: 'https://facebook.com/wafaindonesia',
+    label: "Facebook",
+    href: "https://facebook.com/wafaindonesia",
     icon: <Facebook className="h-5 w-5" />,
   },
   {
-    label: 'YouTube',
-    href: 'https://youtube.com/wafaindonesia',
+    label: "YouTube",
+    href: "https://youtube.com/wafaindonesia",
     icon: <Youtube className="h-5 w-5" />,
   },
   {
-    label: 'WhatsApp',
-    href: 'https://wa.me/6281130589310',
+    label: "WhatsApp",
+    href: "https://wa.me/6281130589310",
     icon: (
       // Custom WhatsApp SVG
       <svg viewBox="0 0 24 24" className="h-5 w-5" fill="currentColor">
@@ -82,8 +82,8 @@ const SOCIAL_LINKS = [
     ),
   },
   {
-    label: 'TikTok',
-    href: 'https://tiktok.com/@wafaindonesia',
+    label: "TikTok",
+    href: "https://tiktok.com/@wafaindonesia",
     icon: (
       // Custom TikTok SVG
       <svg viewBox="0 0 24 24" className="h-5 w-5" fill="currentColor">
@@ -91,22 +91,22 @@ const SOCIAL_LINKS = [
       </svg>
     ),
   },
-]
+];
 
 export default function Footer() {
-  const [email, setEmail] = useState('')
-  const [subscribed, setSubscribed] = useState(false)
+  const [email, setEmail] = useState("");
+  const [subscribed, setSubscribed] = useState(false);
 
   function handleSubscribe(e: React.FormEvent) {
-    e.preventDefault()
+    e.preventDefault();
     if (email.trim()) {
-      setSubscribed(true)
-      setEmail('')
+      setSubscribed(true);
+      setEmail("");
     }
   }
 
   return (
-    <footer style={{ background: 'var(--deep)' }} className="text-white">
+    <footer className="bg-deep text-white">
       {/* Newsletter strip */}
       <div className="border-b border-white/10">
         <div className="page-wrap py-8">
@@ -116,18 +116,22 @@ export default function Footer() {
                 Tips Parenting Qur'ani Mingguan
               </p>
               <p className="m-0 mt-1 text-sm text-white/60">
-                Inspirasi mendidik anak dengan Al-Qur'an, langsung ke inbox Anda.
+                Inspirasi mendidik anak dengan Al-Qur'an, langsung ke inbox
+                Anda.
               </p>
             </div>
             {subscribed ? (
-              <div className="flex items-center gap-2 rounded-full bg-[rgba(73,216,80,0.15)] px-5 py-3 text-[var(--mint)] border border-[rgba(73,216,80,0.25)]">
+              <div className="flex items-center gap-2 rounded-full bg-[rgba(73,216,80,0.15)] px-5 py-3 text-[var(--color-mint)] border border-[rgba(73,216,80,0.25)]">
                 <Send className="h-4 w-4" />
                 <span className="text-sm font-semibold font-[var(--font-heading)]">
                   Jazakallah! Anda sudah terdaftar.
                 </span>
               </div>
             ) : (
-              <form onSubmit={handleSubscribe} className="flex gap-2 flex-shrink-0">
+              <form
+                onSubmit={handleSubscribe}
+                className="flex gap-2 flex-shrink-0"
+              >
                 <input
                   type="email"
                   value={email}
@@ -138,7 +142,7 @@ export default function Footer() {
                 />
                 <button
                   type="submit"
-                  className="flex items-center gap-1.5 rounded-full bg-[var(--magenta-bold)] px-5 py-2.5 text-sm font-semibold font-[var(--font-heading)] text-white transition hover:bg-[var(--magenta-neon)] hover:shadow-[0_4px_16px_rgba(209,0,113,0.4)]"
+                  className="flex items-center gap-1.5 rounded-full bg-[var(--color-magenta-bold)] px-5 py-2.5 text-sm font-semibold font-[var(--font-heading)] text-white transition hover:bg-[var(--color-magenta-neon)] hover:shadow-[0_4px_16px_rgba(209,0,113,0.4)]"
                 >
                   <Send className="h-3.5 w-3.5" />
                   Subscribe
@@ -154,17 +158,19 @@ export default function Footer() {
         <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-5">
           {/* Brand column */}
           <div className="lg:col-span-1">
-            <Link to="/" className="inline-flex items-center gap-2 no-underline mb-4">
-              <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-[var(--magenta-bold)] to-[var(--magenta-deep)] shadow-[0_4px_16px_rgba(209,0,113,0.35)]">
-                <span className="font-[var(--font-heading)] text-lg font-bold text-white leading-none">W</span>
-              </div>
-              <div className="flex flex-col leading-none">
-                <span className="font-[var(--font-heading)] text-lg font-bold text-white tracking-tight">WAFA</span>
-                <span className="text-[10px] font-medium text-[var(--soft-lavender)] tracking-wide">Indonesia</span>
-              </div>
+            <Link
+              to="/"
+              className="no-underline"
+            >
+              <img
+                src="/logo-white.png"
+                alt="Logo Wafa Indonesia"
+                className="h-24 w-24 object-contain mx-auto"
+              />
             </Link>
-            <p className="mt-4 text-sm leading-relaxed text-white/60 max-w-xs">
-              Belajar Al-Qur'an Metode Otak Kanan. Mudah, menyenangkan, dan terstandar.
+            <p className="text-sm leading-relaxed text-white/60 max-w-xs">
+              Belajar Al-Qur'an Metode Otak Kanan. Mudah, menyenangkan, dan
+              terstandar.
             </p>
 
             {/* Contact info */}
@@ -173,7 +179,7 @@ export default function Footer() {
                 href="tel:+62319904 3404"
                 className="flex items-center gap-2 text-sm text-white/60 hover:text-white no-underline transition"
               >
-                <Phone className="h-3.5 w-3.5 text-[var(--soft-lavender)]" />
+                <Phone className="h-3.5 w-3.5 text-[var(--color-soft-lavender)]" />
                 (031) 9904 3404
               </a>
               <a
@@ -182,18 +188,18 @@ export default function Footer() {
                 rel="noreferrer"
                 className="flex items-center gap-2 text-sm text-white/60 hover:text-white no-underline transition"
               >
-                <Phone className="h-3.5 w-3.5 text-[var(--soft-lavender)]" />
+                <Phone className="h-3.5 w-3.5 text-[var(--color-soft-lavender)]" />
                 0811 3058 9310 (WA)
               </a>
               <a
                 href="mailto:sahabat@wafaindonesia.or.id"
                 className="flex items-center gap-2 text-sm text-white/60 hover:text-white no-underline transition"
               >
-                <Mail className="h-3.5 w-3.5 text-[var(--soft-lavender)]" />
+                <Mail className="h-3.5 w-3.5 text-[var(--color-soft-lavender)]" />
                 sahabat@wafaindonesia.or.id
               </a>
               <div className="flex items-start gap-2 text-sm text-white/60">
-                <MapPin className="h-3.5 w-3.5 mt-0.5 flex-shrink-0 text-[var(--soft-lavender)]" />
+                <MapPin className="h-3.5 w-3.5 mt-0.5 flex-shrink-0 text-[var(--color-soft-lavender)]" />
                 <span>Jl. Raya Wisma Pagesangan No.9, Surabaya 60234</span>
               </div>
             </div>
@@ -225,10 +231,10 @@ export default function Footer() {
                 {col.items.map((item) => (
                   <li key={item.href}>
                     <Link
-                      to={item.href as '/'}
+                      to={item.href as "/"}
                       className="flex items-center gap-1.5 text-sm text-white/55 no-underline transition hover:text-white group"
                     >
-                      <ArrowRight className="h-3 w-3 opacity-0 -translate-x-1 transition-all group-hover:opacity-100 group-hover:translate-x-0 text-[var(--magenta-bright)]" />
+                      <ArrowRight className="h-3 w-3 opacity-0 -translate-x-1 transition-all group-hover:opacity-100 group-hover:translate-x-0 text-[var(--color-magenta-bright)]" />
                       {item.label}
                     </Link>
                   </li>
@@ -243,12 +249,13 @@ export default function Footer() {
       <div className="border-t border-white/10">
         <div className="page-wrap flex flex-col gap-3 py-6 text-center sm:flex-row sm:items-center sm:justify-between sm:text-left">
           <p className="m-0 text-xs text-white/40">
-            © {new Date().getFullYear()} Yayasan Syafa'atul Qur'an Indonesia (YAQIN). Seluruh hak cipta dilindungi.
+            © {new Date().getFullYear()} Yayasan Syafa'atul Qur'an Indonesia
+            (YAQIN). Seluruh hak cipta dilindungi.
           </p>
           <div className="flex flex-wrap items-center justify-center gap-x-4 gap-y-1 sm:justify-end">
             {[
-              'SK Kemenkumham AHU-0000170.AH.01.12.2022',
-              'Tashih LPMQ Kemenag 2023',
+              "SK Kemenkumham AHU-0000170.AH.01.12.2022",
+              "Tashih LPMQ Kemenag 2023",
             ].map((text) => (
               <span
                 key={text}
@@ -261,5 +268,5 @@ export default function Footer() {
         </div>
       </div>
     </footer>
-  )
+  );
 }

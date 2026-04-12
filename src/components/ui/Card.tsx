@@ -9,20 +9,12 @@ interface CardProps extends HTMLAttributes<HTMLDivElement> {
   padding?: 'sm' | 'md' | 'lg'
 }
 
-const ACCENT_BORDER: Record<string, string> = {
-  magenta: 'rgba(209,0,113,0.18)',
-  emerald: 'rgba(31,129,36,0.18)',
-  golden: 'rgba(255,145,0,0.22)',
-  lavender: 'rgba(208,153,255,0.22)',
-  none: 'var(--line)',
-}
-
-const ACCENT_SHADOW: Record<string, string> = {
-  magenta: '0 20px 48px rgba(209,0,113,0.08)',
-  emerald: '0 20px 48px rgba(31,129,36,0.07)',
-  golden: '0 20px 48px rgba(255,145,0,0.07)',
-  lavender: '0 20px 48px rgba(208,153,255,0.07)',
-  none: '0 8px 24px rgba(0,0,0,0.04)',
+const ACCENT_CLASSES: Record<string, string> = {
+  magenta: 'border-[rgba(209,0,113,0.18)] shadow-[0_20px_48px_rgba(209,0,113,0.08)]',
+  emerald: 'border-[rgba(31,129,36,0.18)] shadow-[0_20px_48px_rgba(31,129,36,0.07)]',
+  golden: 'border-[rgba(255,145,0,0.22)] shadow-[0_20px_48px_rgba(255,145,0,0.07)]',
+  lavender: 'border-[rgba(208,153,255,0.22)] shadow-[0_20px_48px_rgba(208,153,255,0.07)]',
+  none: 'border-line shadow-[0_8px_24px_rgba(0,0,0,0.04)]',
 }
 
 const PADDING: Record<string, string> = {
@@ -38,28 +30,20 @@ export function Card({
   glass = false,
   padding = 'md',
   className,
-  style,
   ...rest
 }: CardProps) {
   return (
     <div
       className={[
-        'rounded-3xl',
+        'rounded-3xl border-[1.5px]',
+        glass ? 'bg-white/85 backdrop-blur-sm' : 'bg-white',
         PADDING[padding],
+        ACCENT_CLASSES[accent],
         hoverable ? 'card-hover' : '',
-        glass ? 'backdrop-blur-sm' : '',
         className ?? '',
       ]
         .filter(Boolean)
         .join(' ')}
-      style={{
-        background: glass
-          ? 'rgba(255,255,255,0.85)'
-          : 'white',
-        border: `1.5px solid ${ACCENT_BORDER[accent]}`,
-        boxShadow: ACCENT_SHADOW[accent],
-        ...style,
-      }}
       {...rest}
     >
       {children}

@@ -42,6 +42,25 @@ export function useScrollReveal<T extends HTMLElement = HTMLDivElement>({
 }
 
 /**
+ * Returns a className string and minimal inline style for reveal animation.
+ * Uses the CSS `.reveal` / `.reveal.is-visible` classes from styles.css.
+ *
+ * Usage:
+ *   const { className, style } = revealProps(visible, 200)
+ *   <div className={className} style={style}>
+ */
+export function revealProps(
+  visible: boolean,
+  delay: number = 0
+): { className: string; style?: React.CSSProperties } {
+  const className = visible ? 'reveal is-visible' : 'reveal'
+  return delay > 0
+    ? { className, style: { '--reveal-delay': `${delay}ms` } as React.CSSProperties }
+    : { className }
+}
+
+/**
+ * @deprecated Use revealProps() instead for class-based reveal
  * Returns inline styles for a fade+rise animation based on visibility.
  */
 export function revealStyle(

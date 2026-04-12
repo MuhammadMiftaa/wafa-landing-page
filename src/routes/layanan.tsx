@@ -10,7 +10,7 @@ import {
   CheckCircle,
   ArrowRight,
 } from "lucide-react";
-import { SectionHeading, Badge, TabGroup } from "../components/ui/index.ts";
+import { SectionHeading, Badge } from "../components/ui/index.ts";
 
 export const Route = createFileRoute("/layanan")({ component: LayananPage });
 
@@ -141,28 +141,28 @@ const UPCOMING_EVENTS = [
     nama: "PSGA Jakarta",
     lokasi: "Jakarta",
     type: "PSGA",
-    color: "var(--magenta-bold)",
+    color: "var(--color-magenta-bold)",
   },
   {
     date: "22 Apr 2026",
     nama: "SIMAAN Online",
     lokasi: "Zoom Meeting",
     type: "SIMAAN",
-    color: "var(--emerald)",
+    color: "var(--color-emerald)",
   },
   {
     date: "29 Apr 2026",
     nama: "ODT Bandung",
     lokasi: "Bandung",
     type: "ODT",
-    color: "var(--golden)",
+    color: "var(--color-golden)",
   },
   {
     date: "5 Mei 2026",
     nama: "Upgrading Surabaya",
     lokasi: "Surabaya",
     type: "Upgrading",
-    color: "var(--deep)",
+    color: "var(--color-deep)",
   },
 ];
 
@@ -178,62 +178,23 @@ function LayananPage() {
   return (
     <main>
       {/* Hero */}
-      <section
-        className="section-padding relative overflow-hidden"
-        style={{
-          background:
-            "linear-gradient(135deg,rgba(209,0,113,0.04),rgba(31,129,36,0.03))",
-        }}
-      >
-        <div
-          className="pointer-events-none absolute -right-40 -top-20 h-96 w-96 rounded-full opacity-25"
-          style={{
-            background:
-              "radial-gradient(circle,rgba(31,129,36,0.14),transparent 70%)",
-            filter: "blur(60px)",
-          }}
-        />
+      <section className="section-padding relative overflow-hidden bg-section-magenta-emerald">
+        <div className="blob-emerald absolute -right-40 -top-20 h-96 w-96 opacity-25" />
         <div className="page-wrap relative z-10 text-center">
           <Badge color="emerald">Layanan Wafa</Badge>
-          <h1
-            className="mt-4 text-4xl md:text-5xl font-bold mb-4 leading-tight"
-            style={{
-              fontFamily: "var(--font-heading)",
-              color: "var(--text-primary)",
-            }}
-          >
+          <h1 className="mt-4 font-heading text-4xl md:text-5xl font-bold text-text-primary mb-4 leading-tight">
             Solusi Al-Qur'an untuk{" "}
-            <span
-              style={{
-                background:
-                  "linear-gradient(135deg,var(--magenta-bold),var(--emerald))",
-                WebkitBackgroundClip: "text",
-                WebkitTextFillColor: "transparent",
-                backgroundClip: "text",
-              }}
-            >
-              Semua
-            </span>
+            <span className="gradient-text">Semua</span>
           </h1>
-          <p
-            className="max-w-xl mx-auto text-base md:text-lg leading-relaxed"
-            style={{ color: "var(--text-secondary)" }}
-          >
+          <p className="max-w-xl mx-auto text-base md:text-lg leading-relaxed text-text-secondary">
             Individu, keluarga, guru, maupun lembaga pendidikan — Wafa punya
-            solusi yang tepat untuk setiap tahap perjalanan Al-Qur\'an Anda.
+            solusi yang tepat untuk setiap tahap perjalanan Al-Qur'an Anda.
           </p>
         </div>
       </section>
 
       {/* Journey Filter */}
-      <section
-        className="py-6 sticky top-16 z-30"
-        style={{
-          background: "rgba(255,255,255,0.95)",
-          backdropFilter: "blur(12px)",
-          borderBottom: "1px solid var(--line)",
-        }}
-      >
+      <section className="py-6 sticky top-16 z-30 bg-surface-strong/95 backdrop-blur-md border-b border-line">
         <div className="page-wrap">
           <div className="flex gap-3 justify-center flex-wrap">
             {JOURNEY_TABS.map((tab) => (
@@ -241,16 +202,11 @@ function LayananPage() {
                 key={tab.id}
                 type="button"
                 onClick={() => setActiveJourney(tab.id)}
-                className="tab-pill flex items-center gap-2"
-                style={
+                className={`tab-pill flex items-center gap-2 ${
                   activeJourney === tab.id
-                    ? {
-                        background: "var(--magenta-bold)",
-                        color: "white",
-                        boxShadow: "0 4px 16px rgba(209,0,113,0.3)",
-                      }
-                    : {}
-                }
+                    ? "bg-magenta-bold text-white shadow-[0_4px_16px_rgba(209,0,113,0.3)]"
+                    : ""
+                }`}
               >
                 {tab.icon} {tab.label}
               </button>
@@ -264,72 +220,44 @@ function LayananPage() {
         <div className="page-wrap">
           <div
             key={activeJourney}
-            className="grid md:grid-cols-2 gap-6"
-            style={{ animation: "fade-in 300ms ease both" }}
+            className="grid md:grid-cols-2 gap-6 tab-content-enter"
           >
             {services.map((svc) => (
               <div
                 key={svc.title}
-                className="rounded-3xl p-7 flex flex-col transition-all"
-                style={{
-                  background: svc.highlight
-                    ? "linear-gradient(135deg,rgba(209,0,113,0.04),rgba(75,42,103,0.03))"
-                    : "white",
-                  border: `1.5px solid ${svc.highlight ? "rgba(209,0,113,0.2)" : "var(--line)"}`,
-                  boxShadow: svc.highlight
-                    ? "0 20px 60px rgba(209,0,113,0.08)"
-                    : "0 4px 16px rgba(0,0,0,0.04)",
-                }}
+                className={`rounded-3xl border-[1.5px] p-7 flex flex-col transition-all ${
+                  svc.highlight
+                    ? "border-[rgba(209,0,113,0.2)] bg-gradient-to-br from-[rgba(209,0,113,0.04)] to-[rgba(75,42,103,0.03)] shadow-[0_20px_60px_rgba(209,0,113,0.08)]"
+                    : "border-line bg-white shadow-[0_4px_16px_rgba(0,0,0,0.04)]"
+                }`}
               >
                 <div className="flex items-center gap-3 mb-4">
                   <div
-                    className="flex h-12 w-12 items-center justify-center rounded-2xl text-white"
-                    style={{
-                      background: svc.highlight
-                        ? "var(--magenta-bold)"
-                        : "var(--deep)",
-                    }}
+                    className={`flex h-12 w-12 items-center justify-center rounded-2xl text-white ${
+                      svc.highlight ? "bg-magenta-bold" : "bg-deep"
+                    }`}
                   >
                     {svc.icon}
                   </div>
                   <div>
-                    <h3
-                      className="font-bold text-base"
-                      style={{
-                        fontFamily: "var(--font-heading)",
-                        color: "var(--text-primary)",
-                      }}
-                    >
+                    <h3 className="font-heading text-base font-bold text-text-primary">
                       {svc.title}
                     </h3>
-                    <p
-                      className="text-xs font-semibold"
-                      style={{
-                        color: "var(--magenta-bold)",
-                        fontFamily: "var(--font-heading)",
-                      }}
-                    >
+                    <p className="font-heading text-xs font-semibold text-magenta-bold">
                       {svc.price}
                     </p>
                   </div>
                 </div>
-                <p
-                  className="text-sm leading-relaxed mb-5"
-                  style={{ color: "var(--text-secondary)" }}
-                >
+                <p className="text-sm leading-relaxed text-text-secondary mb-5">
                   {svc.desc}
                 </p>
                 <div className="grid grid-cols-2 gap-2 mb-6 flex-1">
                   {svc.features.map((f) => (
                     <div
                       key={f}
-                      className="flex items-center gap-2 text-xs"
-                      style={{ color: "var(--text-secondary)" }}
+                      className="flex items-center gap-2 text-xs text-text-secondary"
                     >
-                      <CheckCircle
-                        className="h-3.5 w-3.5 flex-shrink-0"
-                        style={{ color: "var(--emerald)" }}
-                      />
+                      <CheckCircle className="h-3.5 w-3.5 flex-shrink-0 text-emerald" />
                       {f}
                     </div>
                   ))}
@@ -338,20 +266,11 @@ function LayananPage() {
                   href={svc.ctaHref}
                   target={svc.ctaHref.startsWith("http") ? "_blank" : undefined}
                   rel="noreferrer"
-                  className="flex items-center justify-center gap-2 rounded-full py-3 text-sm font-semibold no-underline transition-all hover:-translate-y-0.5"
-                  style={{
-                    fontFamily: "var(--font-heading)",
-                    background: svc.highlight
-                      ? "linear-gradient(135deg,var(--magenta-bold),var(--magenta-deep))"
-                      : "transparent",
-                    color: svc.highlight ? "white" : "var(--magenta-bold)",
-                    border: svc.highlight
-                      ? "none"
-                      : "2px solid var(--magenta-bold)",
-                    boxShadow: svc.highlight
-                      ? "0 4px 20px rgba(209,0,113,0.3)"
-                      : "none",
-                  }}
+                  className={`flex items-center justify-center gap-2 rounded-full py-3 font-heading text-sm font-semibold no-underline transition-all hover:-translate-y-0.5 ${
+                    svc.highlight
+                      ? "bg-gradient-primary text-white shadow-[0_4px_20px_rgba(209,0,113,0.3)]"
+                      : "bg-transparent text-magenta-bold border-2 border-magenta-bold"
+                  }`}
                 >
                   {svc.cta} <ArrowRight className="h-4 w-4" />
                 </a>
@@ -362,13 +281,7 @@ function LayananPage() {
       </section>
 
       {/* Kalkulator Investasi */}
-      <section
-        className="section-padding"
-        style={{
-          background:
-            "linear-gradient(180deg,rgba(31,129,36,0.03) 0%,transparent 100%)",
-        }}
-      >
+      <section className="section-padding bg-section-emerald-fade">
         <div className="page-wrap max-w-2xl">
           <SectionHeading
             kicker="Kalkulator Investasi"
@@ -377,24 +290,11 @@ function LayananPage() {
             align="center"
             className="mb-8"
           />
-          <div
-            className="rounded-3xl p-8"
-            style={{
-              background: "white",
-              border: "1px solid var(--line)",
-              boxShadow: "0 16px 48px rgba(157,22,124,0.06)",
-            }}
-          >
+          <div className="surface-card-elevated rounded-3xl p-8">
             <div className="mb-6">
-              <label
-                className="block text-sm font-semibold mb-3"
-                style={{
-                  fontFamily: "var(--font-heading)",
-                  color: "var(--text-primary)",
-                }}
-              >
+              <label className="block font-heading text-sm font-semibold text-text-primary mb-3">
                 Jumlah Siswa:{" "}
-                <span style={{ color: "var(--magenta-bold)" }}>
+                <span className="text-magenta-bold">
                   {siswa} siswa
                 </span>
               </label>
@@ -405,13 +305,9 @@ function LayananPage() {
                 step={10}
                 value={siswa}
                 onChange={(e) => setSiswa(Number(e.target.value))}
-                className="w-full"
-                style={{ accentColor: "var(--magenta-bold)" }}
+                className="w-full accent-magenta-bold"
               />
-              <div
-                className="flex justify-between text-xs mt-1"
-                style={{ color: "var(--text-secondary)" }}
-              >
+              <div className="flex justify-between text-xs mt-1 text-text-secondary">
                 <span>20</span>
                 <span>500+</span>
               </div>
@@ -421,12 +317,12 @@ function LayananPage() {
                 {
                   label: "Estimasi Investasi",
                   value: `Rp${(investasi / 1_000_000).toFixed(0)} juta`,
-                  color: "var(--magenta-bold)",
+                  color: "var(--color-magenta-bold)",
                 },
                 {
                   label: "Per Siswa/Bulan",
                   value: `Rp${perSiswa.toLocaleString("id-ID")}`,
-                  color: "var(--emerald)",
+                  color: "var(--color-emerald)",
                 },
                 {
                   label: "Paket Rekomendasi",
@@ -436,39 +332,26 @@ function LayananPage() {
                       : siswa <= 200
                         ? "Growth"
                         : "Excellence",
-                  color: "var(--deep)",
+                  color: "var(--color-deep)",
                 },
               ].map((item) => (
                 <div
                   key={item.label}
-                  className="rounded-2xl p-4 text-center"
-                  style={{
-                    background: "rgba(209,0,113,0.03)",
-                    border: "1px solid var(--line)",
-                  }}
+                  className="rounded-2xl p-4 text-center bg-[rgba(209,0,113,0.03)] border border-line"
                 >
                   <p
-                    className="font-bold text-base"
-                    style={{
-                      fontFamily: "var(--font-heading)",
-                      color: item.color,
-                    }}
+                    className="font-heading text-base font-bold"
+                    style={{ color: item.color }}
                   >
                     {item.value}
                   </p>
-                  <p
-                    className="text-xs mt-1"
-                    style={{ color: "var(--text-secondary)" }}
-                  >
+                  <p className="text-xs mt-1 text-text-secondary">
                     {item.label}
                   </p>
                 </div>
               ))}
             </div>
-            <p
-              className="text-xs text-center mb-5"
-              style={{ color: "var(--text-secondary)" }}
-            >
+            <p className="text-xs text-center text-text-secondary mb-5">
               *Estimasi bisa cicil 3-6x. Harga final tergantung lokasi & paket.
             </p>
             <a
@@ -494,51 +377,36 @@ function LayananPage() {
             {UPCOMING_EVENTS.map((ev) => (
               <div
                 key={ev.nama}
-                className="rounded-3xl p-6 transition-all card-hover"
-                style={{ background: "white", border: "1px solid var(--line)" }}
+                className="surface-card rounded-3xl p-6 card-hover"
               >
                 <div className="flex items-center gap-2 mb-3">
                   <span
-                    className="text-xs font-bold rounded-full px-2.5 py-1"
+                    className="font-heading text-xs font-bold rounded-full px-2.5 py-1"
                     style={{
                       background: `${ev.color}12`,
                       color: ev.color,
-                      fontFamily: "var(--font-heading)",
                     }}
                   >
                     {ev.type}
                   </span>
                 </div>
-                <p
-                  className="font-bold text-sm mb-1"
-                  style={{
-                    fontFamily: "var(--font-heading)",
-                    color: "var(--text-primary)",
-                  }}
-                >
+                <p className="font-heading text-sm font-bold text-text-primary mb-1">
                   {ev.nama}
                 </p>
-                <p
-                  className="text-xs mb-0.5"
-                  style={{ color: "var(--text-secondary)" }}
-                >
+                <p className="text-xs text-text-secondary mb-0.5">
                   📅 {ev.date}
                 </p>
-                <p
-                  className="text-xs mb-4"
-                  style={{ color: "var(--text-secondary)" }}
-                >
+                <p className="text-xs text-text-secondary mb-4">
                   📍 {ev.lokasi}
                 </p>
                 <a
                   href="https://wa.me/6281130589310"
                   target="_blank"
                   rel="noreferrer"
-                  className="flex items-center justify-center gap-1 text-xs font-semibold rounded-full py-2 no-underline"
+                  className="flex items-center justify-center gap-1 font-heading text-xs font-semibold rounded-full py-2 no-underline"
                   style={{
                     background: `${ev.color}12`,
                     color: ev.color,
-                    fontFamily: "var(--font-heading)",
                     border: `1px solid ${ev.color}30`,
                   }}
                 >

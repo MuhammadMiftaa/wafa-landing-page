@@ -1,16 +1,12 @@
 import { createFileRoute } from "@tanstack/react-router";
 import {
   Target,
-  History,
-  Users,
   Briefcase,
-  MapPin,
   Heart,
   ArrowRight,
-  ChevronRight,
 } from "lucide-react";
 import { SectionHeading, Badge } from "../components/ui/index.ts";
-import { CommunityMapSection } from "../components/landing/sections";
+import { CommunityMapSection } from "../components/section/CommunityMapSection.tsx";
 
 export const Route = createFileRoute("/tentang-kami")({
   component: TentangKamiPage,
@@ -70,24 +66,21 @@ const DEWAN_PAKAR = [
     peran: "Syaikhul Quro'",
     desc: "Pemegang sanad Qiro'ah 'Asyara bersambung hingga Rasulullah ﷺ. Ulama Qiro'ah Internasional.",
     initial: "MM",
-    color: "var(--magenta-bold)",
-    bg: "rgba(209,0,113,0.08)",
+    color: "var(--color-magenta-bold)",
   },
   {
     nama: "Dr. K.H. Muhammad Baihaqi, Lc., M.A.",
     peran: "Ketua Umum IKADI Jawa Timur",
     desc: "Pengajar Prodi Pendidikan Bahasa Arab dan Pascasarjana Fakultas Tarbiyah UINSA Surabaya.",
     initial: "MB",
-    color: "var(--emerald)",
-    bg: "rgba(31,129,36,0.08)",
+    color: "var(--color-emerald)",
   },
   {
     nama: "K.H. Farid Dhofir, LC., M.Si.",
     peran: "Ulama & Pendakwah",
     desc: "Pemangku Pondok Pesantren Refah Islami Sidayu, Gresik. Ulama terkemuka di Jawa Timur.",
     initial: "FD",
-    color: "var(--deep)",
-    bg: "rgba(75,42,103,0.08)",
+    color: "var(--color-deep)",
   },
 ];
 
@@ -113,32 +106,28 @@ const BUDAYA_KERJA = [
     title: "Usrah Mutahammisah",
     desc: "Keluarga yang Antusias. Kami adalah keluarga yang saling mendukung dengan semangat dan keceriaan.",
     icon: "🤝",
-    color: "var(--magenta-bold)",
-    bg: "rgba(209,0,113,0.05)",
+    color: "var(--color-magenta-bold)",
   },
   {
     kode: "NATIJAH",
     title: "Natijah Mumtazah",
     desc: "Kontribusi yang Terbaik. Setiap langkah kami diorientasikan untuk memberikan hasil terbaik bagi umat.",
     icon: "🌟",
-    color: "var(--golden)",
-    bg: "rgba(255,182,19,0.05)",
+    color: "var(--color-golden)",
   },
   {
     kode: "ILMIAH",
     title: "Ilmiah Mubtakiroh",
     desc: "Ilmiah dan Inovatif. Kami mengembangkan metode berbasis riset untuk menjawab tantangan zaman.",
     icon: "💡",
-    color: "var(--emerald)",
-    bg: "rgba(31,129,36,0.05)",
+    color: "var(--color-emerald)",
   },
   {
     kode: "KAF A'AH",
     title: "Kafa'ah Mutazayyidah",
     desc: "Kompetensi yang Tumbuh & Berkembang. Kami berkomitmen untuk terus meningkatkan kemampuan tim.",
     icon: "📈",
-    color: "var(--deep)",
-    bg: "rgba(75,42,103,0.05)",
+    color: "var(--color-deep)",
   },
 ];
 
@@ -147,51 +136,18 @@ function TentangKamiPage() {
     <main>
       {/* Hero */}
       <section className="section-padding relative overflow-hidden">
-        <div
-          className="pointer-events-none absolute -left-40 -top-20 h-96 w-96 rounded-full opacity-40"
-          style={{
-            background:
-              "radial-gradient(circle, rgba(209,0,113,0.1), transparent 70%)",
-            filter: "blur(60px)",
-          }}
-        />
-        <div
-          className="pointer-events-none absolute right-0 top-20 h-72 w-72 rounded-full opacity-30"
-          style={{
-            background:
-              "radial-gradient(circle, rgba(31,129,36,0.1), transparent 70%)",
-            filter: "blur(50px)",
-          }}
-        />
+        <div className="blob-magenta absolute -left-40 -top-20 h-96 w-96 opacity-40" />
+        <div className="blob-emerald absolute right-0 top-20 h-72 w-72 opacity-30" />
         <div className="page-wrap relative z-10">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div>
               <Badge color="magenta">Tentang Kami</Badge>
-              <h1
-                className="mt-4 text-4xl md:text-5xl font-bold mb-5 leading-tight"
-                style={{
-                  fontFamily: "var(--font-heading)",
-                  color: "var(--text-primary)",
-                }}
-              >
+              <h1 className="mt-4 font-heading text-4xl md:text-5xl font-bold text-text-primary mb-5 leading-tight">
                 Bersama Melahirkan{" "}
-                <span
-                  style={{
-                    background:
-                      "linear-gradient(135deg, var(--magenta-bold), var(--emerald))",
-                    WebkitBackgroundClip: "text",
-                    WebkitTextFillColor: "transparent",
-                    backgroundClip: "text",
-                  }}
-                >
-                  Ahli Al-Qur'an
-                </span>{" "}
+                <span className="gradient-text">Ahli Al-Qur'an</span>{" "}
                 Indonesia
               </h1>
-              <p
-                className="text-base md:text-lg leading-relaxed mb-8"
-                style={{ color: "var(--text-secondary)" }}
-              >
+              <p className="text-base md:text-lg leading-relaxed text-text-secondary mb-8">
                 Wafa hadir sejak 2012 dengan satu keyakinan: setiap anak
                 Indonesia berhak mendapatkan pendidikan Al-Qur'an yang mudah,
                 menyenangkan, dan terstandar — melalui metode yang telah
@@ -214,58 +170,23 @@ function TentangKamiPage() {
             </div>
 
             {/* Director message card */}
-            <div
-              className="rounded-3xl p-8"
-              style={{
-                background: "white",
-                border: "1px solid var(--line)",
-                boxShadow: "0 20px 60px rgba(157,22,124,0.08)",
-              }}
-            >
-              <p
-                className="text-xs font-semibold uppercase tracking-widest mb-4"
-                style={{
-                  color: "var(--magenta-bold)",
-                  fontFamily: "var(--font-heading)",
-                }}
-              >
+            <div className="surface-card-elevated rounded-3xl p-8">
+              <p className="m-0 font-heading text-xs font-semibold uppercase tracking-widest text-magenta-bold mb-4">
                 Salam Direktur
               </p>
-              <div
-                className="mb-4 flex h-16 w-16 items-center justify-center rounded-2xl text-white text-xl font-bold"
-                style={{
-                  background:
-                    "linear-gradient(135deg, var(--magenta-bold), var(--deep))",
-                  fontFamily: "var(--font-heading)",
-                }}
-              >
+              <div className="mb-4 flex h-16 w-16 items-center justify-center rounded-2xl text-white text-xl font-bold font-heading bg-gradient-to-br from-magenta-bold to-deep">
                 MY
               </div>
-              <blockquote
-                className="m-0 text-sm leading-relaxed italic"
-                style={{ color: "var(--text-secondary)" }}
-              >
+              <blockquote className="m-0 text-sm leading-relaxed italic text-text-secondary">
                 "Semoga setiap usaha dakwah Al-Qur'an ini menjadi amal yang
                 diridloi-Nya dan memberikan manfaat bagi seluruh pembaca dan
                 umat muslim Indonesia."
               </blockquote>
-              <div
-                className="mt-4 pt-4"
-                style={{ borderTop: "1px solid var(--line)" }}
-              >
-                <p
-                  className="m-0 font-bold text-sm"
-                  style={{
-                    fontFamily: "var(--font-heading)",
-                    color: "var(--text-primary)",
-                  }}
-                >
+              <div className="mt-4 pt-4 border-t border-line">
+                <p className="m-0 font-heading text-sm font-bold text-text-primary">
                   H. Mohamad Yamin, M.Pd.
                 </p>
-                <p
-                  className="m-0 text-xs mt-0.5"
-                  style={{ color: "var(--text-secondary)" }}
-                >
+                <p className="m-0 text-xs mt-0.5 text-text-secondary">
                   Direktur Wafa Indonesia
                 </p>
               </div>
@@ -275,13 +196,7 @@ function TentangKamiPage() {
       </section>
 
       {/* Selayang Pandang */}
-      <section
-        className="section-padding"
-        style={{
-          background:
-            "linear-gradient(180deg, rgba(209,0,113,0.02) 0%, transparent 100%)",
-        }}
-      >
+      <section className="section-padding bg-section-magenta-fade">
         <div className="page-wrap">
           <div className="grid lg:grid-cols-2 gap-12 items-start">
             <SectionHeading
@@ -309,27 +224,14 @@ function TentangKamiPage() {
               ].map((item) => (
                 <div
                   key={item.title}
-                  className="rounded-2xl p-5 flex items-start gap-4"
-                  style={{
-                    background: "white",
-                    border: "1px solid var(--line)",
-                  }}
+                  className="surface-card rounded-2xl p-5 flex items-start gap-4"
                 >
                   <span className="text-2xl flex-shrink-0">{item.icon}</span>
                   <div>
-                    <p
-                      className="m-0 font-bold text-sm"
-                      style={{
-                        fontFamily: "var(--font-heading)",
-                        color: "var(--text-primary)",
-                      }}
-                    >
+                    <p className="m-0 font-heading text-sm font-bold text-text-primary">
                       {item.title}
                     </p>
-                    <p
-                      className="m-0 text-sm mt-1"
-                      style={{ color: "var(--text-secondary)" }}
-                    >
+                    <p className="m-0 text-sm mt-1 text-text-secondary">
                       {item.desc}
                     </p>
                   </div>
@@ -345,41 +247,16 @@ function TentangKamiPage() {
         <div className="page-wrap">
           <div className="grid md:grid-cols-2 gap-8">
             {/* Visi */}
-            <div
-              className="rounded-3xl p-8"
-              style={{
-                background:
-                  "linear-gradient(135deg, rgba(209,0,113,0.04), rgba(157,22,124,0.02))",
-                border: "1.5px solid rgba(209,0,113,0.15)",
-              }}
-            >
+            <div className="rounded-3xl border-[1.5px] border-[rgba(209,0,113,0.15)] bg-gradient-to-br from-[rgba(209,0,113,0.04)] to-[rgba(157,22,124,0.02)] p-8">
               <div className="flex items-center gap-3 mb-5">
-                <div
-                  className="flex h-10 w-10 items-center justify-center rounded-xl"
-                  style={{ background: "rgba(209,0,113,0.1)" }}
-                >
-                  <Target
-                    className="h-5 w-5"
-                    style={{ color: "var(--magenta-bold)" }}
-                  />
+                <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-[rgba(209,0,113,0.1)]">
+                  <Target className="h-5 w-5 text-magenta-bold" />
                 </div>
-                <p
-                  className="m-0 font-bold text-sm uppercase tracking-widest"
-                  style={{
-                    fontFamily: "var(--font-heading)",
-                    color: "var(--magenta-bold)",
-                  }}
-                >
+                <p className="m-0 font-heading text-sm font-bold uppercase tracking-widest text-magenta-bold">
                   Visi
                 </p>
               </div>
-              <p
-                className="text-lg font-bold leading-snug mb-4"
-                style={{
-                  fontFamily: "var(--font-heading)",
-                  color: "var(--text-primary)",
-                }}
-              >
+              <p className="font-heading text-lg font-bold leading-snug text-text-primary mb-4">
                 Melahirkan Ahli Al-Qur'an Sebagai Pembangun Peradaban Masyarakat
                 Qur'ani di Indonesia
               </p>
@@ -392,17 +269,9 @@ function TentangKamiPage() {
                 ].map((item, i) => (
                   <div
                     key={item}
-                    className="flex items-center gap-2 text-sm"
-                    style={{ color: "var(--text-secondary)" }}
+                    className="flex items-center gap-2 text-sm text-text-secondary"
                   >
-                    <span
-                      className="font-bold text-xs"
-                      style={{
-                        color: "var(--magenta-bold)",
-                        fontFamily: "var(--font-heading)",
-                        minWidth: "16px",
-                      }}
-                    >
+                    <span className="font-heading text-xs font-bold text-magenta-bold min-w-4">
                       {i + 1}.
                     </span>
                     {item}
@@ -412,31 +281,12 @@ function TentangKamiPage() {
             </div>
 
             {/* Misi */}
-            <div
-              className="rounded-3xl p-8"
-              style={{
-                background:
-                  "linear-gradient(135deg, rgba(31,129,36,0.04), rgba(73,216,80,0.02))",
-                border: "1.5px solid rgba(31,129,36,0.15)",
-              }}
-            >
+            <div className="rounded-3xl border-[1.5px] border-[rgba(31,129,36,0.15)] bg-gradient-to-br from-[rgba(31,129,36,0.04)] to-[rgba(73,216,80,0.02)] p-8">
               <div className="flex items-center gap-3 mb-5">
-                <div
-                  className="flex h-10 w-10 items-center justify-center rounded-xl"
-                  style={{ background: "rgba(31,129,36,0.1)" }}
-                >
-                  <Heart
-                    className="h-5 w-5"
-                    style={{ color: "var(--emerald)" }}
-                  />
+                <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-[rgba(31,129,36,0.1)]">
+                  <Heart className="h-5 w-5 text-emerald" />
                 </div>
-                <p
-                  className="m-0 font-bold text-sm uppercase tracking-widest"
-                  style={{
-                    fontFamily: "var(--font-heading)",
-                    color: "var(--emerald)",
-                  }}
-                >
+                <p className="m-0 font-heading text-sm font-bold uppercase tracking-widest text-emerald">
                   Misi
                 </p>
               </div>
@@ -449,16 +299,9 @@ function TentangKamiPage() {
                 ].map((item, i) => (
                   <div
                     key={item}
-                    className="flex items-start gap-3 text-sm"
-                    style={{ color: "var(--text-secondary)" }}
+                    className="flex items-start gap-3 text-sm text-text-secondary"
                   >
-                    <span
-                      className="flex h-5 w-5 flex-shrink-0 items-center justify-center rounded-full text-white text-xs font-bold mt-0.5"
-                      style={{
-                        background: "var(--emerald)",
-                        fontFamily: "var(--font-heading)",
-                      }}
-                    >
+                    <span className="flex h-5 w-5 flex-shrink-0 items-center justify-center rounded-full font-heading text-xs font-bold text-white bg-emerald mt-0.5">
                       {i + 1}
                     </span>
                     {item}
@@ -471,13 +314,7 @@ function TentangKamiPage() {
       </section>
 
       {/* Sejarah Timeline */}
-      <section
-        className="section-padding"
-        style={{
-          background:
-            "linear-gradient(180deg, rgba(75,42,103,0.02) 0%, transparent 100%)",
-        }}
-      >
+      <section className="section-padding bg-section-deep-fade">
         <div className="page-wrap">
           <SectionHeading
             kicker="Sejarah & Legalitas"
@@ -488,48 +325,26 @@ function TentangKamiPage() {
 
           <div className="relative">
             {/* Vertical line */}
-            <div
-              className="absolute left-6 top-0 bottom-0 w-0.5 hidden md:block"
-              style={{
-                background:
-                  "linear-gradient(to bottom, var(--magenta-bold), var(--emerald))",
-              }}
-            />
+            <div className="absolute left-6 top-0 bottom-0 w-0.5 hidden md:block bg-gradient-to-b from-magenta-bold to-emerald" />
 
             <div className="space-y-6">
               {SEJARAH_TIMELINE.map((item, i) => (
                 <div key={item.year} className="flex items-start gap-6">
                   {/* Dot */}
                   <div
-                    className="hidden md:flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full text-white text-xs font-bold relative z-10"
+                    className="hidden md:flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full font-heading text-white text-xs font-bold relative z-10"
                     style={{
-                      fontFamily: "var(--font-heading)",
                       background: `hsl(${310 - i * 25}, 65%, ${40 + i * 2}%)`,
                       boxShadow: `0 4px 12px hsla(${310 - i * 25}, 65%, 40%, 0.3)`,
                     }}
                   >
                     {item.year.slice(2)}
                   </div>
-                  <div
-                    className="flex-1 rounded-2xl p-5"
-                    style={{
-                      background: "white",
-                      border: "1px solid var(--line)",
-                    }}
-                  >
-                    <span
-                      className="text-xs font-bold"
-                      style={{
-                        fontFamily: "var(--font-heading)",
-                        color: "var(--magenta-bold)",
-                      }}
-                    >
+                  <div className="flex-1 surface-card rounded-2xl p-5">
+                    <span className="font-heading text-xs font-bold text-magenta-bold">
                       {item.year}
                     </span>
-                    <p
-                      className="m-0 mt-1 text-sm"
-                      style={{ color: "var(--text-primary)" }}
-                    >
+                    <p className="m-0 mt-1 text-sm text-text-primary">
                       {item.event}
                     </p>
                   </div>
@@ -545,43 +360,39 @@ function TentangKamiPage() {
                 label: "YAQIN",
                 no: "AHU-0000170.AH.01.12.2022",
                 icon: "🏛️",
-                color: "var(--magenta-bold)",
+                color: "var(--color-magenta-bold)",
               },
               {
                 label: "Kemenkumham RI",
                 no: "Badan Hukum Resmi 2022",
                 icon: "⚖️",
-                color: "var(--deep)",
+                color: "var(--color-deep)",
               },
               {
                 label: "Kemenag RI",
                 no: "Majelis Ta'lim 2022",
                 icon: "☪️",
-                color: "var(--emerald)",
+                color: "var(--color-emerald)",
               },
               {
                 label: "Tashih LPMQ",
                 no: "28 Oktober 2023",
                 icon: "✅",
-                color: "var(--golden)",
+                color: "var(--color-golden)",
               },
             ].map((l) => (
               <div
                 key={l.label}
-                className="rounded-2xl p-5 text-center transition-all card-hover"
-                style={{ background: "white", border: "1px solid var(--line)" }}
+                className="surface-card rounded-2xl p-5 text-center card-hover"
               >
                 <div className="text-3xl mb-3">{l.icon}</div>
                 <p
-                  className="m-0 font-bold text-sm"
-                  style={{ fontFamily: "var(--font-heading)", color: l.color }}
+                  className="m-0 font-heading text-sm font-bold"
+                  style={{ color: l.color }}
                 >
                   {l.label}
                 </p>
-                <p
-                  className="m-0 text-xs mt-1 leading-snug"
-                  style={{ color: "var(--text-secondary)" }}
-                >
+                <p className="m-0 text-xs mt-1 leading-snug text-text-secondary">
                   {l.no}
                 </p>
               </div>
@@ -604,41 +415,24 @@ function TentangKamiPage() {
             {DEWAN_PAKAR.map((d) => (
               <div
                 key={d.nama}
-                className="rounded-3xl p-7 text-center transition-all card-hover"
-                style={{
-                  background: "white",
-                  border: "1px solid var(--line)",
-                  boxShadow: "0 8px 32px rgba(157,22,124,0.05)",
-                }}
+                className="surface-card rounded-3xl p-7 text-center card-hover"
               >
                 <div
-                  className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-2xl text-white text-xl font-bold"
-                  style={{
-                    background: d.color,
-                    fontFamily: "var(--font-heading)",
-                  }}
+                  className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-2xl font-heading text-white text-xl font-bold"
+                  style={{ background: d.color }}
                 >
                   {d.initial}
                 </div>
-                <h3
-                  className="font-bold text-sm leading-snug mb-1"
-                  style={{
-                    fontFamily: "var(--font-heading)",
-                    color: "var(--text-primary)",
-                  }}
-                >
+                <h3 className="font-heading text-sm font-bold leading-snug text-text-primary mb-1">
                   {d.nama}
                 </h3>
                 <p
-                  className="text-xs font-medium mb-3"
-                  style={{ color: d.color, fontFamily: "var(--font-heading)" }}
+                  className="font-heading text-xs font-medium mb-3"
+                  style={{ color: d.color }}
                 >
                   {d.peran}
                 </p>
-                <p
-                  className="text-xs leading-relaxed"
-                  style={{ color: "var(--text-secondary)" }}
-                >
+                <p className="text-xs leading-relaxed text-text-secondary">
                   {d.desc}
                 </p>
               </div>
@@ -648,13 +442,7 @@ function TentangKamiPage() {
       </section>
 
       {/* Trainer */}
-      <section
-        className="section-padding"
-        style={{
-          background:
-            "linear-gradient(180deg, rgba(209,0,113,0.02) 0%, transparent 100%)",
-        }}
-      >
+      <section className="section-padding bg-section-magenta-fade">
         <div className="page-wrap">
           <SectionHeading
             kicker="Tim Trainer"
@@ -665,14 +453,12 @@ function TentangKamiPage() {
             {TRAINER.map((t, i) => (
               <div
                 key={t.nama}
-                className="rounded-2xl p-5 flex items-center gap-3 transition-all card-hover"
-                style={{ background: "white", border: "1px solid var(--line)" }}
+                className="surface-card rounded-2xl p-5 flex items-center gap-3 card-hover"
               >
                 <div
-                  className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-xl text-white text-sm font-bold"
+                  className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-xl font-heading text-white text-sm font-bold"
                   style={{
                     background: `hsl(${310 - i * 30}, 60%, 40%)`,
-                    fontFamily: "var(--font-heading)",
                   }}
                 >
                   {t.nama
@@ -682,45 +468,21 @@ function TentangKamiPage() {
                     .join("")}
                 </div>
                 <div>
-                  <p
-                    className="m-0 font-semibold text-xs"
-                    style={{
-                      fontFamily: "var(--font-heading)",
-                      color: "var(--text-primary)",
-                    }}
-                  >
+                  <p className="m-0 font-heading text-xs font-semibold text-text-primary">
                     {t.nama}
                   </p>
-                  <p
-                    className="m-0 text-xs mt-0.5"
-                    style={{ color: "var(--text-secondary)" }}
-                  >
+                  <p className="m-0 text-xs mt-0.5 text-text-secondary">
                     {t.peran}
                   </p>
                 </div>
               </div>
             ))}
-            <div
-              className="rounded-2xl p-5 flex items-center justify-center text-center transition-all card-hover"
-              style={{
-                background: "rgba(209,0,113,0.03)",
-                border: "1px dashed rgba(209,0,113,0.2)",
-              }}
-            >
+            <div className="rounded-2xl p-5 flex items-center justify-center text-center card-hover bg-[rgba(209,0,113,0.03)] border border-dashed border-[rgba(209,0,113,0.2)]">
               <div>
-                <p
-                  className="m-0 font-bold text-sm"
-                  style={{
-                    fontFamily: "var(--font-heading)",
-                    color: "var(--magenta-bold)",
-                  }}
-                >
+                <p className="m-0 font-heading text-sm font-bold text-magenta-bold">
                   +Ratusan
                 </p>
-                <p
-                  className="m-0 text-xs mt-0.5"
-                  style={{ color: "var(--text-secondary)" }}
-                >
+                <p className="m-0 text-xs mt-0.5 text-text-secondary">
                   Trainer di seluruh Indonesia
                 </p>
               </div>
@@ -743,29 +505,23 @@ function TentangKamiPage() {
             {BUDAYA_KERJA.map((b) => (
               <div
                 key={b.kode}
-                className="rounded-3xl p-6 text-center transition-all card-hover"
-                style={{ background: b.bg, border: `1.5px solid ${b.color}22` }}
+                className="rounded-3xl p-6 text-center card-hover"
+                style={{
+                  background: `${b.color}0d`,
+                  border: `1.5px solid ${b.color}22`,
+                }}
               >
                 <div className="text-3xl mb-3">{b.icon}</div>
                 <p
-                  className="m-0 text-xs font-bold uppercase tracking-widest mb-1"
-                  style={{ fontFamily: "var(--font-heading)", color: b.color }}
+                  className="m-0 font-heading text-xs font-bold uppercase tracking-widest mb-1"
+                  style={{ color: b.color }}
                 >
                   {b.kode}
                 </p>
-                <p
-                  className="m-0 font-bold text-sm mb-2"
-                  style={{
-                    fontFamily: "var(--font-heading)",
-                    color: "var(--text-primary)",
-                  }}
-                >
+                <p className="m-0 font-heading text-sm font-bold text-text-primary mb-2">
                   {b.title}
                 </p>
-                <p
-                  className="m-0 text-xs leading-relaxed"
-                  style={{ color: "var(--text-secondary)" }}
-                >
+                <p className="m-0 text-xs leading-relaxed text-text-secondary">
                   {b.desc}
                 </p>
               </div>
@@ -780,28 +536,12 @@ function TentangKamiPage() {
       {/* Download CTA */}
       <section className="section-padding">
         <div className="page-wrap">
-          <div
-            className="rounded-3xl p-8 md:p-12 text-center"
-            style={{
-              background:
-                "linear-gradient(135deg, rgba(75,42,103,0.06), rgba(157,22,124,0.04))",
-              border: "1px solid rgba(75,42,103,0.15)",
-            }}
-          >
+          <div className="rounded-3xl border border-[rgba(75,42,103,0.15)] bg-gradient-to-br from-[rgba(75,42,103,0.06)] to-[rgba(157,22,124,0.04)] p-8 md:p-12 text-center">
             <p className="section-kicker mb-3">Bergabung bersama kami</p>
-            <h2
-              className="text-2xl md:text-3xl font-bold mb-3"
-              style={{
-                fontFamily: "var(--font-heading)",
-                color: "var(--text-primary)",
-              }}
-            >
+            <h2 className="font-heading text-2xl md:text-3xl font-bold text-text-primary mb-3">
               Jadilah Bagian dari Gerakan Wafa
             </h2>
-            <p
-              className="text-sm mb-8 max-w-lg mx-auto"
-              style={{ color: "var(--text-secondary)" }}
-            >
+            <p className="text-sm text-text-secondary mb-8 max-w-lg mx-auto">
               Bersama-sama kita lahirkan ahli Al-Qur'an sebagai pembangun
               peradaban masyarakat Qur'ani di Indonesia.
             </p>

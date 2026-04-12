@@ -23,17 +23,11 @@ export function Marquee({
 }: MarqueeProps) {
   return (
     <div
-      className={`overflow-hidden w-full ${className ?? ''}`}
-      style={{ maskImage: 'linear-gradient(to right, transparent, black 10%, black 90%, transparent)' }}
+      className={`overflow-hidden w-full [mask-image:linear-gradient(to_right,transparent,black_10%,black_90%,transparent)] ${className ?? ''}`}
     >
       <div
-        className={`flex w-max items-center ${pauseOnHover ? 'group' : ''}`}
-        style={{
-          animation: `marquee ${speed}s linear infinite ${reverse ? 'reverse' : ''}`,
-          animationPlayState: 'running',
-        }}
-        // Pause on hover via inline style trick doesn't work well in CSS;
-        // use the class-based approach from styles.css if pauseOnHover
+        className={`flex w-max items-center animate-marquee ${reverse ? '[animation-direction:reverse]' : ''} ${pauseOnHover ? 'hover:[animation-play-state:paused]' : ''}`}
+        style={{ animationDuration: `${speed}s` }}
       >
         {/* Original */}
         <div className="flex items-center">{children}</div>

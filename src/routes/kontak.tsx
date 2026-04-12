@@ -53,40 +53,14 @@ function KontakPage() {
     <main>
       {/* Hero */}
       <section className="section-padding relative overflow-hidden">
-        <div
-          className="pointer-events-none absolute -left-32 -top-20 h-96 w-96 rounded-full opacity-40"
-          style={{
-            background:
-              "radial-gradient(circle, rgba(209,0,113,0.12), transparent 70%)",
-            filter: "blur(60px)",
-          }}
-        />
+        <div className="blob-magenta absolute -left-32 -top-20 h-96 w-96 opacity-40" />
         <div className="page-wrap relative z-10 text-center">
           <Badge color="magenta">Hubungi Kami</Badge>
-          <h1
-            className="mt-4 text-4xl md:text-5xl font-bold mb-4"
-            style={{
-              fontFamily: "var(--font-heading)",
-              color: "var(--text-primary)",
-            }}
-          >
+          <h1 className="mt-4 font-heading text-4xl md:text-5xl font-bold text-text-primary mb-4">
             Kami Siap{" "}
-            <span
-              style={{
-                background:
-                  "linear-gradient(135deg,var(--magenta-bold),var(--emerald))",
-                WebkitBackgroundClip: "text",
-                WebkitTextFillColor: "transparent",
-                backgroundClip: "text",
-              }}
-            >
-              Membantu Anda
-            </span>
+            <span className="gradient-text">Membantu Anda</span>
           </h1>
-          <p
-            className="max-w-xl mx-auto text-base md:text-lg leading-relaxed"
-            style={{ color: "var(--text-secondary)" }}
-          >
+          <p className="max-w-xl mx-auto text-base md:text-lg leading-relaxed text-text-secondary">
             Punya pertanyaan tentang metode, kemitraan, atau produk Wafa? Tim
             kami merespons dalam 1×24 jam kerja.
           </p>
@@ -98,30 +72,14 @@ function KontakPage() {
         <div className="page-wrap">
           <div className="grid lg:grid-cols-2 gap-10 items-start">
             {/* Contact Form */}
-            <div
-              className="rounded-3xl p-8"
-              style={{
-                background: "white",
-                border: "1px solid var(--line)",
-                boxShadow: "0 16px 48px rgba(157,22,124,0.06)",
-              }}
-            >
+            <div className="surface-card-elevated rounded-3xl p-8">
               {sent ? (
                 <div className="text-center py-12">
                   <div className="text-6xl mb-4">✉️</div>
-                  <h3
-                    className="text-2xl font-bold mb-2"
-                    style={{
-                      fontFamily: "var(--font-heading)",
-                      color: "var(--text-primary)",
-                    }}
-                  >
+                  <h3 className="font-heading text-2xl font-bold text-text-primary mb-2">
                     Jazakallah Khair!
                   </h3>
-                  <p
-                    className="text-sm"
-                    style={{ color: "var(--text-secondary)" }}
-                  >
+                  <p className="text-sm text-text-secondary">
                     Pesan Anda sudah kami terima. Tim Wafa akan menghubungi Anda
                     dalam 1×24 jam kerja.
                   </p>
@@ -137,40 +95,19 @@ function KontakPage() {
                         pesan: "",
                       });
                     }}
-                    className="mt-6 text-sm font-semibold"
-                    style={{
-                      color: "var(--magenta-bold)",
-                      fontFamily: "var(--font-heading)",
-                      background: "none",
-                      border: "none",
-                      cursor: "pointer",
-                    }}
+                    className="mt-6 font-heading text-sm font-semibold text-magenta-bold bg-transparent border-none cursor-pointer"
                   >
                     Kirim pesan lain →
                   </button>
                 </div>
               ) : (
                 <>
-                  <h2
-                    className="text-xl font-bold mb-6"
-                    style={{
-                      fontFamily: "var(--font-heading)",
-                      color: "var(--text-primary)",
-                    }}
-                  >
+                  <h2 className="font-heading text-xl font-bold text-text-primary mb-6">
                     Kirim Pesan
                   </h2>
                   <form onSubmit={handleSubmit} className="space-y-4">
                     <div>
-                      <label
-                        className="block text-xs font-semibold mb-1.5"
-                        style={{
-                          fontFamily: "var(--font-heading)",
-                          color: "var(--text-secondary)",
-                        }}
-                      >
-                        Nama Lengkap *
-                      </label>
+                      <label className="form-label">Nama Lengkap *</label>
                       <input
                         type="text"
                         name="nama"
@@ -178,25 +115,12 @@ function KontakPage() {
                         onChange={handleChange}
                         required
                         placeholder="Nama Anda"
-                        className="w-full rounded-xl border px-4 py-3 text-sm outline-none transition-all"
-                        style={{
-                          borderColor: "var(--line)",
-                          color: "var(--text-primary)",
-                          fontFamily: "var(--font-sans)",
-                        }}
+                        className="form-input"
                       />
                     </div>
                     <div className="grid sm:grid-cols-2 gap-4">
                       <div>
-                        <label
-                          className="block text-xs font-semibold mb-1.5"
-                          style={{
-                            fontFamily: "var(--font-heading)",
-                            color: "var(--text-secondary)",
-                          }}
-                        >
-                          Email *
-                        </label>
+                        <label className="form-label">Email *</label>
                         <input
                           type="email"
                           name="email"
@@ -204,62 +128,28 @@ function KontakPage() {
                           onChange={handleChange}
                           required
                           placeholder="email@contoh.com"
-                          className="w-full rounded-xl border px-4 py-3 text-sm outline-none transition-all"
-                          style={{
-                            borderColor: "var(--line)",
-                            color: "var(--text-primary)",
-                            fontFamily: "var(--font-sans)",
-                          }}
+                          className="form-input"
                         />
                       </div>
                       <div>
-                        <label
-                          className="block text-xs font-semibold mb-1.5"
-                          style={{
-                            fontFamily: "var(--font-heading)",
-                            color: "var(--text-secondary)",
-                          }}
-                        >
-                          Telepon / WA
-                        </label>
+                        <label className="form-label">Telepon / WA</label>
                         <input
                           type="tel"
                           name="telepon"
                           value={form.telepon}
                           onChange={handleChange}
                           placeholder="08xx-xxxx-xxxx"
-                          className="w-full rounded-xl border px-4 py-3 text-sm outline-none transition-all"
-                          style={{
-                            borderColor: "var(--line)",
-                            color: "var(--text-primary)",
-                            fontFamily: "var(--font-sans)",
-                          }}
+                          className="form-input"
                         />
                       </div>
                     </div>
                     <div>
-                      <label
-                        className="block text-xs font-semibold mb-1.5"
-                        style={{
-                          fontFamily: "var(--font-heading)",
-                          color: "var(--text-secondary)",
-                        }}
-                      >
-                        Saya adalah...
-                      </label>
+                      <label className="form-label">Saya adalah...</label>
                       <select
                         name="kategori"
                         value={form.kategori}
                         onChange={handleChange}
-                        className="w-full rounded-xl border px-4 py-3 text-sm outline-none transition-all appearance-none"
-                        style={{
-                          borderColor: "var(--line)",
-                          color: form.kategori
-                            ? "var(--text-primary)"
-                            : "var(--text-secondary)",
-                          fontFamily: "var(--font-sans)",
-                          background: "white",
-                        }}
+                        className={`form-select ${form.kategori ? "text-text-primary" : "text-text-secondary"}`}
                       >
                         <option value="">Pilih kategori...</option>
                         {KATEGORI.map((k) => (
@@ -270,15 +160,7 @@ function KontakPage() {
                       </select>
                     </div>
                     <div>
-                      <label
-                        className="block text-xs font-semibold mb-1.5"
-                        style={{
-                          fontFamily: "var(--font-heading)",
-                          color: "var(--text-secondary)",
-                        }}
-                      >
-                        Pesan *
-                      </label>
+                      <label className="form-label">Pesan *</label>
                       <textarea
                         name="pesan"
                         value={form.pesan}
@@ -286,23 +168,12 @@ function KontakPage() {
                         required
                         rows={5}
                         placeholder="Tulis pesan Anda di sini..."
-                        className="w-full rounded-xl border px-4 py-3 text-sm outline-none transition-all resize-none"
-                        style={{
-                          borderColor: "var(--line)",
-                          color: "var(--text-primary)",
-                          fontFamily: "var(--font-sans)",
-                        }}
+                        className="form-textarea"
                       />
                     </div>
                     <button
                       type="submit"
-                      className="w-full flex items-center justify-center gap-2 text-white text-sm font-semibold rounded-full py-3.5 transition-all"
-                      style={{
-                        fontFamily: "var(--font-heading)",
-                        background:
-                          "linear-gradient(135deg, var(--magenta-bold), var(--magenta-deep))",
-                        boxShadow: "0 4px 20px rgba(209,0,113,0.3)",
-                      }}
+                      className="btn-primary w-full justify-center py-3.5"
                     >
                       <Send className="h-4 w-4" />
                       Kirim Pesan
@@ -315,75 +186,37 @@ function KontakPage() {
             {/* Contact Info */}
             <div className="space-y-6">
               {/* Wafa Pusat */}
-              <div
-                className="rounded-3xl p-7"
-                style={{
-                  background: "white",
-                  border: "1px solid var(--line)",
-                  boxShadow: "0 8px 32px rgba(157,22,124,0.05)",
-                }}
-              >
-                <h3
-                  className="font-bold text-base mb-5"
-                  style={{
-                    fontFamily: "var(--font-heading)",
-                    color: "var(--text-primary)",
-                  }}
-                >
+              <div className="surface-card rounded-3xl p-7">
+                <h3 className="font-heading text-base font-bold text-text-primary mb-5">
                   🏢 Wafa Pusat — Surabaya
                 </h3>
                 <div className="space-y-4">
                   {[
                     {
-                      icon: (
-                        <MapPin
-                          className="h-4 w-4"
-                          style={{ color: "var(--magenta-bold)" }}
-                        />
-                      ),
+                      icon: <MapPin className="h-4 w-4 text-magenta-bold" />,
                       label: "Alamat",
                       value:
                         "Jl. Raya Wisma Pagesangan No.9 Menanggal, Kec. Gayungan, Kota Surabaya, Jawa Timur 60234",
                     },
                     {
-                      icon: (
-                        <Phone
-                          className="h-4 w-4"
-                          style={{ color: "var(--magenta-bold)" }}
-                        />
-                      ),
+                      icon: <Phone className="h-4 w-4 text-magenta-bold" />,
                       label: "Telepon",
                       value: "(031) 9904 3404",
                     },
                     {
-                      icon: (
-                        <Phone
-                          className="h-4 w-4"
-                          style={{ color: "var(--emerald)" }}
-                        />
-                      ),
+                      icon: <Phone className="h-4 w-4 text-emerald" />,
                       label: "WhatsApp",
                       value: "0811 3058 9306 / 0811 3058 9310",
                       href: "https://wa.me/6281130589310",
                     },
                     {
-                      icon: (
-                        <Mail
-                          className="h-4 w-4"
-                          style={{ color: "var(--magenta-bold)" }}
-                        />
-                      ),
+                      icon: <Mail className="h-4 w-4 text-magenta-bold" />,
                       label: "Email",
                       value: "sahabat@wafaindonesia.or.id",
                       href: "mailto:sahabat@wafaindonesia.or.id",
                     },
                     {
-                      icon: (
-                        <Clock
-                          className="h-4 w-4"
-                          style={{ color: "var(--golden)" }}
-                        />
-                      ),
+                      icon: <Clock className="h-4 w-4 text-golden" />,
                       label: "Jam Kerja",
                       value:
                         "Senin–Jumat: 08.00–16.00 · Sabtu: 08.00–12.00 WIB",
@@ -392,13 +225,7 @@ function KontakPage() {
                     <div key={item.label} className="flex items-start gap-3">
                       <span className="mt-0.5 flex-shrink-0">{item.icon}</span>
                       <div>
-                        <p
-                          className="m-0 text-xs font-semibold"
-                          style={{
-                            fontFamily: "var(--font-heading)",
-                            color: "var(--text-secondary)",
-                          }}
-                        >
+                        <p className="m-0 font-heading text-xs font-semibold text-text-secondary">
                           {item.label}
                         </p>
                         {item.href ? (
@@ -406,16 +233,12 @@ function KontakPage() {
                             href={item.href}
                             target="_blank"
                             rel="noreferrer"
-                            className="text-sm no-underline"
-                            style={{ color: "var(--magenta-bold)" }}
+                            className="text-sm text-magenta-bold no-underline"
                           >
                             {item.value}
                           </a>
                         ) : (
-                          <p
-                            className="m-0 text-sm"
-                            style={{ color: "var(--text-primary)" }}
-                          >
+                          <p className="m-0 text-sm text-text-primary">
                             {item.value}
                           </p>
                         )}
@@ -425,24 +248,10 @@ function KontakPage() {
                 </div>
 
                 {/* Map placeholder */}
-                <div
-                  className="mt-5 rounded-2xl flex items-center justify-center"
-                  style={{
-                    height: 160,
-                    background:
-                      "linear-gradient(135deg, rgba(209,0,113,0.05), rgba(31,129,36,0.05))",
-                    border: "1px dashed var(--line)",
-                  }}
-                >
+                <div className="mt-5 h-40 rounded-2xl flex items-center justify-center bg-product-area border border-dashed border-line">
                   <div className="text-center">
-                    <MapPin
-                      className="h-8 w-8 mx-auto mb-2"
-                      style={{ color: "var(--magenta-bold)" }}
-                    />
-                    <p
-                      className="text-xs"
-                      style={{ color: "var(--text-secondary)" }}
-                    >
+                    <MapPin className="h-8 w-8 mx-auto mb-2 text-magenta-bold" />
+                    <p className="text-xs text-text-secondary">
                       Peta Lokasi Wafa Pusat
                     </p>
                   </div>
@@ -454,17 +263,9 @@ function KontakPage() {
                 href="https://wa.me/6281130589310"
                 target="_blank"
                 rel="noreferrer"
-                className="flex items-center gap-4 rounded-3xl p-6 no-underline transition-all card-hover"
-                style={{
-                  background:
-                    "linear-gradient(135deg, rgba(37,211,102,0.08), rgba(18,140,126,0.06))",
-                  border: "1.5px solid rgba(37,211,102,0.2)",
-                }}
+                className="flex items-center gap-4 rounded-3xl border-[1.5px] border-[rgba(37,211,102,0.2)] bg-gradient-to-br from-[rgba(37,211,102,0.08)] to-[rgba(18,140,126,0.06)] p-6 no-underline card-hover"
               >
-                <div
-                  className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-2xl text-white"
-                  style={{ background: "#25D366" }}
-                >
+                <div className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-2xl text-white bg-[#25D366]">
                   <svg
                     viewBox="0 0 24 24"
                     className="h-6 w-6"
@@ -474,19 +275,10 @@ function KontakPage() {
                   </svg>
                 </div>
                 <div>
-                  <p
-                    className="m-0 font-bold text-sm"
-                    style={{
-                      fontFamily: "var(--font-heading)",
-                      color: "#128C7E",
-                    }}
-                  >
+                  <p className="m-0 font-heading text-sm font-bold text-[#128C7E]">
                     Chat Langsung via WhatsApp
                   </p>
-                  <p
-                    className="m-0 text-xs mt-0.5"
-                    style={{ color: "var(--text-secondary)" }}
-                  >
+                  <p className="m-0 text-xs mt-0.5 text-text-secondary">
                     0811 3058 9310 · Respon tercepat
                   </p>
                 </div>
@@ -497,13 +289,7 @@ function KontakPage() {
       </section>
 
       {/* Wafa Daerah */}
-      <section
-        className="section-padding"
-        style={{
-          background:
-            "linear-gradient(180deg, rgba(209,0,113,0.02) 0%, transparent 100%)",
-        }}
-      >
+      <section className="section-padding bg-section-magenta-fade">
         <div className="page-wrap">
           <SectionHeading
             kicker="Perwakilan Daerah"
@@ -515,8 +301,7 @@ function KontakPage() {
             {Object.entries(grouped).map(([provinsi, daerahList]) => (
               <div
                 key={provinsi}
-                className="rounded-2xl overflow-hidden"
-                style={{ border: "1px solid var(--line)", background: "white" }}
+                className="rounded-2xl overflow-hidden border border-line bg-white"
               >
                 <button
                   type="button"
@@ -526,64 +311,31 @@ function KontakPage() {
                   className="w-full flex items-center justify-between px-6 py-4 text-left transition-colors hover:bg-[rgba(209,0,113,0.03)]"
                 >
                   <div className="flex items-center gap-3">
-                    <MapPin
-                      className="h-4 w-4 flex-shrink-0"
-                      style={{ color: "var(--magenta-bold)" }}
-                    />
-                    <span
-                      className="font-semibold text-sm"
-                      style={{
-                        fontFamily: "var(--font-heading)",
-                        color: "var(--text-primary)",
-                      }}
-                    >
+                    <MapPin className="h-4 w-4 flex-shrink-0 text-magenta-bold" />
+                    <span className="font-heading text-sm font-semibold text-text-primary">
                       {provinsi}
                     </span>
-                    <span
-                      className="text-xs font-medium rounded-full px-2.5 py-0.5"
-                      style={{
-                        background: "rgba(209,0,113,0.08)",
-                        color: "var(--magenta-bold)",
-                        fontFamily: "var(--font-heading)",
-                      }}
-                    >
+                    <span className="font-heading text-xs font-medium rounded-full px-2.5 py-0.5 bg-[rgba(209,0,113,0.08)] text-magenta-bold">
                       {daerahList.length} wilayah
                     </span>
                   </div>
                   <ChevronDown
-                    className={`h-4 w-4 transition-transform duration-200 ${openProvinsi === provinsi ? "rotate-180" : ""}`}
-                    style={{ color: "var(--text-secondary)" }}
+                    className={`h-4 w-4 text-text-secondary transition-transform duration-200 ${openProvinsi === provinsi ? "rotate-180" : ""}`}
                   />
                 </button>
 
                 {openProvinsi === provinsi && (
-                  <div
-                    className="border-t"
-                    style={{
-                      borderColor: "var(--line)",
-                      background: "rgba(209,0,113,0.02)",
-                    }}
-                  >
+                  <div className="border-t border-line bg-[rgba(209,0,113,0.02)]">
                     {daerahList.map((d) => (
                       <div
                         key={`${d.provinsi}-${d.kota}`}
-                        className="flex items-center justify-between px-6 py-3.5 border-b last:border-b-0"
-                        style={{ borderColor: "var(--line)" }}
+                        className="flex items-center justify-between px-6 py-3.5 border-b border-line last:border-b-0"
                       >
                         <div>
-                          <p
-                            className="m-0 font-semibold text-sm"
-                            style={{
-                              fontFamily: "var(--font-heading)",
-                              color: "var(--text-primary)",
-                            }}
-                          >
+                          <p className="m-0 font-heading text-sm font-semibold text-text-primary">
                             {d.kota}
                           </p>
-                          <p
-                            className="m-0 text-xs mt-0.5"
-                            style={{ color: "var(--text-secondary)" }}
-                          >
+                          <p className="m-0 text-xs mt-0.5 text-text-secondary">
                             Koordinator: {d.ketua}
                           </p>
                         </div>
@@ -591,13 +343,7 @@ function KontakPage() {
                           href={`https://wa.me/${d.wa}`}
                           target="_blank"
                           rel="noreferrer"
-                          className="flex items-center gap-1.5 text-xs font-semibold rounded-full px-4 py-2 no-underline flex-shrink-0"
-                          style={{
-                            background: "rgba(37,211,102,0.1)",
-                            color: "#128C7E",
-                            border: "1px solid rgba(37,211,102,0.2)",
-                            fontFamily: "var(--font-heading)",
-                          }}
+                          className="flex items-center gap-1.5 font-heading text-xs font-semibold rounded-full px-4 py-2 no-underline flex-shrink-0 bg-[rgba(37,211,102,0.1)] text-[#128C7E] border border-[rgba(37,211,102,0.2)]"
                         >
                           <Phone className="h-3 w-3" />
                           WhatsApp
