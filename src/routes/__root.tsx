@@ -2,6 +2,7 @@ import { HeadContent, Scripts, createRootRoute, Link } from '@tanstack/react-rou
 import { Home, ArrowLeft } from 'lucide-react'
 import Footer from '../components/Footer'
 import Header from '../components/Header'
+import { ORGANIZATION_SCHEMA, jsonLdScript } from '../data/seo'
 
 import appCss from '../styles.css?url'
 
@@ -58,13 +59,8 @@ export const Route = createRootRoute({
   notFoundComponent: NotFound,
   head: () => ({
     meta: [
-      {
-        charSet: 'utf-8',
-      },
-      {
-        name: 'viewport',
-        content: 'width=device-width, initial-scale=1',
-      },
+      { charSet: 'utf-8' },
+      { name: 'viewport', content: 'width=device-width, initial-scale=1' },
       {
         title: 'Wafa Indonesia — Belajar Al-Qur\'an Metode Otak Kanan',
       },
@@ -73,45 +69,35 @@ export const Route = createRootRoute({
         content:
           'Metode Wafa — Cara mudah, cepat, dan menyenangkan belajar Al-Qur\'an. 15.000+ guru tersertifikasi, 1200+ lembaga di 35 provinsi Indonesia.',
       },
-      {
-        property: 'og:title',
-        content: 'Wafa Indonesia — Belajar Al-Qur\'an Metode Otak Kanan',
-      },
+      { property: 'og:type', content: 'website' },
+      { property: 'og:url', content: 'https://wafaindonesia.or.id' },
+      { property: 'og:title', content: 'Wafa Indonesia — Belajar Al-Qur\'an Metode Otak Kanan' },
       {
         property: 'og:description',
-        content:
-          'Metode Wafa — Cara mudah, cepat, dan menyenangkan belajar Al-Qur\'an. 15.000+ guru tersertifikasi, 1200+ lembaga di 35 provinsi Indonesia.',
+        content: 'Metode Wafa — Cara mudah, cepat, dan menyenangkan belajar Al-Qur\'an. 15.000+ guru tersertifikasi, 1200+ lembaga di 35 provinsi Indonesia.',
       },
-      {
-        property: 'og:type',
-        content: 'website',
-      },
-      {
-        property: 'og:url',
-        content: 'https://wafaindonesia.or.id',
-      },
-      {
-        name: 'theme-color',
-        content: '#d10071',
-      },
+      { property: 'og:image', content: 'https://wafaindonesia.or.id/og-image.jpg' },
+      { property: 'og:site_name', content: 'Wafa Indonesia' },
+      { property: 'og:locale', content: 'id_ID' },
+      { name: 'twitter:card', content: 'summary_large_image' },
+      { name: 'robots', content: 'index, follow' },
+      { name: 'theme-color', content: '#d10071' },
     ],
     links: [
-      {
-        rel: 'preconnect',
-        href: 'https://fonts.googleapis.com',
-      },
-      {
-        rel: 'preconnect',
-        href: 'https://fonts.gstatic.com',
-        crossOrigin: 'anonymous',
-      },
+      { rel: 'canonical', href: 'https://wafaindonesia.or.id' },
+      { rel: 'preconnect', href: 'https://fonts.googleapis.com' },
+      { rel: 'preconnect', href: 'https://fonts.gstatic.com', crossOrigin: 'anonymous' },
       {
         rel: 'stylesheet',
         href: 'https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Tajawal:wght@400;700&display=swap',
       },
+      { rel: 'stylesheet', href: appCss },
+    ],
+    scripts: [
+      // Organization JSON-LD
       {
-        rel: 'stylesheet',
-        href: appCss,
+        type: 'application/ld+json',
+        children: jsonLdScript(ORGANIZATION_SCHEMA),
       },
     ],
   }),
@@ -126,7 +112,7 @@ function RootDocument({ children }: { children: React.ReactNode }) {
       </head>
       <body className="font-sans antialiased [overflow-wrap:anywhere]">
         <Header />
-        {children}
+        <main id="main-content">{children}</main>
         <Footer />
         {import.meta.env.DEV && <DevTools />}
         <Scripts />
@@ -135,9 +121,20 @@ function RootDocument({ children }: { children: React.ReactNode }) {
   )
 }
 
-// Lazy-load devtools only in dev
+// Skip link for a11y
+export function SkipLink() {
+  return (
+    <a
+      href="#main-content"
+      className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[200] focus:rounded-lg focus:px-4 focus:py-2 focus:text-sm focus:font-semibold focus:text-white no-underline"
+      style={{ background: 'var(--magenta-bold)' }}
+    >
+      Lewati ke konten utama
+    </a>
+  )
+}
+
 function DevTools() {
   if (typeof window === 'undefined') return null
-  // Devtools are loaded separately to avoid production bundle bloat
   return null
 }
