@@ -161,7 +161,7 @@ function BlogPage() {
 
           {/* Search */}
           <div className="max-w-md mx-auto relative">
-            <Search className="absolute left-4 top-1/2 -translate-y-1/2 h-4 w-4 text-text-secondary" />
+            <Search className="absolute right-4 top-1/2 -translate-y-1/2 h-4 w-4 text-text-secondary" />
             <input
               type="search"
               value={search}
@@ -176,7 +176,7 @@ function BlogPage() {
       {/* Category pills */}
       <section className="py-5 sticky top-16 z-30 bg-surface-strong/95 backdrop-blur-md border-b border-line">
         <div className="page-wrap">
-          <div className="flex gap-2 scroll-x">
+          <div className="flex gap-2 scroll-x py-4">
             {CATEGORIES.map((cat) => (
               <button
                 key={cat}

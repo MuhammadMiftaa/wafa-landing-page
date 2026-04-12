@@ -248,13 +248,8 @@ function KontakPage() {
                 </div>
 
                 {/* Map placeholder */}
-                <div className="mt-5 h-40 rounded-2xl flex items-center justify-center bg-product-area border border-dashed border-line">
-                  <div className="text-center">
-                    <MapPin className="h-8 w-8 mx-auto mb-2 text-magenta-bold" />
-                    <p className="text-xs text-text-secondary">
-                      Peta Lokasi Wafa Pusat
-                    </p>
-                  </div>
+                <div className="mt-5 h-40 rounded-2xl bg-product-area border border-dashed border-line overflow-hidden">
+                    <iframe className="w-full h-full" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3957.1303085094933!2d112.7202171!3d-7.3392601!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd7fb5c24f36545%3A0xdcb8bf9b77f2ad2f!2sWafa%20Indonesia%20(Metode%20Wafa)!5e0!3m2!1sid!2sid!4v1775999776659!5m2!1sid!2sid" loading="lazy"></iframe>
                 </div>
               </div>
 

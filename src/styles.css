@@ -567,6 +567,29 @@ code {
   color: var(--color-magenta-bold);
 }
 
+.nav-link-enhanced {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  text-decoration: none;
+  color: var(--color-text-secondary);
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-size: 0.85rem;
+  letter-spacing: -0.01em;
+  transition:
+    color 200ms ease,
+    background 200ms ease;
+}
+
+.nav-link-enhanced:hover {
+  color: var(--color-magenta-bold);
+}
+
+.nav-link-enhanced.is-active {
+  color: var(--color-magenta-bold);
+}
+
 /* ─── Tab Pill ───────────────────────────────────────────── */
 
 .tab-pill {
