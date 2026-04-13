@@ -1,0 +1,51 @@
+# ─── Version Control ──────────────────────────────────────
+.git
+.gitignore
+
+# ─── Node / Bun ───────────────────────────────────────────
+node_modules
+.npm
+
+# ─── Build Artifacts ──────────────────────────────────────
+dist
+dist-ssr
+.output
+.nitro
+.tanstack
+.vinxi
+.wrangler
+
+# ─── Dev / Local ──────────────────────────────────────────
+*.local
+.env
+.env.*
+!.env.example
+
+# ─── OS ───────────────────────────────────────────────────
+.DS_Store
+Thumbs.db
+
+# ─── Editor ───────────────────────────────────────────────
+.vscode
+.idea
+*.swp
+*.swo
+
+# ─── Logs ─────────────────────────────────────────────────
+*.log
+logs/
+
+# ─── Test ─────────────────────────────────────────────────
+coverage
+*.test.*
+*.spec.*
+
+# ─── Docs ─────────────────────────────────────────────────
+README.md
+CHANGELOG.md
+*.md
+
+# ─── Docker ───────────────────────────────────────────────
+Dockerfile*
+docker-compose*
+.dockerignore
