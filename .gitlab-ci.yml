@@ -58,8 +58,8 @@ deploy-staging:
   script:
     - |
       ssh -p $SSH_PORT -o StrictHostKeyChecking=no ${SSH_USER}@${SSH_HOST} "
-        export STG_WAFA_landing_page=\"$CI_REGISTRY_IMAGE/wafa-landing-page\" &&
-        export STG_WAFA_landing_page_TAG=$TAG_IMAGE
+        export STG_WAFA_LANDING_PAGE=\"$CI_REGISTRY_IMAGE/wafa-landing-page\" &&
+        export STG_WAFA_LANDING_PAGE_TAG=$TAG_IMAGE
 
         cd ~/web/staging/wafa_landing_page &&
 
@@ -84,8 +84,8 @@ deploy-production:
   script:
     - |
       ssh -p $SSH_PORT -o StrictHostKeyChecking=no ${SSH_USER}@${SSH_HOST} " 
-        export PROD_WAFA_landing_page=\"$CI_REGISTRY_IMAGE/wafa-landing-page\" &&
-        export PROD_WAFA_landing_page_TAG=$CI_COMMIT_TAG &&
+        export PROD_WAFA_LANDING_PAGE=\"$CI_REGISTRY_IMAGE/wafa-landing-page\" &&
+        export PROD_WAFA_LANDING_PAGE_TAG=$CI_COMMIT_TAG &&
 
         cd ~/web/production/wafa_landing_page &&
 
