@@ -1,11 +1,11 @@
 # ─────────────────────────────────────────────────────────────────────────────
-# Stage 1: deps — production dependencies saja
+# Stage 1: deps
 # ─────────────────────────────────────────────────────────────────────────────
 FROM oven/bun:1.2-alpine AS deps
 
 WORKDIR /app
 
-COPY package.json bun.lockb* ./
+COPY package.json bun.lock* ./
 RUN bun install --frozen-lockfile --production
 
 # ─────────────────────────────────────────────────────────────────────────────
@@ -15,74 +15,38 @@ FROM oven/bun:1.2-alpine AS builder
 
 WORKDIR /app
 
-COPY package.json bun.lockb* ./
+COPY package.json bun.lock* ./
 RUN bun install --frozen-lockfile
 
 COPY . .
-RUN bun --bun run build
-
-# Normalize output dir → /app/out
-RUN if [ -d ".output" ]; then \
-        cp -r .output /app/out; \
-    elif [ -d "dist" ]; then \
-        cp -r dist /app/out; \
-    else \
-        echo "ERROR: Build output tidak ditemukan!" && exit 1; \
-    fi
+RUN bun run build
 
 # ─────────────────────────────────────────────────────────────────────────────
-# Stage 3: compress
+# Stage 3: runner
 # ─────────────────────────────────────────────────────────────────────────────
-FROM alpine:3.20 AS compress
+FROM oven/bun:1.2-alpine
 
-RUN apk add --no-cache brotli pigz findutils
+RUN apk add --no-cache nginx
 
-WORKDIR /app/out
-COPY --from=builder /app/out .
-
-# Pre-compress static client assets saja (bukan server JS)
-# Server JS tidak perlu di-compress karena dibaca langsung oleh Bun
-RUN find ./client -type f \( \
-      -name "*.js"   -o -name "*.mjs"  -o -name "*.cjs" \
-      -o -name "*.css"  -o -name "*.html" -o -name "*.svg" \
-      -o -name "*.json" -o -name "*.xml"  -o -name "*.txt" \
-      -o -name "*.wasm" -o -name "*.ico" -o -name "*.png" \
-      -o -name "*.webp" \
-    \) \
-    -size +1k \
-    | while read f; do \
-        brotli --quality=11 --force --keep "$f"; \
-        pigz --best --keep --force "$f"; \
-      done
-
-# ─────────────────────────────────────────────────────────────────────────────
-# Stage 4: runner
-# ─────────────────────────────────────────────────────────────────────────────
-FROM oven/bun:1.2-alpine AS runner
-
-RUN addgroup -g 1001 -S nodejs && \
-    adduser  -S -u 1001 -G nodejs nodejs
+# Hapus semua config bawaan Alpine Nginx
+RUN rm -rf /etc/nginx/http.d/ && mkdir -p /etc/nginx/http.d/
 
 WORKDIR /app
 
-# Build output (server + client assets)
-COPY --from=compress --chown=nodejs:nodejs /app/out .
+COPY --from=builder /app/dist         ./dist
+COPY --from=deps    /app/node_modules ./node_modules
+COPY --from=builder /app/package.json ./
 
-# node_modules production — dibutuhkan karena h3-v2 dan deps lain
-# tidak di-bundle oleh TanStack Start ke server.js
-COPY --from=deps --chown=nodejs:nodejs /app/node_modules ./node_modules
+COPY default.conf /etc/nginx/http.d/default.conf
+COPY start.sh     /start.sh
 
-COPY --chown=nodejs:nodejs package.json ./
+# Verifikasi isi config saat build — kalau masih listen 80 berarti COPY gagal
+RUN echo "=== nginx config ===" && cat /etc/nginx/http.d/default.conf
 
-USER nodejs
+RUN chmod +x /start.sh
 
 EXPOSE 3000
 
-ENV NODE_ENV=production \
-    PORT=3000 \
-    HOST=0.0.0.0
+ENV NODE_ENV=production
 
-HEALTHCHECK --interval=30s --timeout=5s --start-period=10s --retries=3 \
-  CMD wget -qO- http://localhost:3000/ || exit 1
-
-CMD ["bun", "run", "./server/server.js"]
+CMD ["/start.sh"]

@@ -7,9 +7,9 @@ node_modules
 .npm
 
 # ─── Build Artifacts ──────────────────────────────────────
+.output
 dist
 dist-ssr
-.output
 .nitro
 .tanstack
 .vinxi
